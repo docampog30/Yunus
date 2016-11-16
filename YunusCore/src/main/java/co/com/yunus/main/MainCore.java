@@ -17,7 +17,7 @@ import co.com.yunus.application.rest.PartidasServices;
 import co.com.yunus.application.rest.ReportesServices;
 import co.com.yunus.config.AppExceptionMapper;
 import co.com.yunus.config.CORSFilter;
-import co.com.yunus.exception.AppException;
+
 public class MainCore {
 
     private void initServer() {
@@ -40,6 +40,8 @@ public class MainCore {
 	    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/app");
         context.addServlet(sh, "/*");
+        
+        System.out.println("Server Iniciado !!");
         
 	    
 	    server.setHandler(context);
