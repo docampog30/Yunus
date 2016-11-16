@@ -1,0 +1,122 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+<div class="actions" style="float: right;">
+	<ul>
+		<li>
+			<button ng-click="descargar()">Nuevo
+				<span class="fa fa-plus-circle"></span>
+			</button>
+			<button type="submit" ng-click="guardar()" ng-disabled="userForm.$invalid">Guardar
+				<span class="fa fa-floppy-o"></span>
+			</button>
+		</li>
+	</ul>
+</div>
+	<h2>Ingresar partida de Matrimonio</h2>
+	<label id="obligatorio">*Campos Obligatorios</label>
+	<label for=""><i class="fa fa-check-circle"></i> Información general</label>
+	<ul class = "add">
+		<li>
+			<label>Fecha del matrimonio</label>
+			<input type="date" ng-model="matrimonio.fecha" required />
+		</li>
+		<li>
+			<label>Nombre testigos</label>
+			<input type="text" ng-model="matrimonio.testigos" required maxlength="100"/>
+		</li>
+		<li>
+			<label>Ministro del sacramento</label>
+			<select ng-model="matrimonio.idMinistro" ng-options="m.id as m.nombres for m in ministros" required></select>
+			
+		</li>
+		<li>
+			<label>Libro #</label>
+			<input type="number" ng-model="matrimonio.libroNro" required maxlength="10"/>
+		</li>
+		<li>
+			<label>Año partida</label>
+			<input type="number" ng-model="matrimonio.anioPartida" required 
+			oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+		    type = "number"
+		    maxlength = "4"/>
+		</li>
+		<li>
+			<label>Folio #</label>
+			<input type="number" ng-model="matrimonio.folio" required maxlength="10"/>
+		</li>
+		<li>
+			<label>Número</label>
+			<input type="number" ng-model="matrimonio.numero" required maxlength="5"/>
+		</li>
+		<li style="width: 57%;">
+			<label>Nota marginal</label>
+			<input type="text" ng-model="matrimonio.nota" required maxlength="150"/>
+		</li>
+		
+	</ul>
+	<label for=""><i class="fa fa-check-circle"></i> Datos del novio</label>
+	<ul class="add">
+		<li>
+			<label>Nombres :</label>
+			<input type="text" ng-model="matrimonio.persona1.nombres" required/>
+		</li>
+		<li>
+			<label>Apellidos :</label>
+			<input type="text" ng-model="matrimonio.persona1.apellidos" required/>
+		</li>
+		<li>
+			<label>Cédula :</label>
+			<input type="number" ng-model="matrimonio.persona1.cedula" required/>
+		</li>
+		<li>
+			<label>Fecha de nacimiento :</label>
+			<input type="date" ng-model="matrimonio.persona1.fNacimiento" required/>
+		</li>
+		<li>
+			<label>Nombre Padre :</label>
+			<input type="text" ng-model="matrimonio.persona1.nombrePadre1" required/>
+		</li>
+		<li>
+			<label>Nombre Madre :</label>
+			<input type="text" ng-model="matrimonio.persona1.nombrePadre2" required/>
+		</li>
+	</ul>
+	
+	<label for=""><i class="fa fa-check-circle"></i> Datos de la novia</label>
+	<ul class="add">
+		<li>
+			<label>Nombres :</label>
+			<input type="text" ng-model="matrimonio.persona2.nombres" maxlength="45" required/>
+		</li>
+		<li>
+			<label>Apellidos :</label>
+			<input type="text" ng-model="matrimonio.persona2.apellidos" maxlength="45" required/>
+		</li>
+		<li>
+			<label>Cédula :</label>
+			<input type="number" ng-model="matrimonio.persona2.cedula" maxlength="12" required/>
+		</li>
+		<li>
+			<label>Fecha de nacimiento :</label>
+			<input type="date" ng-model="matrimonio.persona2.fNacimiento" required/>
+		</li>
+		<li>
+			<label>Nombre Padre :</label>
+			<input type="text" ng-model="matrimonio.persona2.nombrePadre1" required/>
+		</li>
+		<li>
+			<label>Nombre Madre :</label>
+			<input type="text" ng-model="matrimonio.persona2.nombrePadre2" required/>
+		</li>
+	</ul>
+<!-- 	<label for=""><i class="fa fa-search-plus"></i> Busqueda </label> -->
+<!-- 	<div class="actions"> -->
+<!-- 		<label>Código</label> -->
+<!-- 		<input type="text" /> -->
+<!-- 		<button ng-click="buscar()"> -->
+<!-- 			Buscar -->
+<!-- 			<span class="fa fa-search"></span> -->
+<!-- 		</button> -->
+<!-- 	</div> -->
+</div>
+</form>

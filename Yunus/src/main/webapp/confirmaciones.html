@@ -1,0 +1,80 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+<div class="actions" style="float: right;">
+	<ul>
+		<li>
+			<button ng-click="init()">Nuevo
+				<span class="fa fa-plus-circle"></span>
+			</button>
+			<button type="submit" ng-click="guardar()" ng-disabled="userForm.$invalid">Guardar
+				<span class="fa fa-floppy-o"></span>
+			</button>
+		</li>
+	</ul>
+</div>
+	<h2>Ingresar partida de confirmación</h2>
+	<label id="obligatorio">*Campos Obligatorios</label>
+	<label for=""><i class="fa fa-check-circle"></i> Información general</label>
+	<ul class = "add">
+		<li>
+			<label>Fecha de la confirmación</label>
+			<input type="date" ng-model="confirmacion.fecha" required />
+		</li>
+		<li>
+			<label>Obispo</label>
+			<input type="text" ng-model="confirmacion.obispo" required/>			
+		</li>
+		<li>
+			<label>Libro #</label>
+			<input type="number" ng-model="confirmacion.libroNro" required maxlength="10"/>
+		</li>
+		<li>
+			<label>Año partida</label>
+			<input type="number" ng-model="confirmacion.anioPartida" required 
+			oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+		    type = "number"
+		    maxlength = "4"/>
+		</li>
+		<li>
+			<label>Folio #</label>
+			<input type="number" ng-model="confirmacion.folio" required maxlength="10"/>
+		</li>
+		<li>
+			<label>Número</label>
+			<input type="number" ng-model="confirmacion.numero" required maxlength="5"/>
+		</li>
+		<li>
+			<label>Padrin@</label>
+			<input type="text" ng-model="confirmacion.padrino1" required maxlength="45"/>
+		</li>
+		<li style="width: 57%;">
+			<label>Nota marginal</label>
+			<input type="text" ng-model="confirmacion.nota" maxlength="150"/>
+		</li>
+		
+	</ul>
+	<label for=""><i class="fa fa-check-circle"></i> Datos de la persona</label>
+	<ul class="add">
+		<li>
+			<label>Nombres :</label>
+			<input type="text" ng-model="confirmacion.persona1.nombres" required/>
+		</li>
+		<li>
+			<label>Apellidos :</label>
+			<input type="text" ng-model="confirmacion.persona1.apellidos" required/>
+		</li>
+		<li>
+			<label>Identificación :</label>
+			<input type="number" ng-model="confirmacion.persona1.cedula" required/>
+		</li>
+		<li>
+			<label>Nombre Padre :</label>
+			<input type="text" ng-model="confirmacion.persona1.nombrePadre1" required/>
+		</li>
+		<li>
+			<label>Nombre Madre :</label>
+			<input type="text" ng-model="confirmacion.persona1.nombrePadre2" required/>
+		</li>
+	</ul>
+</div>
+</form>

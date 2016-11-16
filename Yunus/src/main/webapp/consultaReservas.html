@@ -1,0 +1,60 @@
+<form name="userForm" novalidate>
+<div ng-init="init();" class="clientes">
+	<h2>Consulta Vuelos</h2>
+	<label for=""><i class="fa fa-check-circle"></i> Busqueda por horas</label>
+	<div class="actions">
+		<label>Entre :</label>
+		<select ng-model="horaini" ng-options="c.label for c in horariosIni"></select>
+		<label>y :</label>
+		<select ng-model="horafin" ng-options="c.label for c in horariosFin"></select>
+		<button ng-click="buscarHora()">
+			Buscar
+			<span class="fa fa-search"></span>
+		</button>
+	</div>
+	<label for=""><i class="fa fa-check-circle"></i> Busqueda por tarifas</label>
+	<div class="actions">
+		<label>Entre :</label>
+		<select ng-model="tarifaMin" ng-options="c for c in tarifasMin"></select>
+		<label>y :</label>
+		<select ng-model="tarifaMax" ng-options="c for c in tarifasMax"></select>
+		<button ng-click="buscarTarifas()">
+			Buscar
+			<span class="fa fa-search"></span>
+		</button>
+	</div>
+	<label for=""><i class="fa fa-check-circle"></i> Busqueda por estado</label>
+	<div class="actions">
+		<select ng-model="estado" ng-options="c.value for c in estados"></select>
+		<button ng-click="buscarEstado()">
+			Buscar
+			<span class="fa fa-search"></span>
+		</button>
+	</div>
+	<ul class="titleP">
+		<li class="numId">Numero vuelo</li>
+		<li class="numId">Ruta</li>
+		<li class="numId">Hora</li>
+		<li class="numId">Tarifa</li>
+		<li class="numId">Estado</li>
+	</ul>
+		<ul class="tablasP" ng-repeat="vuelo in listaVuelos">
+			<li>
+				<label>{{vuelo.id}}</label>
+			</li>
+			<li>
+				<label>{{vuelo.ruta}}</label>
+			</li>
+			<li>
+				<label>{{getHour(vuelo.hora)}}</label>
+			</li>
+			<li>
+				<label>{{vuelo.tarifa|currency}}</label>
+			</li>
+			<li>
+				<label>{{getEstado(vuelo.estado)}}</label>
+			</li>
+		</ul>
+		
+</div>
+</form>

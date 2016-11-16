@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="matrimonios" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21ae4e5f-9895-4e57-b3cc-879dc98e9373">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="163"/>
+	<import value="co.com.yunus.application.dto.*"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="diocesis" class="java.lang.String"/>
+	<parameter name="parroquia" class="java.lang.String"/>
+	<parameter name="direccionParroquia" class="java.lang.String"/>
+	<parameter name="tel" class="java.lang.String"/>
+	<parameter name="presbitero" class="java.lang.String"/>
+	<parameter name="partida" class="co.com.yunus.application.dto.Partida"/>
+	<parameter name="parroco" class="java.lang.String"/>
+	<parameter name="parrocoPie" class="java.lang.String"/>
+	<parameter name="ubicacion" class="java.lang.String"/>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="2" y="0" width="555" height="132" uuid="ed078229-1da5-4f9f-8bf5-a576e00b2d73"/>
+				<imageExpression><![CDATA["C:\\Users\\David\\Downloads\\Encabezado3.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="159" y="53" width="306" height="45" uuid="b62b3df1-2ab7-4d69-a441-a670d18087e2"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificado de Matrimonio]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="426">
+			<textField>
+				<reportElement x="124" y="12" width="431" height="18" uuid="2df3584c-e4a5-4c7b-9738-b120740c3003"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{diocesis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="30" width="431" height="18" uuid="f39239d2-553f-4ffc-bf21-1b3465fe27d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{parroquia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="48" width="431" height="18" uuid="591308be-d092-4d32-9f0d-a5a027a671a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{direccionParroquia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="66" width="431" height="18" uuid="aeeca1de-ea14-4538-9e2b-39c361add15d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["TEL: "+$P{tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="96" width="431" height="18" uuid="1917c712-04b5-4395-a784-3f8deae14139"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["El suscrito Pbro. : "+$P{presbitero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="99" y="114" width="51" height="18" uuid="dbc050ff-83f7-4c5e-9048-88bcc5665cb6"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getFecha()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="156" width="416" height="18" uuid="2e56ac2a-6e4c-49e3-a656-f4eb677c6e48"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getNombres()+" "+$P{partida}.getPersona1().getApellidos()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="156" width="137" height="18" uuid="51fb80cc-335c-4d90-b1cd-bdc06e2d1a2c"/>
+				<textFieldExpression><![CDATA["EL (LA) CONTRAYENTE: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="174" width="137" height="18" uuid="6ac639e4-7625-4d7b-bc90-016393513700"/>
+				<textFieldExpression><![CDATA["CÉDULA: "]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="140" y="174" width="416" height="18" uuid="4249b97b-f185-48d1-a5a9-bf798d9484cc"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getCedula()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="141" y="192" width="414" height="18" uuid="2e476e07-6ff5-44b5-8100-0cefa69c4921"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getfNacimiento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="192" width="137" height="18" uuid="9e499b83-f04a-4919-8b80-88a3165de446"/>
+				<textFieldExpression><![CDATA["FECHA DE NACIMIENTO: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="210" width="416" height="18" uuid="9dfae968-f247-481a-9499-3ded16f74d2d"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getNombrePadre1()+" y "+$P{partida}.getPersona1().getNombrePadre2()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="210" width="137" height="18" uuid="b5f08b91-91ea-4ccc-80ab-8259bba7e90a"/>
+				<textFieldExpression><![CDATA["HIJO DE: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="241" width="137" height="18" uuid="b1ea77f0-096c-450d-b4a4-5e8bd8578a6d"/>
+				<textFieldExpression><![CDATA["LA CONTRAYENTE: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="241" width="416" height="18" uuid="c92ef9ba-fefb-4fb4-b22f-90bc89c94ff4"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona2().getNombres()+" "+$P{partida}.getPersona2().getApellidos()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="277" width="137" height="18" uuid="9c85b9d7-8c68-4203-9014-1b5d427f3931"/>
+				<textFieldExpression><![CDATA["FECHA DE NACIMIENTO: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="295" width="137" height="18" uuid="4cb28fa3-cea3-4f42-a971-2e576915c72f"/>
+				<textFieldExpression><![CDATA["HIJO DE: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="259" width="414" height="18" uuid="18e89246-19a6-4d00-9fb7-b03d58826cee"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona2().getCedula()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="142" y="277" width="413" height="18" uuid="e455da0a-04d3-4ef9-b3e6-396a1a1ed146"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona2().getfNacimiento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="259" width="137" height="18" uuid="3d2b3532-7b4a-49e8-b81a-dc9d54142652"/>
+				<textFieldExpression><![CDATA["CÉDULA: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="295" width="414" height="18" uuid="794cdd84-31e4-4c70-a06a-faa704337154"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona2().getNombrePadre2()+" y "+$P{partida}.getPersona2().getNombrePadre2()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="114" width="103" height="18" uuid="73bcc22c-3c27-4e61-b773-960ce231d7eb"/>
+				<textFieldExpression><![CDATA["Confiesa que el día "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="132" width="554" height="18" uuid="76c2d4d7-5150-4fc0-93a9-dfa5aea235f0"/>
+				<textFieldExpression><![CDATA["Cumpliendo con los requisitos previos, civiiles y eclesiasticos, contrajeron matrimonio religioso en esta Parroquia:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="324" width="554" height="18" uuid="aa060d80-b434-4194-b98f-148c66159404"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Así consta en el libro N° "+$P{partida}.getLibroNro()+", Folio N° "+$P{partida}.getFolio()+" Número "+$P{partida}.getNumero()+" de matrimonio de esta parroquia. Expedida en la oficina parroquial de "+$P{ubicacion} ]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="378" width="553" height="18" uuid="06a7f328-1c21-44fc-9c65-5c7deb2d2f35"/>
+				<textFieldExpression><![CDATA[$P{parroco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="395" width="553" height="18" uuid="1168c62f-e0ee-430a-ba85-b646d6f3fd53"/>
+				<textFieldExpression><![CDATA[$P{parrocoPie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="1" width="555" height="104" uuid="f2f9a706-1d88-44ad-a342-1da69ee1e0ea"/>
+				<imageExpression><![CDATA["C:\\Users\\David\\Downloads\\Encabezado3.PNG"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>
