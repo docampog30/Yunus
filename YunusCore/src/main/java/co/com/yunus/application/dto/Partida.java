@@ -148,4 +148,13 @@ public class Partida {
 	public void setObispo(String obispo) {
 		this.obispo = obispo;
 	}
+	public Long getId() {
+		return id;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
 }

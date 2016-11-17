@@ -22,9 +22,6 @@ public class PartidasServices {
 	private ITransactionalRepository transactionalRepository;
 	
 	@Inject
-	private IRepositoryPersonas personasRepository;
-	
-	@Inject
 	private IRepositoryPartidas partidasRepository;
 	
 	@PUT
