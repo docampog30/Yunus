@@ -27,6 +27,10 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'confirmaciones.html',
                controller: 'ConfirmacionesController'
            }).
+           when('/reportes', {
+               templateUrl: 'reportes.html',
+               controller: 'ConfirmacionesController'
+           }).
          otherwise({
             redirectTo: '/home'
          });

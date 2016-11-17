@@ -284,6 +284,7 @@ header .menu .nav li a:focus {
 .tablasA li {
   width: 20%;
 }
+
 .titleP li:last-child,
 .tablasP li:last-child,
 .titleA li:last-child,
@@ -307,6 +308,10 @@ header .menu .nav li a:focus {
 .titleA li,
 .tablasA li {
   width: 20%;
+}
+.titleA .partida li
+{
+  width: 10%;
 }
 .titleOnec {
   margin: 0;
