@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,16 +21,15 @@ import co.com.yunus.application.enums.TipoSacramento;
 @Table(name="PARTIDAS")
 public class Partida {
 	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long			id;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.LAZY)
 	@JoinColumn(name="persona1_id",referencedColumnName="id")
 	private Persona 		persona1;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.LAZY)
 	@JoinColumn(name="persona2_id",referencedColumnName="id",nullable=true)
 	private Persona 		persona2;
 	
@@ -55,6 +55,7 @@ public class Partida {
 	private String 			padrino1;
 	private String 			padrino2;
 	private String			obispo;
+	private String	 		pabautizmo;
 	
 	public Persona getPersona1() {
 		return persona1;
@@ -151,10 +152,10 @@ public class Partida {
 	public Long getId() {
 		return id;
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public String getPabautizmo() {
+		return pabautizmo;
+	}
+	public void setPabautizmo(String pabautizmo) {
+		this.pabautizmo = pabautizmo;
 	}
 }

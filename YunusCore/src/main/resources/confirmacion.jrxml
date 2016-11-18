@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="confirmacion" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21ae4e5f-9895-4e57-b3cc-879dc98e9373">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="115"/>
+	<import value="co.com.yunus.application.dto.*"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="diocesis" class="java.lang.String"/>
+	<parameter name="parroquia" class="java.lang.String"/>
+	<parameter name="direccionParroquia" class="java.lang.String"/>
+	<parameter name="tel" class="java.lang.String"/>
+	<parameter name="presbitero" class="java.lang.String"/>
+	<parameter name="partida" class="co.com.yunus.application.dto.Partida"/>
+	<parameter name="parroco" class="java.lang.String"/>
+	<parameter name="parrocoPie" class="java.lang.String"/>
+	<parameter name="ubicacion" class="java.lang.String"/>
+	<title>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="184" y="1" width="370" height="104" uuid="55dda808-d7a6-498b-a543-886c7a7d4bab"/>
+				<imageExpression><![CDATA["C:\\Users\\David\\Downloads\\Encabezado2.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="48" y="40" width="344" height="45" uuid="b62b3df1-2ab7-4d69-a441-a670d18087e2"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificado de Confirmación]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="365">
+			<textField>
+				<reportElement x="124" y="12" width="431" height="18" uuid="2df3584c-e4a5-4c7b-9738-b120740c3003"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{diocesis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="30" width="431" height="18" uuid="f39239d2-553f-4ffc-bf21-1b3465fe27d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{parroquia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="48" width="431" height="18" uuid="591308be-d092-4d32-9f0d-a5a027a671a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{direccionParroquia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="66" width="431" height="18" uuid="aeeca1de-ea14-4538-9e2b-39c361add15d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["TEL: "+$P{tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="96" width="431" height="18" uuid="1917c712-04b5-4395-a784-3f8deae14139"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["El suscrito Parroco certifica que"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="195" y="130" width="360" height="18" uuid="2e56ac2a-6e4c-49e3-a656-f4eb677c6e48"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getNombres()+" "+$P{partida}.getPersona1().getApellidos()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="131" width="193" height="18" uuid="51fb80cc-335c-4d90-b1cd-bdc06e2d1a2c"/>
+				<textFieldExpression><![CDATA["NOMBRE "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="148" width="195" height="18" uuid="6ac639e4-7625-4d7b-bc90-016393513700"/>
+				<textFieldExpression><![CDATA["HIJO(A) DE: LOS SEÑORES "]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="195" y="148" width="359" height="18" uuid="4249b97b-f185-48d1-a5a9-bf798d9484cc"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getNombrePadre1()+" y "+$P{partida}.getPersona1().getNombrePadre2()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="160" y="207" width="396" height="18" uuid="2e476e07-6ff5-44b5-8100-0cefa69c4921"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getObispo()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="207" width="155" height="18" uuid="9e499b83-f04a-4919-8b80-88a3165de446"/>
+				<textFieldExpression><![CDATA["S.E."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="225" width="398" height="18" uuid="9dfae968-f247-481a-9499-3ded16f74d2d"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getFecha()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="225" width="155" height="18" uuid="b5f08b91-91ea-4ccc-80ab-8259bba7e90a"/>
+				<textFieldExpression><![CDATA["EL DíA "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="243" width="154" height="18" uuid="b1ea77f0-096c-450d-b4a4-5e8bd8578a6d"/>
+				<textFieldExpression><![CDATA["PADRINO/MADRINA "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="243" width="398" height="18" uuid="c92ef9ba-fefb-4fb4-b22f-90bc89c94ff4"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPadrino1()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="261" width="155" height="18" uuid="9c85b9d7-8c68-4203-9014-1b5d427f3931"/>
+				<textFieldExpression><![CDATA["NOTA MARGINAL"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="159" y="261" width="396" height="18" uuid="e455da0a-04d3-4ef9-b3e6-396a1a1ed146"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getNota()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="291" width="555" height="18" uuid="aa060d80-b434-4194-b98f-148c66159404"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Así consta en el libro de confirmacion N° "+$P{partida}.getLibroNro()+", donde se halla inscrita las partidas de Confirmación celebrada en el año "+$P{partida}.getAnioPartida()+" al folio N° "+$P{partida}.getFolio()+" Número "+$P{partida}.getNumero()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="324" width="553" height="18" uuid="06a7f328-1c21-44fc-9c65-5c7deb2d2f35"/>
+				<textFieldExpression><![CDATA[$P{parroco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="342" width="556" height="18" uuid="1168c62f-e0ee-430a-ba85-b646d6f3fd53"/>
+				<textFieldExpression><![CDATA[$P{parrocoPie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="189" width="554" height="18" uuid="561d79d6-c3f4-4afa-8714-c52b0c6c7fbd"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Recibió en esta Parroquia el Sacramento de la Confirmación impartida por:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="166" width="193" height="18" uuid="f6f09a62-e6cf-4988-accf-29ed3c8e8b82"/>
+				<textFieldExpression><![CDATA["BAUTIZADO EN LA PARROQUIA DE"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="195" y="166" width="359" height="18" uuid="a4cce8d0-442d-4342-9141-4f444a909fff"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{partida}.getPabautizmo()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="184" y="1" width="370" height="104" uuid="f2f9a706-1d88-44ad-a342-1da69ee1e0ea"/>
+				<imageExpression><![CDATA["C:\\Users\\David\\Downloads\\Encabezado2.PNG"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>
