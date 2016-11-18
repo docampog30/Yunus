@@ -19,4 +19,5 @@ public interface IRepositoryPartidas extends JpaRepository<Partida,Long>{
 	List<Partida> findPartidas(@Param("documento") String documento);
 
 	List<Partida> findByFechaBetween(Date start, Date end);
+	
 }

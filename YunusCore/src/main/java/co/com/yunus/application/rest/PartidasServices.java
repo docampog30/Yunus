@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import co.com.yunus.application.dto.Partida;
 import co.com.yunus.application.enums.TipoSacramento;
 import co.com.yunus.domain.repositories.IRepositoryPartidas;
-import co.com.yunus.domain.repositories.IRepositoryPersonas;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
 import co.com.yunus.exception.AppException;
 

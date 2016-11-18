@@ -42,8 +42,6 @@ public class ReportesServices {
 		Partida partida = partidasRepository.findOne(id);
 		Map<String, Object> parametros = getParametros(partida);
 		return getReportBytes(parametros,"bautizo.jrxml");
-		
-       
 	}
 	
 	@GET
@@ -55,6 +53,14 @@ public class ReportesServices {
 		return getReportBytes(parametros, "matrimonios.jrxml");
 	}
 	
+	@GET
+	@Path("confirmacion/{id}")
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public byte[] generarPartidaConfirmacion(@PathParam("id") Long id) throws JRException{
+		Partida partida = partidasRepository.findOne(id);
+		Map<String, Object> parametros = getParametros(partida);
+		return getReportBytes(parametros, "confirmacion.jrxml");
+	}
 	@POST
 	@Path("buscar")
 	@Produces(MediaType.APPLICATION_JSON)
