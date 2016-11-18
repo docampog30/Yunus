@@ -1,0 +1,56 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-search-plus"></i> Busqueda </label>
+	<div class="actions">
+		<label>Identificación</label>
+		<input type="text" ng-model="filter.documento" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<label>Sacramento</label>
+		<select ng-model="filter.tipoSacramento" ng-options="m for m in sacramentos"></select>
+		<button ng-click="buscar()">
+			Buscar
+			<span class="fa fa-search"></span>
+		</button>
+	</div>
+	
+	
+	<div>
+		<ul class="titleA partida">
+			<li >Número</li>
+			<li >Fecha</li>
+			<li >Tipo</li>
+			<li >Identificación persona 1</li>
+			<li >Nombre Persona 1</li>
+			<li >Identificación persona 2</li>
+			<li >Nombre Persona 2</li>
+		</ul>
+		<ul ng-repeat="partida in partidas" class="tablasA">
+			<li>
+			<label>{{partida.numero}}</label>
+		</li>
+		<li>
+			<label>{{partida.fecha}}</label>
+		</li>
+		<li>
+			<label>{{partida.tipo}}</label>
+		</li>
+		<li>
+			<label>{{partida.persona1.cedula}}</label>
+		</li>
+		<li>
+			<label>{{partida.persona1.nombres}} - {{partida.persona1.apellidos}}</label>
+		</li>
+		<li>
+			<label>{{partida.persona2.cedula}}</label>
+		</li>
+		<li>
+			<label>{{partida.persona2.nombres}} - {{partida.persona2.apellidos}}</label>
+		</li>
+		<li>
+			<label>{{partida.persona2.nombres}} - {{partida.persona2.apellidos}}</label>
+		</li>
+		</ul>
+		
+	</div>
+	
+</div>
+</form>

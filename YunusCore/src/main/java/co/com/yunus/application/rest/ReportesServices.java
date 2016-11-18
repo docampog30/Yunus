@@ -61,10 +61,10 @@ public class ReportesServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Partida> buscar(PartidasFilter filter){
 		List<Partida> byDocumento 		= partidasRepository.findPartidas(filter.getDocumento());
-		List<Partida> byFechaBetween 	= partidasRepository.findByFechaBetween(filter.getFechaIni(), filter.getFechaFin());
+		//List<Partida> byFechaBetween 	= partidasRepository.findByFechaBetween(filter.getFechaIni(), filter.getFechaFin());
 		
-		Stream<Partida> partidas = Stream.concat(byDocumento.stream(), byFechaBetween.stream()).distinct();
-		List<Object> collect = partidas.collect(Collectors.toList());
+//		Stream<Partida> partidas = Stream.concat(byDocumento.stream(), byFechaBetween.stream()).distinct();
+//		List<Object> collect = partidas.collect(Collectors.toList());
 		
 		return byDocumento;
 	}
