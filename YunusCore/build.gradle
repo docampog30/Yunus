@@ -26,6 +26,7 @@ dependencies {
 	    'javax.servlet.jsp:jsp-api:2.2',
 	    'org.jboss:jandex:1.2.2.Final',
 	    'org.springframework.data:spring-data-jpa:1.9.1.RELEASE',
+	    'org.springframework:spring-web:3.0.4.RELEASE',
 		'mysql:mysql-connector-java:5.1.37',
 		'javax.servlet:javax.servlet-api:3.1.0',
 		'org.springframework:spring-web:3.0.4.RELEASE',

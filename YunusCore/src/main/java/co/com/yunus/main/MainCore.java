@@ -13,6 +13,7 @@ import org.jboss.weld.environment.se.StartMain;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 
 import co.com.yunus.application.rest.MinistrosServices;
+import co.com.yunus.application.rest.ParroquiaServices;
 import co.com.yunus.application.rest.PartidasServices;
 import co.com.yunus.application.rest.ReportesServices;
 import co.com.yunus.config.AppExceptionMapper;
@@ -26,6 +27,7 @@ public class MainCore {
 	    resourceConfig.register(PartidasServices.class);
 	    resourceConfig.register(ReportesServices.class);
 	    resourceConfig.register(MinistrosServices.class);
+	    resourceConfig.register(ParroquiaServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
 	    resourceConfig.register(new AppExceptionMapper());

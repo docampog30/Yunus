@@ -46,7 +46,6 @@ public class MinistrosServices {
 	}
 	
 	@PUT
-	@Produces(MediaType.APPLICATION_JSON)
 	public void update(Persona ministro){
 		Persona persona = personasRepository.findOne(ministro.getId());
 		persona.setNombres(ministro.getNombres());
