@@ -1,0 +1,94 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+<div class="actions" style="float: right;">
+	<ul>
+		<li>
+			<button ng-click="init()">Nuevo
+				<span class="fa fa-plus-circle"></span>
+			</button>
+			<button type="submit" ng-click="guardar()" ng-disabled="userForm.$invalid">Guardar
+				<span class="fa fa-floppy-o"></span>
+			</button>
+		</li>
+	</ul>
+</div>
+<h2>Ingresar Ministro</h2>
+	<label id="obligatorio">*Campos Obligatorios</label>
+	<ul class = "add">
+		<li>
+			<label>Nombre</label>
+			<input type="text" ng-model="ministro.nombres" required maxlength="20"/>
+		</li>
+		<li>
+			<label>Apellidos</label>
+			<input type="text" ng-model="ministro.apellidos" required maxlength="20"/>
+		</li>
+		<li>
+			<label>Cedula</label>
+			<input type="number" ng-model="ministro.cedula" required 
+			oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+		    type = "number"
+		    maxlength = "12"/>
+		</li>
+		<li>
+			<label>Es parroco?</label>
+			<select ng-model="ministro.tipo" ng-options="t.id as t.value for t in tipos" required></select>
+		</li>
+	</ul>
+	<label for=""><i class="fa fa-check-circle"></i> Ministros agregados</label>
+	<div class="actions">
+		<span class="fa fa-search"></span>
+		<input type="text" name="name" placeholder="Buscar" ng-model="search">
+		<button type="button" ng-click="update()" name="button"><i class="fa fa-pencil"></i> Editar Ministros</button>
+	</div>
+	<ul class="title">
+		<li>Nombre</li>
+		<li>Apellido</li>
+		<li class="numId">Identificación</li>
+		<li class="numId">Es parroco ?</li>
+		<li class="numId">Estado</li>
+	</ul>
+	<ul ng-repeat="ministro in ministros | orderBy: 'estado' |filter:search" class="tablas">
+		<li>
+			<div ng-hide="editorEnabled" >
+				{{ministro.nombres}}
+			</div>
+			<div ng-show="editorEnabled" >
+				<input ng-model = "ministro.nombres">
+			</div>
+		</li>
+		<li>
+			<div ng-hide="editorEnabled" >
+				{{ministro.apellidos}}
+			</div>
+			<div ng-show="editorEnabled" >
+				<input ng-model = "ministro.apellidos">
+			</div>
+		</li>
+		<li class="numId">
+			<div ng-hide="editorEnabled" >
+				{{ministro.cedula}}
+			</div>
+			<div ng-show="editorEnabled" >
+				<input ng-model = "ministro.cedula">
+			</div>
+		</li>
+		<li class="numId">
+			<div ng-hide="editorEnabled" >
+				{{ministro.tipo == 'P' ? 'SI':'NO'}}
+			</div>
+			<div ng-show="editorEnabled" >
+				<input ng-model = "ministro.tipo">
+			</div>
+		</li>
+		<li class="numId">
+			<div ng-hide="editorEnabled" >
+				{{ministro.estado ? 'Activo':'Inactivo'}}
+			</div>
+			<div ng-show="editorEnabled" >
+				<input ng-model = "ministro.estado">
+			</div>
+		</li>
+	</ul>
+</div>
+</form>

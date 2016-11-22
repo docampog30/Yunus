@@ -31,6 +31,15 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'reportes.html',
                controller: 'ReportesController'
            }).
+           when('/ministros', {
+               templateUrl: 'ministros.html',
+               controller: 'MinistrosController'
+           }).
+           when('/configuracion', {
+               templateUrl: 'configuracion.html',
+               controller: 'ConfiguracionController'
+           }).
+           
          otherwise({
             redirectTo: '/home'
          });
@@ -51,6 +60,7 @@ mainApp.run(
 		    "$rootScope",
 		    function($rootScope) {
 		    	$rootScope.urlServices = 'http://localhost:8181/app';
+		    	//$httpProvider.defaults.headers.post = { 'Content-Type' : 'application/json' }
 }]);
 
 mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$http) {
@@ -71,6 +81,21 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	},
    	dataFactory.buscarPartidas= function(filter){
    	 	return $http.post($rootScope.urlServices+'/reportes/buscar',filter);
+   	},
+   	dataFactory.getMinistros= function(){
+   	 	return $http.get($rootScope.urlServices+'/ministros');
+   	},
+   	dataFactory.grabarMinistro= function(ministro){
+   	 	return $http.post($rootScope.urlServices+'/ministros',ministro);
+   	},
+   	dataFactory.actualizarMinistro= function(ministro){
+   	 	return $http.put($rootScope.urlServices+'/ministros',ministro);
+   	},
+   	dataFactory.getConfiguracion= function(ministro){
+   	 	return $http.get($rootScope.urlServices+'/parroquia');
+   	},
+   	dataFactory.actualizarConfiguracion= function(parroquia){
+   	 	return $http.put($rootScope.urlServices+'/parroquia',parroquia);
    	},
    	dataFactory.descargarPartidaMatrimonio = function(id){
    		$http.get($rootScope.urlServices+'/reportes/matrimonio/'+id, {responseType: 'arraybuffer'})

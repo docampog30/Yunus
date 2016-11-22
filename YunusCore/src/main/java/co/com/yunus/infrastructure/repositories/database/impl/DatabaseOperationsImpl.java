@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import co.com.yunus.domain.repositories.database.IDatabaseOperations;
@@ -25,29 +26,42 @@ public class DatabaseOperationsImpl implements IDatabaseOperations {
 	}
 	
 	public <T> void save(T object) {
+		EntityTransaction tx = null;
 		try {
-			entityManager.getTransaction().begin();
-			entityManager.persist(object);
-			entityManager.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			entityManager.getTransaction().rollback();
-			entityManager.close();
+		    tx = entityManager.getTransaction();
+		    tx.begin();
+		    entityManager.persist(object);
+		    tx.commit();
 		}
-		
+		catch (RuntimeException e) {
+		    if (tx != null && tx.isActive()) 
+		    	tx.rollback();
+		    	throw e;
+		}
+		finally {
+			entityManager.clear();
+			entityManager.close();
+			
+		}
 	}
 	
 	public <T> void update(T object) {
+		EntityTransaction tx = null;
 		try {
-			entityManager.getTransaction().begin();
-			entityManager.merge(object);
-			entityManager.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			entityManager.getTransaction().rollback();
+		    tx = entityManager.getTransaction();
+		    tx.begin();
+		    entityManager.merge(object);
+		    tx.commit();
+		}
+		catch (RuntimeException e) {
+		    if (tx != null && tx.isActive()) 
+		    	tx.rollback();
+		    	throw e;
+		}
+		finally {
+			entityManager.clear();
 			entityManager.close();
 		}
-		
 	}
 
 	public <T> void delete(T object) {
