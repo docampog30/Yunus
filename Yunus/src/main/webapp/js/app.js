@@ -70,7 +70,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	 	return $http.get($rootScope.urlServices+'/ministros/activos');
    	},
    	dataFactory.buscarPartidas= function(filter){
-   	 	return $http.post('http://www.mocky.io/v2/582e2785110000991ad761a5',filter);
+   	 	return $http.post($rootScope.urlServices+'/reportes/buscar',filter);
    	},
    	dataFactory.descargarPartidaMatrimonio = function(id){
    		$http.get($rootScope.urlServices+'/reportes/matrimonio/'+id, {responseType: 'arraybuffer'})

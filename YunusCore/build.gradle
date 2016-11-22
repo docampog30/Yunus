@@ -31,10 +31,11 @@ dependencies {
 		'org.springframework:spring-web:3.0.4.RELEASE',
 		'net.sf.jasperreports:jasperreports:6.3.1',
 		'com.lowagie:itext:2.1.7',
-		'mysql:mysql-connector-java:5.1.37'
-			
+		'mysql:mysql-connector-java:5.1.37',
 	)
-	compile group: 'org.olap4j', name: 'olap4j', version: '1.2.0' 
+	compile group: 'org.olap4j', name: 'olap4j', version: '1.2.0'
+	compile group: 'uk.co.jemos.podam', name: 'podam', version: '7.0.1.RELEASE'
+	
 }
 
 task copyToLib( type: Copy ) {

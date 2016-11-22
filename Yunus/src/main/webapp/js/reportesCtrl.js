@@ -12,11 +12,14 @@ controllers
 	  }
 	  
 	  $scope.init = function() {
-		  $scope.filter = {};
 		  $scope.partidas = [];
 	  }
 	  
 	  $scope.sacramentos = ['MATRIMONIO','BAUTIZO','CONFIRMACION'];
+	  
+	  $scope.emptyOrNull = function(item){
+		  return !(item.Message === null || item.Message.trim().length === 0)
+		}
 
 	  $scope.init();
 

@@ -9,6 +9,17 @@ html {
   color: #666;
   font-size: 14px;
 }
+#partidas li{
+	width: 15%;
+	padding: 5px 10px;
+    line-height: 20px;
+}
+
+#partidas li.peq{
+	width: 9%;
+	padding: 5px 10px;
+    line-height: 20px;
+}
 ul {
   list-style: none;
 }
@@ -201,6 +212,15 @@ header .menu .nav li a:focus {
   height: 28px;
   margin: 0 0 0 5px;
 }
+
+.descargar{
+  background: #049dbf;
+    color: #fff;
+    border: none;
+    padding: 0 10px;
+    font-size: 13px;
+}
+
 .actions button {
   color: #fff;
   background: #F7BE38;
