@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import net.sf.jasperreports.engine.JRException;
 import co.com.yunus.application.dto.Partida;
 import co.com.yunus.application.enums.TipoSacramento;
 import co.com.yunus.domain.repositories.IRepositoryPartidas;
@@ -23,36 +25,40 @@ public class PartidasServices {
 	@Inject
 	private IRepositoryPartidas partidasRepository;
 	
-	@PUT
+	@Inject
+	private ReportesServices reportesServices;
+	
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	@Path("matrimonio")
-	public void crearMatrimonio(Partida partida){
+	public byte[] crearMatrimonio(Partida partida) throws JRException, Exception{
 		partida.setTipo(TipoSacramento.MATRIMONIO);
 		save(partida);
+		return reportesServices.generarPartidaMatrimonio(partida.getId());
 	}
 	
-	@PUT
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	@Path("bautizo")
-	public void crearBautizmo(Partida partida){
+	public byte[] crearBautizmo(Partida partida) throws JRException, Exception{
 		partida.setTipo(TipoSacramento.BAUTIZO);
 		save(partida);
+		return reportesServices.generarPartidaBautizo(partida.getId());
 	}
 	
-	@PUT
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	@Path("confirmacion")
-	public void crearConfirmacion(Partida partida){
+	public byte[]  crearConfirmacion(Partida partida) throws JRException, Exception{
 		partida.setTipo(TipoSacramento.CONFIRMACION);
 		save(partida);
+		return reportesServices.generarPartidaConfirmacion(partida.getId());
 	}
 	
 	private void save(Partida partida) {
-		List<Partida> partidas = partidasRepository.findByNumeroAndTipo(partida.getNumero(),partida.getTipo());
-		if(partidas.isEmpty()){
-			transactionalRepository.save(partida);
-		}else{
-			throw new AppException("Número repetido");
-		}
+		transactionalRepository.save(partida);
 	}
 }

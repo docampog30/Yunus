@@ -5,6 +5,7 @@ controllers
 		  ServicesFactory.guardarMatrimonio($scope.matrimonio)
 		  .then(function(data) {
 			  alert('Partida guardada correctamente');
+			  ServicesFactory.descargarPartidaPDF(data.data);
 			  $scope.init();
 		  }, function errorCallback(response) {
 			    console.log(response.headers());

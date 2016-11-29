@@ -68,13 +68,13 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	var dataFactory = {};
 
    	dataFactory.guardarMatrimonio = function(matrimonio){
-   	 	return $http.put($rootScope.urlServices+'/partidas/matrimonio',matrimonio);
+   	 	return $http.post($rootScope.urlServices+'/partidas/matrimonio',matrimonio,{responseType: 'arraybuffer'});
    	},
    	dataFactory.guardarBautizo = function(bautizo){
-   	 	return $http.put($rootScope.urlServices+'/partidas/bautizo',bautizo);
+   	 	return $http.post($rootScope.urlServices+'/partidas/bautizo',bautizo,{responseType: 'arraybuffer'});
    	},
    	dataFactory.guardarConfirmacion = function(confirmacion){
-   	 	return $http.put($rootScope.urlServices+'/partidas/confirmacion',confirmacion);
+   	 	return $http.post($rootScope.urlServices+'/partidas/confirmacion',confirmacion,{responseType: 'arraybuffer'});
    	},
    	dataFactory.listarMinistrosActivos= function(){
    	 	return $http.get($rootScope.urlServices+'/ministros/activos');
@@ -97,24 +97,8 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.actualizarConfiguracion= function(parroquia){
    	 	return $http.put($rootScope.urlServices+'/parroquia',parroquia);
    	},
-   	dataFactory.descargarPartidaMatrimonio = function(id){
-   		$http.get($rootScope.urlServices+'/reportes/matrimonio/'+id, {responseType: 'arraybuffer'})
-        .success(function (data) {
-            var file = new Blob([data], {type: 'application/pdf'});
-            var fileURL = URL.createObjectURL(file);
-           
-            var a = document.createElement("a");
-            document.body.appendChild(a);
-            a.style = "display: none";
-            
-            a.href = fileURL;
-            a.download = 'Partida matrimonio';
-            a.click();
-            window.open(fileURL);
-            window.URL.revokeObjectURL(fileURL);
-     })},
-   	dataFactory.descargarPartidaBautizo = function(id){
-	   		$http.get($rootScope.urlServices+'/reportes/bautizo/'+id, {responseType: 'arraybuffer'})
+   	dataFactory.descargarPartida = function(sacaramento,id){
+	   		$http.get($rootScope.urlServices+'/reportes/'+sacaramento+'/'+id, {responseType: 'arraybuffer'})
 	        .success(function (data) {
 	            var file = new Blob([data], {type: 'application/pdf'});
 	            var fileURL = URL.createObjectURL(file);
@@ -124,11 +108,27 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
 	            a.style = "display: none";
 	            
 	            a.href = fileURL;
-	            a.download = 'Partida bautizo';
+	            a.download = 'Partida '+sacaramento;
 	            a.click();
 	            window.open(fileURL);
 	            window.URL.revokeObjectURL(fileURL);
 	     })};
+	  dataFactory.descargarPartidaPDF = function(data){
+		            var file = new Blob([data], {type: 'application/pdf'});
+		            var fileURL = URL.createObjectURL(file);
+		           
+		            var a = document.createElement("a");
+		            document.body.appendChild(a);
+		            a.style = "display: none";
+		            
+		            a.href = fileURL;
+		            a.download = 'Partida ';
+		            a.click();
+		            window.open(fileURL);
+		            window.URL.revokeObjectURL(fileURL);
+		     };
+	  
+	
    	
    	return dataFactory;
 }]);

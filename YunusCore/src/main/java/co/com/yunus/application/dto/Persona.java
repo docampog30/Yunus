@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -17,7 +19,19 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable(false)
 @Cache(usage=CacheConcurrencyStrategy.NONE)
+@NamedQueries({
+	@NamedQuery(name=Persona.FIND_BY_TIPO_NOT_NULL_AND_ESTADO,query="SELECT P FROM Persona P WHERE TIPO IS NOT NULL AND ESTADO = :estado"),
+	@NamedQuery(name=Persona.FIND_BY_TIPO_NOT_NULL,query="SELECT P FROM Persona P WHERE TIPO IS NOT NULL"),
+	@NamedQuery(name=Persona.FIND_BY_TIPO,query="SELECT P FROM Persona P WHERE TIPO = :tipo"),
+	@NamedQuery(name=Persona.FIND_BY_ID,query="SELECT P FROM Persona P WHERE ID = :id")
+
+})
 public class Persona {
+	
+	public static final String FIND_BY_TIPO = "findByTipo";
+	public static final String FIND_BY_TIPO_NOT_NULL = "findByTipoNotNull";
+	public static final String FIND_BY_TIPO_NOT_NULL_AND_ESTADO = "findByTipoNotNullAndEstado";
+	public static final String FIND_BY_ID = "Persona.findById";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

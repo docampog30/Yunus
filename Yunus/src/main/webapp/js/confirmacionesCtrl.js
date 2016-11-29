@@ -4,6 +4,7 @@ controllers
 		  ServicesFactory.guardarConfirmacion($scope.confirmacion)
 		  .then(function(data) {
 			  alert('Partida guardada correctamente');
+			  ServicesFactory.descargarPartidaPDF(data.data);
 			  $scope.init();
 		  }, function errorCallback(response) {
 			    console.log(response.headers());

@@ -19,5 +19,14 @@ controllers
 			  });
 	  }
 	  
+	  $scope.fileNameChanged = function(name) {
+		   alert("select file "+name);
+		}
+	  
+	  $scope.selectFile = function()
+	   {
+	        $("#file").click();
+	   }
+	  
 	  $scope.init();
  }]);

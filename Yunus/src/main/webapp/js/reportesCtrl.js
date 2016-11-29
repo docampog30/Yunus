@@ -24,7 +24,7 @@ controllers
 	  $scope.init();
 
 	  $scope.descargar = function(partida){
-		  ServicesFactory.descargarPartidaMatrimonio(partida.id);
+		  ServicesFactory.descargarPartida(partida.tipo.toLowerCase(), partida.id);
 	  }
 	  
 }]);

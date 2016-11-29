@@ -2,34 +2,48 @@ package co.com.yunus.application.dto;
 
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import co.com.yunus.application.enums.TipoSacramento;
 
 @Entity
 @Table(name="PARTIDAS")
+@Cacheable(false)
+@Cache(usage=CacheConcurrencyStrategy.NONE)
+@NamedQueries({
+@NamedQuery(name="findByP1",query="SELECT p FROM Partida p WHERE persona1.cedula LIKE :cedula"),
+@NamedQuery(name="findByP2",query="SELECT p FROM Partida p WHERE persona2.cedula LIKE :cedula"),
+@NamedQuery(name="findByNumeroAndTipo",query="SELECT p FROM Partida p WHERE p.numero = :numero and p.tipo = :tipo"),
+@NamedQuery(name="findById",query="SELECT p FROM Partida p WHERE p.id = :id"),
+
+})
 public class Partida {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long			id;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="persona1_id",referencedColumnName="id")
 	private Persona 		persona1;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="persona2_id",referencedColumnName="id",nullable=true)
 	private Persona 		persona2;
 	

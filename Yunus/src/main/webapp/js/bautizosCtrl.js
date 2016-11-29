@@ -4,7 +4,9 @@ controllers
 		  ServicesFactory.guardarBautizo($scope.bautizo)
 		  .then(function(data) {
 			  alert('Partida guardada correctamente');
+			  ServicesFactory.descargarPartidaPDF(data.data);
 			  $scope.init();
+			  
 		  }, function errorCallback(response) {
 			    console.log(response.headers());
 			    console.log(response.headers);
@@ -25,10 +27,6 @@ controllers
 		  }, function(response) {
 		    alert("Error consultando los ministros");
 		  });
-	  }
-	  
-	  $scope.imprimir = function(){
-		  ServicesFactory.descargarPartidaBautizo(3);
 	  }
 	  
 	  $scope.init();

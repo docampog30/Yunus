@@ -3,13 +3,14 @@ package co.com.yunus.domain.repositories.database;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class DatabaseServiceLocator {
-	
+
 	private static EntityManagerFactory emf;
 	
 	static{
@@ -25,8 +26,14 @@ public class DatabaseServiceLocator {
 		}
 	}
 	
-	@Produces
-	public EntityManager getEntityManager(){
-		return  emf.createEntityManager();
-	}
+	  private EntityManager em = emf.createEntityManager();
+
+	  @Produces
+	  public EntityManager em() {
+	    return em;
+	  }
+
+	  public void dispose(@Disposes EntityManager em) {
+	    em.close();
+	  }
 }
