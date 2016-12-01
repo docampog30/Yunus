@@ -12,6 +12,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import org.jboss.weld.environment.se.StartMain;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 
+import co.com.yunus.application.rest.ClientesServices;
 import co.com.yunus.config.AppExceptionMapper;
 import co.com.yunus.config.CORSFilter;
 
@@ -20,7 +21,7 @@ public class MainCreditos {
     private void initServer() {
 	try {
 	    final ResourceConfig resourceConfig = new ResourceConfig();
-//	    resourceConfig.register(PartidasServices.class);
+	    resourceConfig.register(ClientesServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
 	    resourceConfig.register(new AppExceptionMapper());
