@@ -12,10 +12,24 @@
 		</li>
 	</ul>
 </div>
-	<h2>Ingresar Cliente</h2>
+	
+	<h2>Ingreso de vinculación persona natural</h2>
 	<label id="obligatorio">*Campos Obligatorios</label>
 	<label for=""><i class="fa fa-check-circle"></i> Información general</label>
-	<ul class = "add">
+		<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="cliente.nombres" required />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarCliente()" ng-disabled="userForm.$invalid">Buscar Cliente
+					<span class="fa fa-floppy-o"></span>
+				</button>
+			</li>
+		</ul>
+	
+	<label ng-show="cliente" for=""><i class="fa fa-check-circle"></i> Información general</label>
+	<ul class = "add" ng-show="cliente">
 		<li>
 			<label>Nombres</label>
 			<input type="text" ng-model="cliente.nombres" required />
@@ -64,7 +78,7 @@
 			
 		</li>
 		<li>
-			<label>Zona ubicación vivienda :</label>
+			<label>Zona ubicaci�n vivienda :</label>
 			<select ng-model="cliente.zonavivienda" ng-options="m.id as m.descripcion for m in zonasVivienda" required></select>
 			
 		</li>
@@ -83,7 +97,7 @@
 			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
 		</li>
 		<li>
-			<label>Dirección de domicilio</label>
+			<label>Direcci�n de domicilio</label>
 			<input type="text" ng-model="cliente.direccion" required maxlength="50"/>
 		</li>
 		<li>
@@ -101,7 +115,7 @@
 			<input type="number" ng-model="cliente.telefono" maxlength="10"/>
 		</li>
 		<li>
-			<label>Ocupación :</label>
+			<label>Ocupaci�n :</label>
 			<select ng-model="cliente.ocupacion" ng-options="m.id as m.descripcion for m in ocupaciones" required></select>
 			
 		</li>

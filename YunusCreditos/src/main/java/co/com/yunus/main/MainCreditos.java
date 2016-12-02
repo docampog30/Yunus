@@ -13,6 +13,7 @@ import org.jboss.weld.environment.se.StartMain;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 
 import co.com.yunus.application.rest.ClientesServices;
+import co.com.yunus.application.rest.MaestrosServices;
 import co.com.yunus.config.AppExceptionMapper;
 import co.com.yunus.config.CORSFilter;
 
@@ -22,6 +23,7 @@ public class MainCreditos {
 	try {
 	    final ResourceConfig resourceConfig = new ResourceConfig();
 	    resourceConfig.register(ClientesServices.class);
+	    resourceConfig.register(MaestrosServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
 	    resourceConfig.register(new AppExceptionMapper());

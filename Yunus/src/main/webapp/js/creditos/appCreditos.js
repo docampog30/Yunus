@@ -19,9 +19,9 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
              templateUrl: 'creditos/clientes.html',
              controller: 'ClientesController'
           }).
-          when('/bautizos', {
-              templateUrl: 'bautizos.html',
-              controller: 'BautizosController'
+          when('/vinculacion', {
+              templateUrl: 'creditos/vinculacion.html',
+              controller: 'VinculacionController'
            }).
            when('/confirmaciones', {
                templateUrl: 'confirmaciones.html',
@@ -71,7 +71,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	 	return $http.put($rootScope.urlServices+'/cliente',cliente);
    	},
    	dataFactory.listarMaestro = function(cdmaestro){
-   	 	return $http.post($rootScope.urlServices+'/maestros/'+cdmaestro);
+   	 	return $http.get($rootScope.urlServices+'/maestros/'+cdmaestro);
    	}
    	return dataFactory;
 }]);
