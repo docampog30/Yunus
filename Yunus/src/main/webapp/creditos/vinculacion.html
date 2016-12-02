@@ -185,7 +185,7 @@
 				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
-			<li>
+			<li style="width: inherit;">
 			<label>Fecha corte de la información financiera suministrada</label>
 				<input type="month" ng-model="cliente.nombres" required />
 			</li>
@@ -193,8 +193,8 @@
 				<label>Es declarante ?</label>
 				<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
 			</li>
-			<li>
-				<label>De acuerdo a mis ingresos declarados me comprometo a realizar aportes a COOPECEJA por</label>
+			<li style="width: inherit;">
+				<label>De acuerdo a mis ingresos declarados me comprometo a realizar aportes a COOPECEJA por($)</label>
 				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
@@ -203,7 +203,7 @@
 				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
-			<li>
+			<li style="width: inherit;">
 				<label>Declaro que el origen de mis fondos y/o bienes proviene de</label>
 				<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
 			</li>
@@ -213,12 +213,99 @@
 		<label for=""><i class="fa fa-check-circle"></i>Referencias</label>
 	
 		<ul class = "add">
+		<li style="width: inherit;">
+			<label>Referencia Personal (nombres y apellidos)</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li style="width: inherit;">
+			<label>Direccion Referencia Personal</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li style="width: inherit;">
+			<label>Telefono Referencia Personal</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li style="width: inherit;">
+			<label>Referencia familiar (nombres y apellidos)</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li style="width: inherit;">
+			<label>Direccion Referencia familiar</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li >
+			<label>Telefono Referencia familiar</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li >
+			<label>Parentesco Referencia familiar</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li style="width: inherit;">
+			<label>Referencia de la Cooperativa (Asociado COOPECEJA)</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li style="width: inherit;">
+			<label>Teléfono</label>
+			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+		</li>
+		<li >
+			<label>Afinidad</label>
+			<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+
+		</li>
+		<li >
 		</ul>
 		
 		<label for=""><i class="fa fa-check-circle"></i>Grupo familiar y beneficiarios</label>
-	
-		<ul class = "add">
+		<div class="actions">
+		<ul>
+			<li>
+				<button ng-click="nuevoBeneficiario()">Nuevo beneficiario
+					<span class="fa fa-plus-circle"></span>
+				</button>
+			</li>
 		</ul>
+	</div>
+		<div id="partidas">
+			<ul class="titleA partida">
+				<li class="peq" ># Documento</li>
+				<li>Nombres y apellidos</li>
+				<li>Fecha de nacimiento</li>
+				<li >Parentesco</li>
+				<li class="peq" >Teléfono</li>
+				<li >Designación como:</li>
+				<li class="peq">%</li>
+				<li class="peq">Eliminar</li>
+			</ul>
+			<ul ng-repeat="beneficiario in vinculacion.beneficiarios" class="tablasA partida">
+			<li class="peq" >
+				<label>{{partida.numero | limitTo : 5}}</label>
+			</li>
+			<li>
+				<label>{{partida.fecha|date}}</label>
+			</li>
+			<li >
+				<label>{{partida.tipo}}</label>
+			</li>
+			<li >
+				<label>{{partida.persona1.cedula}}</label>
+			</li>
+			<li class="peq">
+				<label>{{partida.persona1.nombres}} - {{partida.persona1.apellidos}}</label>
+			</li>
+			<li>
+				<label>{{partida.persona2.cedula}}</label>
+			</li>
+			<li class="peq">
+				<button class="descargar" ng-click="descargar(partida)" >Generar  <i class="fa fa-download"></i></button>
+			</li>
+			<li class="peq">
+				<button class="descargar" ng-click="descargar(partida)" >Generar  <i class="fa fa-download"></i></button>
+			</li>
+			</ul>
+		
+		</div>
 		
 		<label for=""><i class="fa fa-check-circle"></i>Resultados de la entrevista</label>
 	

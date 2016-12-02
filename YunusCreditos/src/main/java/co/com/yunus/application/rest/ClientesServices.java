@@ -19,15 +19,12 @@ import co.com.yunus.domain.repositories.ITransactionalRepository;
 public class ClientesServices {
 
 	@Inject
-	private ITransactionalRepository repository;
-	
-	@Inject
 	private IClientesRepository clientesRepository;
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void guardar(Cliente cliente){
-		repository.save(cliente);
+		//repository.save(cliente);
 	}
 	
 	@GET
