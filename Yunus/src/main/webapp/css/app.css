@@ -155,9 +155,9 @@ header .menu .nav li a:focus {
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
   align-items: center;
-  margin: 0 0 20px 0;
+  margin: 0 0 5px 0;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 @media (max-width: 990px) {
   .add {

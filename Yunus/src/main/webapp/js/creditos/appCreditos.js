@@ -72,7 +72,12 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	},
    	dataFactory.listarMaestro = function(cdmaestro){
    	 	return $http.get($rootScope.urlServices+'/maestros/'+cdmaestro);
+   	},
+   	dataFactory.buscarCliente = function(documento){
+   	 	return $http.get($rootScope.urlServices+'/cliente/'+documento);
    	}
+   	
+   	
    	return dataFactory;
 }]);
 mainApp.controller('HomeController', ['$route', '$routeParams', '$location','$scope','ServicesFactory',

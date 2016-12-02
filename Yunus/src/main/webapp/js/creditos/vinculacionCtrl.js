@@ -10,6 +10,15 @@ controllers
 			    alert("Ocurrio un error guardando los datos");
 		  });
 	  }
+	  $scope.buscarCliente = function(){
+		  ServicesFactory.buscarCliente($scope.documento)
+		  .then(function(data) {
+			  $scope.cliente = data.data[0];
+			  
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error guardando los datos");
+		  });
+	  }
 	  
 	  $scope.init = function() {
 		  $scope.cliente = null;

@@ -31,7 +31,7 @@ public class ClientesServices {
 	}
 	
 	@GET
-	@Path("find/{documento}")
+	@Path("{documento}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cliente> guardar(@PathParam("documento") String documento){
