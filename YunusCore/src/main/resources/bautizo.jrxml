@@ -3,7 +3,7 @@
 	<property name="template.type" value="columnar"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="321"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.background.image" value="C:\Users\David\Downloads\border-f.png"/>
 	<property name="ireport.background.image.properties" value="true,false,0.5,-10,563,0,0,611,866"/>
 	<import value="co.com.yunus.application.dto.*"/>
@@ -53,14 +53,14 @@
 	<detail>
 		<band height="616">
 			<textField>
-				<reportElement x="169" y="87" width="322" height="20" uuid="aeeca1de-ea14-4538-9e2b-39c361add15d"/>
+				<reportElement x="169" y="87" width="377" height="20" uuid="aeeca1de-ea14-4538-9e2b-39c361add15d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TEL: "+$P{tel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="169" y="108" width="322" height="20" uuid="1917c712-04b5-4395-a784-3f8deae14139"/>
+				<reportElement x="169" y="108" width="377" height="20" uuid="1917c712-04b5-4395-a784-3f8deae14139"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -68,7 +68,7 @@
 			</textField>
 			<textField>
 				<reportElement x="57" y="159" width="155" height="18" uuid="51fb80cc-335c-4d90-b1cd-bdc06e2d1a2c"/>
-				<textFieldExpression><![CDATA["NOMBRE "]]></textFieldExpression>
+				<textFieldExpression><![CDATA["NOMBRE: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="56" y="213" width="155" height="18" uuid="6ac639e4-7625-4d7b-bc90-016393513700"/>
@@ -123,21 +123,21 @@
 				<reportElement x="79" y="500" width="190" height="1" uuid="0e7c2d72-7d09-4369-921b-0092ea0596af"/>
 			</line>
 			<textField>
-				<reportElement x="169" y="22" width="322" height="20" uuid="3e28fd0f-8cea-4d41-94e5-6efdba5ad1b7"/>
+				<reportElement x="169" y="22" width="377" height="20" uuid="3e28fd0f-8cea-4d41-94e5-6efdba5ad1b7"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{diocesis}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="169" y="44" width="322" height="20" uuid="f54ffc86-b6f0-4b59-ba74-926454c92652"/>
+				<reportElement x="169" y="44" width="377" height="20" uuid="f54ffc86-b6f0-4b59-ba74-926454c92652"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{parroquia}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="169" y="66" width="322" height="20" uuid="393865c0-8ef3-4156-824a-ba7962a26393"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="169" y="66" width="377" height="20" uuid="393865c0-8ef3-4156-824a-ba7962a26393"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -149,6 +149,9 @@
 			</textField>
 			<textField>
 				<reportElement x="228" y="159" width="318" height="18" uuid="dbd23650-7995-4aae-a4cf-55c3556a63ab"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getNombres()+" "+$P{partida}.getPersona1().getApellidos()]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -159,7 +162,7 @@
 				<reportElement x="228" y="236" width="318" height="18" uuid="ee385529-04ce-485a-99c7-a88cd069e9b9"/>
 				<textFieldExpression><![CDATA[$P{partida}.getPersona1().getfNacimiento()]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="228" y="259" width="318" height="18" uuid="7180e7c8-f7c9-43a0-8cc4-486ad0ef4ab1"/>
 				<textFieldExpression><![CDATA[$P{partida}.getFecha()]]></textFieldExpression>
 			</textField>
@@ -175,7 +178,7 @@
 				<reportElement x="228" y="323" width="318" height="18" uuid="b843a7d0-41fb-4e88-8432-33a885f8a09b"/>
 				<textFieldExpression><![CDATA[$P{partida}.getMinistro().getNombres()+" "+$P{partida}.getMinistro().getApellidos()]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="228" y="344" width="318" height="18" uuid="57856c98-e58e-474f-ae05-34416676106f"/>
 				<textFieldExpression><![CDATA[$P{partida}.getNota()]]></textFieldExpression>
 			</textField>
