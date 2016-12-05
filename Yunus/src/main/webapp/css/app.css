@@ -33,6 +33,9 @@ div.container4 h3 {
 	padding: 5px 10px;
     line-height: 20px;
 }
+#partidas input{
+	width: 100%;
+}
 ul {
   list-style: none;
 }

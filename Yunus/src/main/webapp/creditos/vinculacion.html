@@ -41,69 +41,72 @@
 	<ul class = "add">
 		<li>
 			<label>Ahorro programado: Entidad</label>
-			<input type="text" ng-model="cliente.nombres" required />
+			<input type="text" ng-model="vinculacion.entidadahorro" required />
 		</li>
 		<li>
 			<label>Ahorro programado: Valor($)</label>
-			<input type="text" ng-model="cliente.nombres" required />
+			<input type="number" ng-model="vinculacion.vlrahorro" required maxlength="8"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+			/>
 		</li>
 		<li>
 			<label>Cesantias: Entidad</label>
-			<input type="text" ng-model="cliente.nombres" required />
+			<input type="text" ng-model="vinculacion.entidadcesantias" required />
 		</li>
 		<li>
 			<label>Cesantias: Valor($)</label>
-			<input type="text" ng-model="cliente.nombres" required />
+			<input type="number" ng-model="vinculacion.vlrcesantias" required maxlength="8"
+			oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 		</li>
 		<li>
 			<label>Otros,ahorros($)</label>
-			<input type="number" ng-model="cliente.documento" required maxlength="12"
+			<input type="number" ng-model="vinculacion.vlrotros" required maxlength="8"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Caja de compensación</label>
-			<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.iscajacompensacion" ng-options="v.key as v.value for (k, v) in condicionales" required></select>
 		</li>
 		<li>
 			<label>Subsidio caja compensación($)</label>
-			<input type="number" ng-model="cliente.documento" required maxlength="10"
+			<input type="number" ng-model="vinculacion.subsidiocaja" required maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Vigencia</label>
-			<input type="number" ng-model="cliente.documento" required maxlength="10"
+			<input type="number" ng-model="vinculacion.vigencia" required maxlength="4"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Entidad</label>
-			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+			<input type="text" ng-model="vinculacion.entidadcaja" required maxlength="50"/>
 		</li>
 		<li>
 			<label>Capacidad endeudamiento($)</label>
-			<input type="number" ng-model="cliente.documento" required maxlength="10"
+			<input type="number" ng-model="vinculacion.capacidaddeuda" required maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Subsidio Municipal</label>
-			<select ng-model="cliente.zonavivienda" ng-options="m.id as m.descripcion for m in zonasVivienda" required></select>
+			<select ng-model="vinculacion.issubsidiomunicipal"  ng-options="v.key as v.value for (k, v) in condicionales" required></select>
 		</li>
 		<li>
 			<label>Valor subsidio municipal($)</label>
-			<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+			<input type="number" ng-model="vinculacion.vlrsubsidiom" ng-disabled="vinculacion.issubsidiomunicipal != 'S'" required maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Subsidio Departamental</label>
-			<select ng-model="cliente.zonavivienda" ng-options="m.id as m.descripcion for m in zonasVivienda" required></select>
+			<select ng-model="vinculacion.issubsidiodepartamental" ng-options="v.key as v.value for (k, v) in condicionales" required></select>
 		</li>
 		<li>
 			<label>Valor subsidio departamental($)</label>
-			<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+			<input type="number" ng-model="vinculacion.vlrsubsidiod" ng-disabled="vinculacion.issubsidiodepartamental != 'S'" required maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
@@ -113,35 +116,35 @@
 	<ul class = "add">
 		<li>
 			<label>Nombre de la empresa o negocio</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.nombreempresa" required maxlength="70" />
 		</li>
 		<li>
 			<label>Fecha de Ingreso</label>
-			<input type="date" ng-model="cliente.nombres" required />
+			<input type="date" ng-model="vinculacion.feingreso" required />
 		</li>
 		<li>
 			<label>Tipo de empresa</label>
-			<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.tipoempresa" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
 		</li>
 		<li>
 			<label>Tipo de contrato</label>
-			<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
 		</li>
 		<li>
 			<label>Cargo</label>
-			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+			<input type="text" ng-model="vinculacion.cargo" required maxlength="50"/>
 		</li>
 		<li>
 			<label>Dirección</label>
-			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+			<input type="text" ng-model="vinculacion.direcciontrabajo" required maxlength="50"/>
 		</li>
 		<li>
 			<label>Ciudad</label>
-			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+			<input type="text" ng-model="vinculacion.ciudadtrabajo" required maxlength="50"/>
 		</li>
 		<li>
 			<label>Barrio</label>
-			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+			<input type="text" ng-model="vinculacion.barrio" required maxlength="50"/>
 		</li>
 		</ul>
 		
@@ -149,63 +152,63 @@
 		<ul class = "add">
 			<li>
 				<label>Total Ingresos Mensuales (Salario)($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.ingresos" required maxlength="8"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Total Egresos mensuales($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.egresos" required maxlength="8"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Otros Ingresos Mensuales($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.otrosingresos" required maxlength="8"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Deudas entidad financiera</label>
-				<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+				<select ng-model="vinculacion.isdeudas" ng-options="v.key as v.value for (k, v) in condicionales" required></select>
 			</li>
 			<li>
 				<label>Monto($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-disabled="vinculacion.isdeudas != 'S'" ng-model="vinculacion.montodeuda" required maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Entidad</label>
-			<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+				<input type="text" ng-disabled="vinculacion.isdeudas != 'S'" ng-model="vinculacion.entidaddeuda" required maxlength="50"/>
 			</li>
 			<li>
 				<label>Total Ingresos mensuales($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.ingresos" required maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Total Pasivos($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.pasivos" required maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li style="width: inherit;">
 			<label>Fecha corte de la información financiera suministrada</label>
-				<input type="month" ng-model="cliente.nombres" required />
+				<input type="month" ng-model="vinculacion.fecorte" required />
 			</li>
 			<li>
 				<label>Es declarante ?</label>
-				<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+				<select ng-model="vinculacion.isdeclarante"  ng-options="v.key as v.value for (k, v) in condicionales" required></select>
 			</li>
 			<li style="width: inherit;">
 				<label>De acuerdo a mis ingresos declarados me comprometo a realizar aportes a COOPECEJA por($)</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.pagocooperativa" required maxlength="8"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Cuota afiliación</label>
-				<input type="number" ng-model="cliente.personascargo" required maxlength="10"
+				<input type="number" ng-model="vinculacion.cuota" required maxlength="8"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li style="width: inherit;">
 				<label>Declaro que el origen de mis fondos y/o bienes proviene de</label>
-				<input type="text" ng-model="cliente.lugarnacimiento" required maxlength="50"/>
+				<input type="text" ng-model="vinculacion.origen" required maxlength="50"/>
 			</li>
 			
 		</ul>
@@ -215,46 +218,45 @@
 		<ul class = "add">
 		<li style="width: inherit;">
 			<label>Referencia Personal (nombres y apellidos)</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.referencia1" required maxlength="70" />
 		</li>
 		<li style="width: inherit;">
 			<label>Direccion Referencia Personal</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.dirreferencia1" required maxlength="70" />
 		</li>
 		<li style="width: inherit;">
 			<label>Telefono Referencia Personal</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.telreferencia1" required maxlength="70" />
 		</li>
 		<li style="width: inherit;">
 			<label>Referencia familiar (nombres y apellidos)</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.referenciaf" required maxlength="70" />
 		</li>
 		<li style="width: inherit;">
 			<label>Direccion Referencia familiar</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.dirreferenciaf" required maxlength="70" />
 		</li>
 		<li >
 			<label>Telefono Referencia familiar</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.telreferenciaf" required maxlength="70" />
 		</li>
 		<li >
 			<label>Parentesco Referencia familiar</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.parentescoreferencia" required maxlength="70" />
 		</li>
 		<li style="width: inherit;">
 			<label>Referencia de la Cooperativa (Asociado COOPECEJA)</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.referenciacoop" required maxlength="70" />
 		</li>
 		<li style="width: inherit;">
 			<label>Teléfono</label>
-			<input type="text" ng-model="cliente.nombres" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.referenciacooptel" required maxlength="70" />
 		</li>
 		<li >
 			<label>Afinidad</label>
-			<select ng-model="cliente.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.referenciacoopafi" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
 
 		</li>
-		<li >
 		</ul>
 		
 		<label for=""><i class="fa fa-check-circle"></i>Grupo familiar y beneficiarios</label>
@@ -267,7 +269,8 @@
 			</li>
 		</ul>
 	</div>
-		<div id="partidas">
+	<br/>
+		<div id="partidas" ng-show="vinculacion.beneficiarios.length > 0">
 			<ul class="titleA partida">
 				<li class="peq" ># Documento</li>
 				<li>Nombres y apellidos</li>
@@ -280,36 +283,49 @@
 			</ul>
 			<ul ng-repeat="beneficiario in vinculacion.beneficiarios" class="tablasA partida">
 			<li class="peq" >
-				<label>{{partida.numero | limitTo : 5}}</label>
+				<input type="text" ng-model="beneficiario.documento"/>
 			</li>
 			<li>
-				<label>{{partida.fecha|date}}</label>
+				<input type="text" ng-model="beneficiario.nombre"/>
 			</li>
 			<li >
-				<label>{{partida.tipo}}</label>
+				<input type="date" ng-model="beneficiario.fechanacimiento"/>
 			</li>
 			<li >
-				<label>{{partida.persona1.cedula}}</label>
+				<input type="text" ng-model="beneficiario.parentesco"/>
 			</li>
 			<li class="peq">
-				<label>{{partida.persona1.nombres}} - {{partida.persona1.apellidos}}</label>
+				<input type="text" ng-model="beneficiario.telefono"/>
 			</li>
 			<li>
-				<label>{{partida.persona2.cedula}}</label>
+				<input type="text" ng-model="beneficiario.designacion"/>
 			</li>
 			<li class="peq">
-				<button class="descargar" ng-click="descargar(partida)" >Generar  <i class="fa fa-download"></i></button>
 			</li>
 			<li class="peq">
-				<button class="descargar" ng-click="descargar(partida)" >Generar  <i class="fa fa-download"></i></button>
+				<button class="descargar" ng-click="eliminarBeneficiario($index)" >Eliminar  <i class="fa fa-drash"></i></button>
 			</li>
 			</ul>
 		
 		</div>
+		<br/>
 		
 		<label for=""><i class="fa fa-check-circle"></i>Resultados de la entrevista</label>
 	
 		<ul class = "add">
+			<li>
+				<label>Lugar</label>
+				<input type="text" ng-model="vinculacion.lugarentrevista" required maxlength="40" />
+			</li>
+			<li>
+				<label>Fecha</label>
+				<input type="datetime-local" ng-model="vinculacion.feentrevista" required maxlength="40" />
+			</li>
+			<li>
+				<label>Resultado</label>
+				<select ng-model="vinculacion.resultadoentrevista" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			</li>
+
 		</ul>
 		
 	</div>
