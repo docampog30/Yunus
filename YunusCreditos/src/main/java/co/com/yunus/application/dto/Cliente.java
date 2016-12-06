@@ -2,13 +2,18 @@ package co.com.yunus.application.dto;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Entity
 @Table(name="CLIENTES")
 public class Cliente {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String nombres;
 	private String apellidos;
@@ -29,7 +34,7 @@ public class Cliente {
 	private String email;
 	private String celular;
 	private String telefono;
-	private String ocupacion;
+	private Long ocupacion;
 	
 	public Long getId() {
 		return id;
@@ -151,10 +156,10 @@ public class Cliente {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getOcupacion() {
+	public Long getOcupacion() {
 		return ocupacion;
 	}
-	public void setOcupacion(String ocupacion) {
+	public void setOcupacion(Long ocupacion) {
 		this.ocupacion = ocupacion;
 	}
 }
