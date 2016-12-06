@@ -65,7 +65,7 @@ controllers
 		  });
 	  }
 	  $scope.recuperarSexos = function(){
-		  $scope.sexos = [{id:'M',desc:'MASCULINO'},{id:'F',desc:'FEMENINO'}];
+		  $scope.sexos = [{id:'M',descripcion:'MASCULINO'},{id:'F',descripcion:'FEMENINO'}];
 	  }
 	  $scope.recuperarOcupaciones = function(idmaestro){
 		  ServicesFactory.listarMaestro(idmaestro)
@@ -77,7 +77,7 @@ controllers
 	  }
 	  
 	  $scope.recuperarTiposDocumento = function(){
-		  $scope.tiposDocumento = [{id:'CC',desc:'Cédula de ciudadania'},{id:'TI',desc:'Tarjeta de identidad'}]
+		  $scope.tiposDocumento = [{id:'CC',descripcion:'Cédula de ciudadania'},{id:'TI',descripcion:'Tarjeta de identidad'}]
 	  }
 	  
 	  $scope.init();
