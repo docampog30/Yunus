@@ -3,7 +3,7 @@
 	<property name="template.type" value="columnar"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="336"/>
+	<property name="ireport.y" value="0"/>
 	<import value="co.com.yunus.application.dto.*"/>
 	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -51,35 +51,35 @@
 	<detail>
 		<band height="571">
 			<textField>
-				<reportElement x="179" y="12" width="322" height="20" uuid="2df3584c-e4a5-4c7b-9738-b120740c3003"/>
+				<reportElement x="140" y="12" width="381" height="20" uuid="2df3584c-e4a5-4c7b-9738-b120740c3003"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{diocesis}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="179" y="31" width="322" height="20" uuid="f39239d2-553f-4ffc-bf21-1b3465fe27d2"/>
+				<reportElement x="140" y="31" width="381" height="20" uuid="f39239d2-553f-4ffc-bf21-1b3465fe27d2"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{parroquia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="179" y="49" width="322" height="20" uuid="591308be-d092-4d32-9f0d-a5a027a671a4"/>
+				<reportElement x="140" y="49" width="381" height="20" uuid="591308be-d092-4d32-9f0d-a5a027a671a4"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{direccionParroquia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="179" y="67" width="322" height="20" uuid="aeeca1de-ea14-4538-9e2b-39c361add15d"/>
+				<reportElement x="140" y="67" width="381" height="20" uuid="aeeca1de-ea14-4538-9e2b-39c361add15d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TEL: "+$P{tel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="179" y="86" width="322" height="20" uuid="1917c712-04b5-4395-a784-3f8deae14139"/>
+				<reportElement x="140" y="86" width="381" height="20" uuid="1917c712-04b5-4395-a784-3f8deae14139"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -134,7 +134,7 @@
 				<reportElement x="61" y="334" width="155" height="18" uuid="9c85b9d7-8c68-4203-9014-1b5d427f3931"/>
 				<textFieldExpression><![CDATA["NOTA MARGINAL"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement x="254" y="334" width="302" height="18" uuid="e455da0a-04d3-4ef9-b3e6-396a1a1ed146"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$P{partida}.getNota()]]></textFieldExpression>
@@ -159,7 +159,7 @@
 				<textFieldExpression><![CDATA[$P{partida}.getPabautizmo()]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize" hAlign="Center" vAlign="Middle">
-				<reportElement positionType="Float" mode="Transparent" x="82" y="12" width="74" height="100" uuid="c1cab1fd-031c-4547-a962-795a645e815c"/>
+				<reportElement positionType="Float" mode="Transparent" x="48" y="12" width="74" height="100" uuid="c1cab1fd-031c-4547-a962-795a645e815c"/>
 				<imageExpression><![CDATA[$P{path}]]></imageExpression>
 			</image>
 			<staticText>

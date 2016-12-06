@@ -3,7 +3,7 @@
 	<property name="template.type" value="columnar"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="74"/>
+	<property name="ireport.y" value="15"/>
 	<import value="co.com.yunus.application.dto.*"/>
 	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -102,7 +102,7 @@
 				<textFieldExpression><![CDATA["ANTE Pbro. "]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize" hAlign="Center" vAlign="Middle">
-				<reportElement positionType="Float" mode="Transparent" x="89" y="7" width="74" height="100" uuid="e45fe478-c10d-42dd-92bc-98ab94fafdca"/>
+				<reportElement positionType="Float" mode="Transparent" x="55" y="6" width="74" height="100" uuid="e45fe478-c10d-42dd-92bc-98ab94fafdca"/>
 				<imageExpression><![CDATA[$P{path}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true">
@@ -119,28 +119,28 @@
 				<textFieldExpression><![CDATA[$P{parrocoPie}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="178" y="71" width="375" height="20" uuid="dbc954a9-d7f3-438e-a600-6fe06d8ce2d6"/>
+				<reportElement x="149" y="73" width="369" height="20" uuid="dbc954a9-d7f3-438e-a600-6fe06d8ce2d6"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="15" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TEL: "+$P{tel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="178" y="30" width="375" height="20" uuid="1dbae080-9826-4772-92c2-3155a0f8130f"/>
+				<reportElement x="149" y="32" width="369" height="20" uuid="1dbae080-9826-4772-92c2-3155a0f8130f"/>
 				<textElement textAlignment="Center">
 					<font size="15" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{parroquia}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="178" y="50" width="375" height="20" uuid="44d917e3-2af8-4cfe-9664-026552255c43"/>
+				<reportElement x="149" y="52" width="369" height="20" uuid="44d917e3-2af8-4cfe-9664-026552255c43"/>
 				<textElement textAlignment="Center">
 					<font size="15" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{direccionParroquia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="178" y="7" width="375" height="20" uuid="34349dfd-4a54-4dcd-b5ca-4f671ed01982"/>
+				<reportElement x="149" y="9" width="369" height="20" uuid="34349dfd-4a54-4dcd-b5ca-4f671ed01982"/>
 				<textElement textAlignment="Center">
 					<font size="15" isBold="true"/>
 				</textElement>
