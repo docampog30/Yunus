@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -33,6 +34,7 @@ public class ClientesServices {
 	private IClientesRepository clientesRepository;
 	
 	@Inject
+	@Named("mock")
 	private ITransactionalRepository transactionalRepository;
 	
 	@PUT

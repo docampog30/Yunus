@@ -70,19 +70,19 @@
 		</li>
 		<li>
 			<label>Subsidio caja compensación($)</label>
-			<input type="number" ng-model="vinculacion.subsidiocaja" required maxlength="10"
+			<input type="number" ng-model="vinculacion.subsidiocaja" ng-disabled="vinculacion.iscajacompensacion != 'S'" maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Vigencia</label>
-			<input type="number" ng-model="vinculacion.vigencia" required maxlength="4"
+			<input type="number" ng-model="vinculacion.vigencia" maxlength="4" ng-disabled="vinculacion.iscajacompensacion != 'S'"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
 		<li>
 			<label>Entidad</label>
-			<input type="text" ng-model="vinculacion.entidadcaja" required maxlength="50"/>
+			<input type="text" ng-model="vinculacion.entidadcaja" ng-disabled="vinculacion.iscajacompensacion != 'S'" maxlength="50"/>
 		</li>
 		<li>
 			<label>Capacidad endeudamiento($)</label>
@@ -96,7 +96,7 @@
 		</li>
 		<li>
 			<label>Valor subsidio municipal($)</label>
-			<input type="number" ng-model="vinculacion.vlrsubsidiom" ng-disabled="vinculacion.issubsidiomunicipal != 'S'" required maxlength="10"
+			<input type="number" ng-model="vinculacion.vlrsubsidiom" ng-disabled="vinculacion.issubsidiomunicipal != 'S'" maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
@@ -106,7 +106,7 @@
 		</li>
 		<li>
 			<label>Valor subsidio departamental($)</label>
-			<input type="number" ng-model="vinculacion.vlrsubsidiod" ng-disabled="vinculacion.issubsidiodepartamental != 'S'" required maxlength="10"
+			<input type="number" ng-model="vinculacion.vlrsubsidiod" ng-disabled="vinculacion.issubsidiodepartamental != 'S'" maxlength="10"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>
@@ -124,11 +124,11 @@
 		</li>
 		<li>
 			<label>Tipo de empresa</label>
-			<select ng-model="vinculacion.tipoempresa" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.tipoempresa" ng-options="m.id as m.descripcion for m in tiposEmpresa" required></select>
 		</li>
 		<li>
 			<label>Tipo de contrato</label>
-			<select ng-model="vinculacion.tipovivienda" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.tipovivienda" ng-options="m.id as m.descripcion for m in tiposContrato" required></select>
 		</li>
 		<li>
 			<label>Cargo</label>
@@ -152,7 +152,7 @@
 		<ul class = "add">
 			<li>
 				<label>Total Ingresos Mensuales (Salario)($)</label>
-				<input type="number" ng-model="vinculacion.ingresos" required maxlength="8"
+				<input type="number" ng-model="vinculacion.ingresossalario" required maxlength="8"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
@@ -171,12 +171,12 @@
 			</li>
 			<li>
 				<label>Monto($)</label>
-				<input type="number" ng-disabled="vinculacion.isdeudas != 'S'" ng-model="vinculacion.montodeuda" required maxlength="10"
+				<input type="number" ng-disabled="vinculacion.isdeudas != 'S'" ng-model="vinculacion.montodeuda" maxlength="10"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li>
 				<label>Entidad</label>
-				<input type="text" ng-disabled="vinculacion.isdeudas != 'S'" ng-model="vinculacion.entidaddeuda" required maxlength="50"/>
+				<input type="text" ng-disabled="vinculacion.isdeudas != 'S'" ng-model="vinculacion.entidaddeuda" maxlength="50"/>
 			</li>
 			<li>
 				<label>Total Ingresos mensuales($)</label>
@@ -254,7 +254,7 @@
 		</li>
 		<li >
 			<label>Afinidad</label>
-			<select ng-model="vinculacion.referenciacoopafi" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+			<select ng-model="vinculacion.referenciacoopafi" ng-options="m.id as m.descripcion for m in afinidades" required></select>
 
 		</li>
 		</ul>
@@ -323,7 +323,7 @@
 			</li>
 			<li>
 				<label>Resultado</label>
-				<select ng-model="vinculacion.resultadoentrevista" ng-options="m.id as m.descripcion for m in tiposVivienda" required></select>
+				<select ng-model="vinculacion.resultadoentrevista" ng-options="v.key as v.value for (k, v) in resultadosEntrevista" required></select>
 			</li>
 
 		</ul>

@@ -3,7 +3,7 @@ controllers
 	  $scope.guardar = function() {
 		  ServicesFactory.guardarVinculacion($scope.vinculacion)
 		  .then(function(data) {
-			  alert('Cliente guardado correctamente');
+			  alert('Vinculación guardada correctamente');
 			  $scope.init();
 			  
 		  }, function errorCallback(response) {
@@ -17,14 +17,47 @@ controllers
 				  $scope.cliente = data.data[0];
 				  $scope.vinculacion = {};
 				  $scope.vinculacion.beneficiarios = [];
+				  $scope.vinculacion.idCliente = $scope.cliente.id;
 			  }else{
 				  alert("No se encontraron datos");
 			  }
 			  
 		  }, function errorCallback(response) {
-			    alert("Ocurrio un error guardando los datos");
+			    alert("Ocurrio un error recuperando el cliente");
 		  });
 	  }
+	  
+	  $scope.recuperarTiposContrato = function(idmaestro){
+		  ServicesFactory.listarMaestro(idmaestro)
+		  .then(function(data) {
+			  $scope.tiposContrato = data.data;
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error recuperando los datos");
+		  });
+	  }
+	  
+	  $scope.recuperarTiposEmpresa = function(idmaestro){
+		  ServicesFactory.listarMaestro(idmaestro)
+		  .then(function(data) {
+			  $scope.tiposEmpresa = data.data;
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error recuperando los datos");
+		  });
+	  }
+	  
+	  $scope.recuperarAfinidad = function(idmaestro){
+		  ServicesFactory.listarMaestro(idmaestro)
+		  .then(function(data) {
+			  $scope.afinidades = data.data;
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error recuperando los datos");
+		  });
+	  }
+	  
+	  $scope.recuperarResultados= function(){
+			  $scope.resultadosEntrevista = [{key:undefined,value:undefined},{key:"A",value:"Aceptado"},{key:"R",value:"Rechazado"}];
+	  }
+	  
 	  
 	  $scope.nuevoBeneficiario = function(){
 		  $scope.vinculacion.beneficiarios.push({documento:"",nombre:""});
@@ -40,6 +73,10 @@ controllers
 	  }
 	  
 	  $scope.condicionales = [{key:undefined,value:undefined},{key:"S",value:"SI"},{key:"N",value:"NO"}];
+	  $scope.recuperarAfinidad(6);
+	  $scope.recuperarTiposEmpresa(7);
+	  $scope.recuperarTiposContrato(8);
+	  $scope.recuperarResultados();
 	  
 	  $scope.init();
    }]);

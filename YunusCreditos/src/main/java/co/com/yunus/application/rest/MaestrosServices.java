@@ -3,6 +3,7 @@ package co.com.yunus.application.rest;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -16,6 +17,7 @@ import co.com.yunus.domain.repositories.IMaestroRepository;
 public class MaestrosServices {
 
 	@Inject
+	@Named("maestrosMock")
 	private IMaestroRepository maestroRepository;
 	
 	@Path("{idparent}")
