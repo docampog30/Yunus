@@ -106,5 +106,30 @@
 			
 		</li>
 		</ul>
+		
+		<div ng-if="ismenoredad">
+			<label id="obligatorio">Cliente menor de edad, se deben ingresar datos de acudientes</label>
+			<h2>Ingresar Acudiente</h2>
+			<ul class = "add">
+			<li>
+				<label>Nombres</label>
+				<input type="text" ng-model="cliente.acudiente.nombres" required />
+			</li>
+			<li>
+				<label>Apellidos</label>
+				<input type="text" ng-model="cliente.acudiente.apellidos" required maxlength="100"/>
+			</li>
+			<li>
+				<label>Tipo de documento :</label>
+				<select ng-model="cliente.acudiente.tipdoc" ng-options="m.id as m.descripcion for m in tiposDocumento" required></select>
+			</li>
+			<li>
+			<label>Numero documento #</label>
+			<input type="number" ng-model="cliente.acudiente.documento" required maxlength="12"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+			/>
+			</li>
+			</ul>
+		</div>
 </div>
 </form>

@@ -76,6 +76,9 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.buscarCliente = function(documento){
    	 	return $http.get($rootScope.urlServices+'/cliente/'+documento);
    	}
+   	dataFactory.guardarVinculacion = function(vinculacion){
+   		return $http.post($rootScope.urlServices+'/vinculacion',vinculacion);
+   	}
    	
    	
    	return dataFactory;

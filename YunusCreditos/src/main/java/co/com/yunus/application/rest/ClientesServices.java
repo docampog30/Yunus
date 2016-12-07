@@ -34,7 +34,7 @@ public class ClientesServices {
 	private IClientesRepository clientesRepository;
 	
 	@Inject
-	@Named("mock")
+	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
 	
 	@PUT

@@ -2,13 +2,30 @@ package co.com.yunus.application.dto;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="BENEFICIARIO")
 public class Beneficiario {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String documento;
 	private String nombre;
 	private Date fechanacimiento;
 	private String parentesco;
 	private String telefono;
 	private String  designacion;
+	@ManyToOne
+	@JoinColumn(name="IDVINCULACION")
+	private Vinculacion vinculacion;
+	
 	public String getDocumento() {
 		return documento;
 	}

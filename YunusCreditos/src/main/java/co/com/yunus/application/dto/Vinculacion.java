@@ -3,7 +3,22 @@ package co.com.yunus.application.dto;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="VINCULACION")
 public class Vinculacion {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String entidadahorro;
 	private Long vlrahorro;
 	private String entidadcesantias;
@@ -36,13 +51,41 @@ public class Vinculacion {
 	private String telreferenciaf;
 	private String parentescoreferencia;
 	private String referenciacoop;
+	private Long referenciacoopafi;
 	private String referenciacooptel;
 	private Long referenciacoopafiM;
 	private String lugarentrevista;
 	private Date feentrevista;
 	private String resultadoentrevista;
+	
+	@OneToMany(mappedBy="vinculacion",cascade=CascadeType.ALL)
 	private List<Beneficiario> beneficiarios;
+	
 	private Long idCliente;
+	private String iscajacompensacion;
+	private String issubsidiomunicipal;
+	private String issubsidiodepartamental;
+	private Long vlrsubsidiom;
+	private Long vlrsubsidiod;
+	private Long montodeuda;
+	private String entidaddeuda;
+	private Long pasivos;
+	
+	@ManyToOne
+	@JoinColumn(name="IDCLIENTE",insertable=false,updatable=false)
+	private Cliente cliente;
+
+	@ManyToOne
+	@JoinColumn(name="TIPOEMPRESA",insertable=false,updatable=false)
+	private Maestro tipoempresaMaestro;
+
+	@ManyToOne
+	@JoinColumn(name="TIPOVIVIENDA",insertable=false,updatable=false)
+	private Maestro tipoviviendaMaestro;
+
+	@ManyToOne
+	@JoinColumn(name="REFERENCIACOOPAFI",insertable=false,updatable=false)
+	private Maestro referenciaafinidadMaestro;
 	
 	public String getEntidadahorro() {
 		return entidadahorro;
@@ -271,6 +314,66 @@ public class Vinculacion {
 	}
 	public void setBeneficiarios(List<Beneficiario> beneficiarios) {
 		this.beneficiarios = beneficiarios;
+	}
+	public Long getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+	public String getIscajacompensacion() {
+		return iscajacompensacion;
+	}
+	public void setIscajacompensacion(String iscajacompensacion) {
+		this.iscajacompensacion = iscajacompensacion;
+	}
+	public String getIssubsidiomunicipal() {
+		return issubsidiomunicipal;
+	}
+	public void setIssubsidiomunicipal(String issubsidiomunicipal) {
+		this.issubsidiomunicipal = issubsidiomunicipal;
+	}
+	public String getIssubsidiodepartamental() {
+		return issubsidiodepartamental;
+	}
+	public void setIssubsidiodepartamental(String issubsidiodepartamental) {
+		this.issubsidiodepartamental = issubsidiodepartamental;
+	}
+	public Long getVlrsubsidiom() {
+		return vlrsubsidiom;
+	}
+	public void setVlrsubsidiom(Long vlrsubsidiom) {
+		this.vlrsubsidiom = vlrsubsidiom;
+	}
+	public Long getVlrsubsidiod() {
+		return vlrsubsidiod;
+	}
+	public void setVlrsubsidiod(Long vlrsubsidiod) {
+		this.vlrsubsidiod = vlrsubsidiod;
+	}
+	public Long getMontodeuda() {
+		return montodeuda;
+	}
+	public void setMontodeuda(Long montodeuda) {
+		this.montodeuda = montodeuda;
+	}
+	public String getEntidaddeuda() {
+		return entidaddeuda;
+	}
+	public void setEntidaddeuda(String entidaddeuda) {
+		this.entidaddeuda = entidaddeuda;
+	}
+	public Long getPasivos() {
+		return pasivos;
+	}
+	public void setPasivos(Long pasivos) {
+		this.pasivos = pasivos;
+	}
+	public Long getReferenciacoopafi() {
+		return referenciacoopafi;
+	}
+	public void setReferenciacoopafi(Long referenciacoopafi) {
+		this.referenciacoopafi = referenciacoopafi;
 	}
 	
 }

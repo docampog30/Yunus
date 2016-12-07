@@ -6,11 +6,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="CLIENTES")
+@NamedQueries({
+	@NamedQuery(name=Cliente.BUSCAR_POR_DOCUMENTO,query="SELECT C FROM Cliente C WHERE C.documento = :documento")
+})
 public class Cliente {
+	
+	public static final String BUSCAR_POR_DOCUMENTO = "Cliente.buscarXDocumento";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,6 +45,30 @@ public class Cliente {
 	private String celular;
 	private String telefono;
 	private Long ocupacion;
+	
+	@OneToOne
+	@JoinColumn(name="IDACUDIENTE")
+	private Cliente acudiente;
+	
+	@ManyToOne
+	@JoinColumn(name="ESTADOCIVIL",insertable=false,updatable=false)
+	private Maestro estadocivilMaestro;
+
+	@ManyToOne
+	@JoinColumn(name="NIVELEDUCATIVO",insertable=false,updatable=false)
+	private Maestro niveleducativoMaestro;
+
+	@ManyToOne
+	@JoinColumn(name="TIPOVIVIENDA",insertable=false,updatable=false)
+	private Maestro tipoviviendaMaestro;
+
+	@ManyToOne
+	@JoinColumn(name="ZONAVIVIENDA",insertable=false,updatable=false)
+	private Maestro zonaviviendaMaestro;
+
+	@ManyToOne
+	@JoinColumn(name="OCUPACION",insertable=false,updatable=false)
+	private Maestro ocupacionMaestro;
 	
 	public Long getId() {
 		return id;
@@ -161,5 +195,27 @@ public class Cliente {
 	}
 	public void setOcupacion(Long ocupacion) {
 		this.ocupacion = ocupacion;
+	}
+	public Maestro getEstadocivilMaestro() {
+		return estadocivilMaestro;
+	}
+	public Maestro getNiveleducativoMaestro() {
+		return niveleducativoMaestro;
+	}
+	public Maestro getTipoviviendaMaestro() {
+		return tipoviviendaMaestro;
+	}
+	public Maestro getZonaviviendaMaestro() {
+		return zonaviviendaMaestro;
+	}
+	public Maestro getOcupacionMaestro() {
+		return ocupacionMaestro;
+	}
+	
+	public Cliente getAcudiente() {
+		return acudiente;
+	}
+	public void setAcudiente(Cliente acudiente) {
+		this.acudiente = acudiente;
 	}
 }

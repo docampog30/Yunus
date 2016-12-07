@@ -20,6 +20,7 @@ controllers
 		  $scope.recuperarSexos();
 		  $scope.recuperarOcupaciones(5);
 		  $scope.recuperarTiposDocumento();
+		  $scope.ismenoredad = false;
 		  
 	  }
 	  
@@ -79,6 +80,25 @@ controllers
 	  $scope.recuperarTiposDocumento = function(){
 		  $scope.tiposDocumento = [{id:'CC',descripcion:'Cédula de ciudadania'},{id:'TI',descripcion:'Tarjeta de identidad'}]
 	  }
+	  
+	  $scope.$watch('cliente.fenacimiento', function(newVal, oldVal){
+		    if(newVal != undefined){
+			    var age = calculateAge($scope.cliente.fenacimiento);
+			    if(age <=18){
+			    	$scope.ismenoredad = true;
+			    }else{
+			    	$scope.ismenoredad = false;
+			    }
+		    }
+		  });
+	  
+	  
+	  
+	  function calculateAge(birthday) {
+		    var ageDifMs = Date.now() - birthday.getTime();
+		    var ageDate = new Date(ageDifMs);
+		    return Math.abs(ageDate.getUTCFullYear() - 1970);
+		}
 	  
 	  $scope.init();
    }]);
