@@ -7,7 +7,7 @@ controllers
 			  $scope.init();
 			  
 		  }, function errorCallback(response) {
-			    alert("Ocurrio un error guardando los datos");
+			    alert("Este cliente ya existe");
 		  });
 	  }
 	  
@@ -23,7 +23,6 @@ controllers
 		  $scope.ismenoredad = false;
 		  
 	  }
-	  
 	  
 	  $scope.recuperarEstadosCiviles = function(idmaestro){
 		  ServicesFactory.listarMaestro(idmaestro)
