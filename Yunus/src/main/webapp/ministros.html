@@ -39,56 +39,18 @@
 	<div class="actions">
 		<span class="fa fa-search"></span>
 		<input type="text" name="name" placeholder="Buscar" ng-model="search">
-		<button type="button" ng-click="update()" name="button"><i class="fa fa-pencil"></i> Editar Ministros</button>
 	</div>
 	<ul class="title">
-		<li>Nombre</li>
-		<li>Apellido</li>
+		<li class="numId">Nombre</li>
+		<li class="numId">Apellido</li>
 		<li class="numId">Identificación</li>
 		<li class="numId">Es parroco ?</li>
 		<li class="numId">Estado</li>
+		<li>Editar</li>
+	</ul>
+	<ul class="flex tablas" data-ng-repeat="ministro in ministros | orderBy: 'estado' |filter:search" ng-include="getTemplate(ministro)">
 	</ul>
 	<ul ng-repeat="ministro in ministros | orderBy: 'estado' |filter:search" class="tablas">
-		<li>
-			<div ng-hide="editorEnabled" >
-				{{ministro.nombres}}
-			</div>
-			<div ng-show="editorEnabled" >
-				<input ng-model = "ministro.nombres">
-			</div>
-		</li>
-		<li>
-			<div ng-hide="editorEnabled" >
-				{{ministro.apellidos}}
-			</div>
-			<div ng-show="editorEnabled" >
-				<input ng-model = "ministro.apellidos">
-			</div>
-		</li>
-		<li class="numId">
-			<div ng-hide="editorEnabled" >
-				{{ministro.cedula}}
-			</div>
-			<div ng-show="editorEnabled" >
-				<input ng-model = "ministro.cedula">
-			</div>
-		</li>
-		<li class="numId">
-			<div ng-hide="editorEnabled" >
-				{{ministro.tipo == 'P' ? 'SI':'NO'}}
-			</div>
-			<div ng-show="editorEnabled" >
-				<input ng-model = "ministro.tipo">
-			</div>
-		</li>
-		<li class="numId">
-			<div ng-hide="editorEnabled" >
-				{{ministro.estado ? 'Activo':'Inactivo'}}
-			</div>
-			<div ng-show="editorEnabled" >
-				<input ng-model = "ministro.estado">
-			</div>
-		</li>
 	</ul>
 </div>
 </form>

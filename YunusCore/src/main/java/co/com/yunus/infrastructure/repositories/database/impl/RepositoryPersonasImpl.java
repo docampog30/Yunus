@@ -34,6 +34,6 @@ public class RepositoryPersonasImpl implements IRepositoryPersonas {
 	public Persona findOne(Long id) {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("id", id);
-		return databaseOperations.listar(Persona.FIND_BY_TIPO, parametros, Persona.class).stream().findFirst().get();
+		return databaseOperations.listar(Persona.FIND_BY_ID, parametros, Persona.class).stream().findFirst().get();
 	}
 }

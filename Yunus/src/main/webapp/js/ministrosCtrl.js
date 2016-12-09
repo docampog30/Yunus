@@ -3,7 +3,12 @@ controllers
 	  $scope.tipos = [{id:"P",value:"SI"},{id:"M",value:"NO"}];
 	  $scope.editorEnabled=false;
 	  
+	    $scope.reset = function () {
+	        $scope.selected = {};
+	    };
+	  
 	  $scope.init = function(){
+		  $scope.reset();
 		  ServicesFactory.getMinistros().then(function(data) {
 			  $scope.ministros = data.data;
 		  }, function errorCallback(response) {
@@ -26,9 +31,6 @@ controllers
 		  }
 	  }
 	  
-	  $scope.update = function(){
-		  $scope.editorEnabled= !$scope.editorEnabled;
-	  }
 	  $scope.init();
 	  $scope.validarParrocos = function(){
 		  var rpta = true;
@@ -40,4 +42,33 @@ controllers
 		  }
 		  return rpta;
 	  }
+	  
+	  $scope.edit = function(ministro){
+			$scope.selected = angular.copy(ministro);
+	}
+	  
+	  $scope.update = function(idx){
+		  var nroParrocos = $scope.ministros.filter((ministro) => ministro.tipo == 'P').length;
+		  if($scope.selected .tipo == 'P' && nroParrocos >=1){
+			  alert("No pueden existir dos parrocos")
+			  return;
+		  }
+		  
+		  ServicesFactory.actualizarMinistro($scope.selected)
+			.then(function (data){
+				alert("Registro Actualizado Exitosamente");
+				$scope.init();
+			}, function (response) {
+				alert("Error actualizando ministro");
+				$scope.init();
+			});
+		}
+		
+		$scope.getTemplate = function (ministro) {
+	        if (ministro.id === $scope.selected.id) return 'templates/editMinistro.html';
+	        else return 'templates/displayMinistro.html';
+	    };
+	    
+	    $scope.condicionales = [{key:"P",value:"SI"},{key:"M",value:"NO"}];
+
    }]);

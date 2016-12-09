@@ -33,9 +33,12 @@ dependencies {
 		'net.sf.jasperreports:jasperreports:6.3.1',
 		'com.lowagie:itext:2.1.7',
 		'mysql:mysql-connector-java:5.1.37',
+		
 	)
 	compile group: 'org.olap4j', name: 'olap4j', version: '1.2.0'
 	compile group: 'uk.co.jemos.podam', name: 'podam', version: '7.0.1.RELEASE'
+	testCompile 'junit:junit:4.11'
+	testCompile 'org.mockito:mockito-all:1.9.5'
 	
 }
 
