@@ -70,5 +70,6 @@ controllers
 	    };
 	    
 	    $scope.condicionales = [{key:"P",value:"SI"},{key:"M",value:"NO"}];
+	    $scope.estados = [{key:true,value:"Activo"},{key:false,value:"Inactivo"}];
 
    }]);

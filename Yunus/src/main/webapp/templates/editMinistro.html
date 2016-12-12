@@ -20,7 +20,7 @@
 		</li>
 		<li class="numId">
 			<div  >
-				{{ministro.estado ? 'Activo':'Inactivo'}}
+				<select style="width: inherit;" ng-model="selected.estado" ng-options="v.key as v.value for (k, v) in estados" required></select>
 			</div>
 		</li>
 
