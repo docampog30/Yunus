@@ -1,7 +1,10 @@
 package co.com.yunus.application.rest;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -9,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import co.com.yunus.application.dto.Partida;
 import co.com.yunus.application.enums.TipoSacramento;
+import co.com.yunus.domain.repositories.IRepositoryPartidas;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
 import net.sf.jasperreports.engine.JRException;
 
@@ -20,6 +24,9 @@ public class PartidasServices {
 	
 	@Inject
 	private ReportesServices reportesServices;
+	
+	@Inject
+	private IRepositoryPartidas partidasRepository;
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -49,6 +56,13 @@ public class PartidasServices {
 		partida.setTipo(TipoSacramento.CONFIRMACION);
 		save(partida);
 		return reportesServices.generarPartidaConfirmacion(partida.getId());
+	}
+	
+	@GET
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Partida getById(Long id){
+		return partidasRepository.findOne(id);
 	}
 	
 	private void save(Partida partida) {
