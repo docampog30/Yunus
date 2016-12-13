@@ -1,5 +1,6 @@
 controllers
   .controller('ConfirmacionesController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
+	  $scope.idPartida = $routeParams.id;
 	  $scope.guardar = function() {
 		  ServicesFactory.guardarConfirmacion($scope.confirmacion)
 		  .then(function(data) {
@@ -17,6 +18,9 @@ controllers
 	  $scope.init = function() {
 		  $scope.confirmacion = {};
 		  $scope.confirmacion.persona1 = {};
+		  if( $scope.idPartida != undefined){
+			  $scope.confirmacion = ServicesFactory.recuperarPartida( $scope.idPartida);
+		  }
 	  }
 	  
 	  $scope.init();

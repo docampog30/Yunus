@@ -1,5 +1,9 @@
 controllers
-  .controller('BautizosController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
+  .controller('BautizosController',['$scope','$rootScope','$http', 'ServicesFactory','$modal','$routeParams',
+	  function($scope,$rootScope,$http,ServicesFactory,$modal,$routeParams) {
+	  
+	  $scope.idPartida = $routeParams.id;
+	  
 	  $scope.guardar = function() {
 		  ServicesFactory.guardarBautizo($scope.bautizo)
 		  .then(function(data) {
@@ -18,6 +22,9 @@ controllers
 	  $scope.init = function() {
 		  $scope.bautizo = {};
 		  $scope.bautizo.persona1 = {};
+		  if( $scope.idPartida != undefined){
+			  $scope.bautizo = ServicesFactory.recuperarPartida( $scope.idPartida);
+		  }
 	  }
 	  
 	  $scope.listarMinistrosActivos = function(){

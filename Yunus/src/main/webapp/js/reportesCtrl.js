@@ -1,5 +1,7 @@
 controllers
-  .controller('ReportesController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
+  .controller('ReportesController',
+		  ['$scope','$rootScope','$http', 'ServicesFactory','$modal','$location',
+			  function($scope,$rootScope,$http,ServicesFactory,$modal,$location) {
 	  
 	  
 	  $scope.buscar = function() {
@@ -13,6 +15,15 @@ controllers
 	  
 	  $scope.init = function() {
 		  $scope.partidas = [];
+	  }
+	  $scope.editar = function(partida){
+		  if(partida.tipo == 'MATRIMONIO'){
+			  $location.url('/matrimonios/'+partida.id);
+		  }else if(partida.tipo == 'BAUTIZO'){
+			  $location.url('/bautizos/'+partida.id);
+		  }else if(partida.tipo == 'CONFIRMACION'){
+			  $location.url('/confirmaciones/'+partida.id);
+		  }
 	  }
 	  
 	  $scope.sacramentos = ['MATRIMONIO','BAUTIZO','CONFIRMACION'];

@@ -15,15 +15,15 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
             templateUrl: 'home.html',
             controller: 'HomeController'
          }).
-         when('/matrimonios', {
+         when('/matrimonios/:id', {
              templateUrl: 'matrimonios.html',
              controller: 'MatrimoniosController'
           }).
-          when('/bautizos', {
+          when('/bautizos/:id', {
               templateUrl: 'bautizos.html',
               controller: 'BautizosController'
            }).
-           when('/confirmaciones', {
+           when('/confirmaciones/:id', {
                templateUrl: 'confirmaciones.html',
                controller: 'ConfirmacionesController'
            }).
@@ -97,6 +97,10 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.actualizarConfiguracion= function(parroquia){
    	 	return $http.put($rootScope.urlServices+'/parroquia',parroquia);
    	},
+   	
+   	dataFactory.recuperarPartida = function(id){
+   		return $http.get($rootScope.urlServices+'/partida/'+id);
+   	}
    	dataFactory.descargarPartida = function(sacaramento,id){
 	   		$http.get($rootScope.urlServices+'/reportes/'+sacaramento+'/'+id, {responseType: 'arraybuffer'})
 	        .success(function (data) {

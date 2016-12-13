@@ -18,11 +18,11 @@
 			<li class="peq" >Número</li>
 			<li class="peq" >Fecha</li>
 			<li class="peq" >Tipo</li>
-			<li >Identificación persona 1</li>
+			<li class="peq" >Identificación persona 1</li>
 			<li >Nombre Persona 1</li>
-			<li >Identificación persona 2</li>
+			<li class="peq" >Identificación persona 2</li>
 			<li >Nombre Persona 2</li>
-			<li class="peq">Generar</li>
+			<li>Generar</li>
 		</ul>
 		<ul ng-repeat="partida in partidas | filter: {tipo: filter.tipoSacramento}" class="tablasA partida">
 		<li class="peq">
@@ -34,20 +34,21 @@
 		<li class="peq">
 			<label>{{partida.tipo}}</label>
 		</li>
-		<li>
+		<li class="peq">
 			<label>{{partida.persona1.cedula}}</label>
 		</li>
 		<li>
 			<label>{{partida.persona1.nombres}} - {{partida.persona1.apellidos}}</label>
 		</li>
-		<li>
+		<li class="peq">
 			<label>{{partida.persona2.cedula}}</label>
 		</li>
 		<li>
 			<label>{{partida.persona2.nombres}} - {{partida.persona2.apellidos}}</label>
 		</li>
-		<li class="peq">
+		<li >
 			<button class="descargar" ng-click="descargar(partida)" >Generar  <i class="fa fa-download"></i></button>
+			<button class="descargar" ng-click="editar(partida)" >Editar  <i class="fa fa-pencil"></i></button>
 		</li>
 		</ul>
 		

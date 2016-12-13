@@ -1,6 +1,6 @@
 controllers
   .controller('MatrimoniosController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
-	  
+	  $scope.idPartida = $routeParams.id;
 	  $scope.guardar = function() {
 		  ServicesFactory.guardarMatrimonio($scope.matrimonio)
 		  .then(function(data) {
@@ -19,6 +19,9 @@ controllers
 		  $scope.matrimonio = {};
 		  $scope.matrimonio.persona1 = {};
 		  $scope.matrimonio.persona2 = {};
+		  if( $scope.idPartida != undefined){
+			  $scope.matrimonio = ServicesFactory.recuperarPartida( $scope.idPartida);
+		  }
 	  }
 	  
 	  $scope.listarMinistrosActivos = function(){
