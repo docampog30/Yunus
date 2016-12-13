@@ -39,11 +39,11 @@ public class Partida {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long			id;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinColumn(name="persona1_id",referencedColumnName="id")
 	private Persona 		persona1;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinColumn(name="persona2_id",referencedColumnName="id",nullable=true)
 	private Persona 		persona2;
 	

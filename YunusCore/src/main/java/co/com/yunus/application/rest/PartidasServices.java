@@ -1,12 +1,12 @@
 package co.com.yunus.application.rest;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -61,8 +61,14 @@ public class PartidasServices {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Partida getById(Long id){
+	public Partida getById(@PathParam("id") Long id){
 		return partidasRepository.findOne(id);
+	}
+	
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void update(Partida partida) {
+		transactionalRepository.update(partida);
 	}
 	
 	private void save(Partida partida) {

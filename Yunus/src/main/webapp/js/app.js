@@ -97,9 +97,11 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.actualizarConfiguracion= function(parroquia){
    	 	return $http.put($rootScope.urlServices+'/parroquia',parroquia);
    	},
-   	
+   	dataFactory.actualizarPartida = function(partida){
+   		return $http.put($rootScope.urlServices+'/partidas',partida);
+   	}
    	dataFactory.recuperarPartida = function(id){
-   		return $http.get($rootScope.urlServices+'/partida/'+id);
+   		return $http.get($rootScope.urlServices+'/partidas/'+id);
    	}
    	dataFactory.descargarPartida = function(sacaramento,id){
 	   		$http.get($rootScope.urlServices+'/reportes/'+sacaramento+'/'+id, {responseType: 'arraybuffer'})
