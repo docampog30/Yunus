@@ -15,15 +15,15 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
             templateUrl: 'home.html',
             controller: 'HomeController'
          }).
-         when('/matrimonios/:id', {
+         when('/matrimonios/:id?', {
              templateUrl: 'matrimonios.html',
              controller: 'MatrimoniosController'
           }).
-          when('/bautizos/:id', {
+          when('/bautizos/:id?', {
               templateUrl: 'bautizos.html',
               controller: 'BautizosController'
            }).
-           when('/confirmaciones/:id', {
+           when('/confirmaciones/:id?', {
                templateUrl: 'confirmaciones.html',
                controller: 'ConfirmacionesController'
            }).
