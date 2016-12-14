@@ -17,7 +17,7 @@ import co.com.yunus.domain.repositories.IMaestroRepository;
 public class MaestrosServices {
 
 	@Inject
-	@Named("maestrosMock")
+	@Named("MaestroRepositoryImpl")
 	private IMaestroRepository maestroRepository;
 	
 	@Path("{idparent}")

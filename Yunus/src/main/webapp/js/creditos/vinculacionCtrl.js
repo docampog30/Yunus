@@ -70,12 +70,13 @@ controllers
 	  $scope.init = function() {
 		  $scope.cliente = null;
 		  $scope.vinculacion = null;
+		  $scope.documento = null;
 	  }
 	  
 	  $scope.condicionales = [{key:undefined,value:undefined},{key:"S",value:"SI"},{key:"N",value:"NO"}];
-	  $scope.recuperarAfinidad(6);
-	  $scope.recuperarTiposEmpresa(7);
-	  $scope.recuperarTiposContrato(8);
+	  $scope.recuperarAfinidad(20);
+	  $scope.recuperarTiposEmpresa(18);
+	  $scope.recuperarTiposContrato(19);
 	  $scope.recuperarResultados();
 	  
 	  $scope.init();

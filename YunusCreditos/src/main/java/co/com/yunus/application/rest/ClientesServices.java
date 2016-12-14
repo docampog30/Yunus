@@ -32,24 +32,12 @@ public class ClientesServices {
 	public void guardar(Cliente cliente) throws Exception{
 		validarCedula(cliente.getDocumento());
 		transactionalRepository.save(cliente);
-//		byte[] exportReportToPdf;
-//		Map<String,Object> parametros = new HashMap<String,Object>();
-//		parametros.put("cliente", cliente);
-//		InputStream jasperSin = this.getClass().getClassLoader().getResourceAsStream("vinculacion.jasper");
-//        JasperReport jasperCompilado = (JasperReport) JRLoader.loadObject(jasperSin);
-//		JasperPrint jasperPrint 	 = JasperFillManager.fillReport(jasperCompilado, parametros, new JREmptyDataSource());
-//		exportReportToPdf = JasperExportManager.exportReportToPdf(jasperPrint);
-//		
-//		OutputStream out = new FileOutputStream("C:/Users/David/Documents/reporte.pdf");
-//		out.write(exportReportToPdf);
-//		out.close();
 	}
 	
 	private void validarCedula(String documento) {
 		if(!clientesRepository.getClientByDocument(documento).isEmpty()){
 			throw new AppException("Este cliente ya existe");
 		}
-		
 	}
 
 	@GET

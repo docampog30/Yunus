@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="BENEFICIARIO")
@@ -18,12 +20,13 @@ public class Beneficiario {
 	private Long id;
 	private String documento;
 	private String nombre;
+	@Temporal(TemporalType.DATE)
 	private Date fechanacimiento;
 	private String parentesco;
 	private String telefono;
 	private String  designacion;
 	@ManyToOne
-	@JoinColumn(name="IDVINCULACION")
+	@JoinColumn(name="IDVINCULACION",nullable=false)
 	private Vinculacion vinculacion;
 	
 	public String getDocumento() {
@@ -62,5 +65,7 @@ public class Beneficiario {
 	public void setDesignacion(String designacion) {
 		this.designacion = designacion;
 	}
-	
+	public void setVinculacion(Vinculacion vinculacion) {
+		this.vinculacion = vinculacion;
+	}
 }

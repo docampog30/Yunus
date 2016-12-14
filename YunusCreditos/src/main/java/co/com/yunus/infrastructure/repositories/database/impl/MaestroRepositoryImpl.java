@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import co.com.yunus.application.dto.Maestro;
 import co.com.yunus.domain.repositories.IMaestroRepository;
 import co.com.yunus.domain.repositories.database.IDatabaseOperations;
 
+@Named("MaestroRepositoryImpl")
 public class MaestroRepositoryImpl implements IMaestroRepository {
 	
 	@Inject

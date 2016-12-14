@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name="VINCULACION")
@@ -38,6 +43,7 @@ public class Vinculacion {
 	private Long otrosingresos;
 	private Long ingresossalario;
 	private String isdeudas;
+	@Temporal(TemporalType.DATE)
 	private Date fecorte;
 	private String isdeclarante;
 	private Long pagocooperativa;
@@ -55,10 +61,11 @@ public class Vinculacion {
 	private String referenciacooptel;
 	private Long referenciacoopafiM;
 	private String lugarentrevista;
+	@Temporal(TemporalType.DATE)
 	private Date feentrevista;
 	private String resultadoentrevista;
 	
-	@OneToMany(mappedBy="vinculacion",cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="vinculacion",fetch=FetchType.EAGER)
 	private List<Beneficiario> beneficiarios;
 	
 	private Long idCliente;
@@ -374,6 +381,13 @@ public class Vinculacion {
 	}
 	public void setReferenciacoopafi(Long referenciacoopafi) {
 		this.referenciacoopafi = referenciacoopafi;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public Cliente getCliente() {
+		return cliente;
 	}
 	
 }
