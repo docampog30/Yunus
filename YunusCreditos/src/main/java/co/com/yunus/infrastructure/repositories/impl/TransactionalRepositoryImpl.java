@@ -1,16 +1,16 @@
-package co.com.yunus.infrastructure.repositories.database.impl;
+package co.com.yunus.infrastructure.repositories.impl;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import co.com.yunus.domain.repositories.ITransactionalRepository;
-import co.com.yunus.domain.repositories.database.IDatabaseOperations;
+import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
 
 @Named("TransactionalRepositoryImpl")
 public class TransactionalRepositoryImpl implements ITransactionalRepository {
 
 	@Inject
-	private IDatabaseOperations dataBaseOperations;
+	private IRepositoryOperations dataBaseOperations;
 	
 	public <T> void save(T object) {
 		dataBaseOperations.save(object);

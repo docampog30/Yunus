@@ -1,4 +1,4 @@
-package co.com.yunus.infrastructure.repositories.database.impl;
+package co.com.yunus.infrastructure.repositories.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import co.com.yunus.domain.repositories.database.IDatabaseOperations;
+import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
 
-public class DatabaseOperationsImpl implements IDatabaseOperations {
+public class DatabaseOperationsImpl implements IRepositoryOperations {
 
 	@Inject
 	private EntityManager entityManager;

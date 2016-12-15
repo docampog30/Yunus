@@ -1,4 +1,4 @@
-package co.com.yunus.infrastructure.repositories.database.impl;
+package co.com.yunus.infrastructure.repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;

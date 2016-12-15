@@ -1,4 +1,4 @@
-package co.com.yunus.infrastructure.repositories.database.impl;
+package co.com.yunus.infrastructure.repositories.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +9,13 @@ import javax.inject.Named;
 
 import co.com.yunus.application.dto.Maestro;
 import co.com.yunus.domain.repositories.IMaestroRepository;
-import co.com.yunus.domain.repositories.database.IDatabaseOperations;
+import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
 
 @Named("MaestroRepositoryImpl")
 public class MaestroRepositoryImpl implements IMaestroRepository {
 	
 	@Inject
-	private IDatabaseOperations databaseOperations;
+	private IRepositoryOperations databaseOperations;
 
 	public List<Maestro> buscarMaestrosPorParent(Long idParent) {
 		

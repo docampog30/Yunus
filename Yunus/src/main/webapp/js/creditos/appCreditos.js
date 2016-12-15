@@ -23,9 +23,9 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
               templateUrl: 'creditos/vinculacion.html',
               controller: 'VinculacionController'
            }).
-           when('/confirmaciones', {
-               templateUrl: 'confirmaciones.html',
-               controller: 'ConfirmacionesController'
+           when('/simulador', {
+               templateUrl: 'creditos/simulador.html',
+               controller: 'SimuladorController'
            }).
            when('/reportes', {
                templateUrl: 'reportes.html',
@@ -79,8 +79,9 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.guardarVinculacion = function(vinculacion){
    		return $http.post($rootScope.urlServices+'/vinculacion',vinculacion);
    	}
-   	
-   	
+   	dataFactory.simularCredito = function(request){
+   		return $http.post($rootScope.urlServices+'/simulador',request);
+   	}
    	return dataFactory;
 }]);
 mainApp.controller('HomeController', ['$route', '$routeParams', '$location','$scope','ServicesFactory',

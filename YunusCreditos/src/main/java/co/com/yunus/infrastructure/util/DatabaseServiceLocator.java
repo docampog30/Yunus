@@ -1,4 +1,4 @@
-package co.com.yunus.domain.repositories.database;
+package co.com.yunus.infrastructure.util;
 
 import java.util.HashMap;
 import java.util.Map;

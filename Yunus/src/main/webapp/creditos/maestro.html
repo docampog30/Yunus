@@ -1,0 +1,40 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+<div class="actions" style="float: right;">
+	<ul>
+		<li>
+			<button ng-click="init()">Nuevo
+				<span class="fa fa-plus-circle"></span>
+			</button>
+			<button type="submit" ng-click="guardar()" ng-disabled="userForm.$invalid">Guardar
+				<span class="fa fa-floppy-o"></span>
+			</button>
+		</li>
+	</ul>
+</div>
+<h2>Ingresar</h2>
+	<label id="obligatorio">*Campos Obligatorios</label>
+	<ul class = "add">
+		<li>
+			<label>Nombre</label>
+			<input type="text" ng-model="maestro.codigo" required maxlength="20"/>
+		</li>
+		<li>
+			<label>Valor</label>
+			<input type="text" ng-model="maestro.valor" required maxlength="20"/>
+		</li>
+	</ul>
+	<label for=""><i class="fa fa-check-circle"></i> Datos agregados</label>
+	<div class="actions">
+		<span class="fa fa-search"></span>
+		<input type="text" name="name" placeholder="Buscar" ng-model="search">
+	</div>
+	<ul class="title">
+		<li class="numId">Nombre</li>
+		<li class="numId">Valor</li>
+		<li>Editar</li>
+	</ul>
+	<ul class="flex tablas" data-ng-repeat="maestro in maestro | orderBy: 'nombre' |filter:search" ng-include="getTemplate(maestro)">
+	</ul>
+</div>
+</form>

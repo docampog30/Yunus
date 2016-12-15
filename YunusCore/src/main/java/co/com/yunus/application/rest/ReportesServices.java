@@ -1,10 +1,8 @@
 package co.com.yunus.application.rest;
 
 import java.awt.image.BufferedImage;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +17,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import co.com.yunus.application.dto.Parroquia;
 import co.com.yunus.application.dto.Partida;
 import co.com.yunus.application.dto.PartidasFilter;
@@ -34,6 +24,13 @@ import co.com.yunus.application.dto.Persona;
 import co.com.yunus.domain.repositories.IRepositoryParroquias;
 import co.com.yunus.domain.repositories.IRepositoryPartidas;
 import co.com.yunus.domain.repositories.IRepositoryPersonas;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Path("reportes")
 public class ReportesServices {
