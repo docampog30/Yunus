@@ -404,5 +404,12 @@ public class Vinculacion {
 	public void setVigencia(Long vigencia) {
 		this.vigencia = vigencia;
 	}
+	public Maestro getTipoempresaMaestro() {
+		return tipoempresaMaestro;
+	}
+	
+	public Maestro getReferenciaafinidadMaestro() {
+		return referenciaafinidadMaestro;
+	}
 	
 }
