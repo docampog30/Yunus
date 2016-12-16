@@ -29,6 +29,7 @@ public class Vinculacion {
 	private String entidadcesantias;
 	private Long vlrcesantias;
 	private Long vlrotros;
+	private Long subsidiocaja;
 	private Long capacidaddeuda;
 	private String nombreempresa;
 	private Date feingreso;
@@ -77,6 +78,7 @@ public class Vinculacion {
 	private Long montodeuda;
 	private String entidaddeuda;
 	private Long pasivos;
+	private Long vigencia;
 	
 	@ManyToOne
 	@JoinColumn(name="IDCLIENTE",insertable=false,updatable=false)
@@ -388,6 +390,19 @@ public class Vinculacion {
 	}
 	public Cliente getCliente() {
 		return cliente;
+	}
+	
+	public Long getSubsidiocaja() {
+		return subsidiocaja;
+	}
+	public void setSubsidiocaja(Long subsidiocaja) {
+		this.subsidiocaja = subsidiocaja;
+	}
+	public Long getVigencia() {
+		return vigencia;
+	}
+	public void setVigencia(Long vigencia) {
+		this.vigencia = vigencia;
 	}
 	
 }
