@@ -4,6 +4,11 @@ controllers
 		  ServicesFactory.guardarVinculacion($scope.vinculacion)
 		  .then(function(data) {
 			  alert('Vinculación guardada correctamente');
+			  print = $window.confirm('Desea imprimir el reporte de afiliación ?');
+			  if(print){
+				  ServicesFactory.imprimirReporteAfiliacion(data.data);
+			  }
+			
 			  $scope.init();
 			  
 		  }, function errorCallback(response) {

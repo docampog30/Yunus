@@ -82,6 +82,20 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.simularCredito = function(request){
    		return $http.post($rootScope.urlServices+'/simulador',request);
    	}
+   	dataFactory.imprimirReporteAfiliacion = function(data){
+   		var file = new Blob([data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+       
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        
+        a.href = fileURL;
+        a.download = 'Vinculacion';
+        a.click();
+        window.open(fileURL);
+        window.URL.revokeObjectURL(fileURL);
+   	}
    	return dataFactory;
 }]);
 mainApp.controller('HomeController', ['$route', '$routeParams', '$location','$scope','ServicesFactory',
