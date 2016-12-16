@@ -4,18 +4,18 @@
 	
 	<div class="actions">
 		<label id="obligatorio">*Campos Obligatorios</label>
-		<label>*Valor Credito</label>
-		<input required="true" type="number" ng-model="credito.valor" maxlength="7" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-		<label>*Interes</label>
-		<input required="true" type="number" ng-model="credito.interes" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<label>*Valor Credito($)</label>
+		<input required type="number" data-ng-model="credito.valor" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<label>*Interes(%)</label>
+		<input required type="number" min="1" max="100" data-ng-model="credito.interes" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		<label>*Tiempo en meses</label>
-		<input required="true" type="number" ng-model="credito.meses" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<input required type="number" data-ng-model="credito.meses" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		
-		<label>Resultado</label>
-		<input type="number" readonly="true" ng-model="credito.resultado" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<label>Resultado($)</label>
+		<input type="number"readonly data-ng-model="credito.resultado" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		
 		
-		<button ng-click="simular()" ng-disabled="userForm.$invalid">
+		<button data-ng-click="simular()" data-ng-disabled="userForm.$invalid">
 			Simular
 			<span class="fa fa-search"></span>
 		</button>
@@ -36,19 +36,19 @@
 			<label>{{sim.periodo}}</label>
 		</li>
 		<li >
-			<label>{{sim.saldoInicial}}</label>
+			<label>{{sim.saldoInicial|currency}}</label>
 		</li>
 		<li >
-			<label>{{sim.intereses}}</label>
+			<label>{{sim.intereses|currency}}</label>
 		</li>
 		<li >
-			<label>{{sim.cuota}}</label>
+			<label>{{sim.cuota|currency}}</label>
 		</li>
 		<li >
-			<label>{{sim.amortizacion}}</label>
+			<label>{{sim.amortizacion|currency}}</label>
 		</li>
 		<li >
-			<label>{{sim.saldoFinal}}</label>
+			<label>{{sim.saldoFinal|currency}}</label>
 		</li>
 		</ul>
 	</div>

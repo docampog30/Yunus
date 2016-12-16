@@ -49,7 +49,7 @@ public class VinculacionServices {
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public byte[] getReportBytes() {
 		Vinculacion vinculacion = new Vinculacion();
-		List<Cliente> cliente = clientes.getCliente("1047969179");
+		List<Cliente> cliente = clientes.getCliente("22014191");
 		vinculacion.setCliente(cliente.get(0));
 		byte[] exportReportToPdf = null;
 		try {
