@@ -14,6 +14,7 @@ import org.jboss.weld.environment.se.events.ContainerInitialized;
 
 import co.com.yunus.application.rest.ClientesServices;
 import co.com.yunus.application.rest.MaestrosServices;
+import co.com.yunus.application.rest.SimulacionServices;
 import co.com.yunus.application.rest.VinculacionServices;
 import co.com.yunus.config.AppExceptionMapper;
 import co.com.yunus.config.CORSFilter;
@@ -26,6 +27,7 @@ public class MainCreditos {
 	    resourceConfig.register(ClientesServices.class);
 	    resourceConfig.register(MaestrosServices.class);
 	    resourceConfig.register(VinculacionServices.class);
+	    resourceConfig.register(SimulacionServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
 	    resourceConfig.register(new AppExceptionMapper());

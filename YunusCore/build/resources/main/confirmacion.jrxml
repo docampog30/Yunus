@@ -3,7 +3,7 @@
 	<property name="template.type" value="columnar"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="384"/>
 	<import value="co.com.yunus.application.dto.*"/>
 	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -177,7 +177,7 @@
 				<reportElement x="87" y="526" width="412" height="20" uuid="ac1ec5a6-3706-4bee-bb29-e93f549d62cf"/>
 				<textFieldExpression><![CDATA[$P{parrocoPie}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="61" y="416" width="470" height="18" uuid="2c87d6e7-ac1b-4bc6-930d-f9060ddced75"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA["Expedida en la oficina parroquial de "+$P{direccionParroquia}+" el día "+new SimpleDateFormat("dd/MM/yy").format(new java.util.Date())]]></textFieldExpression>

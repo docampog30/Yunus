@@ -1,0 +1,57 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-search-plus"></i> Simulador de credito </label>
+	
+	<div class="actions">
+		<label id="obligatorio">*Campos Obligatorios</label>
+		<label>*Valor Credito</label>
+		<input required="true" type="number" ng-model="credito.valor" maxlength="7" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<label>*Interes</label>
+		<input required="true" type="number" ng-model="credito.interes" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<label>*Tiempo en meses</label>
+		<input required="true" type="number" ng-model="credito.meses" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		
+		<label>Resultado</label>
+		<input type="number" readonly="true" ng-model="credito.resultado" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		
+		
+		<button ng-click="simular()" ng-disabled="userForm.$invalid">
+			Simular
+			<span class="fa fa-search"></span>
+		</button>
+	</div>
+	
+	<div id="partidas">
+		<ul class="titleA partida">
+			<li>Periodo</li>
+			<li>Saldo inicial</li>
+			<li>Intereses</li>
+			<li>Cuota</li>
+			<li>Amortización</li>
+			<li>Saldo Final</li>
+
+		</ul>
+		<ul ng-repeat="sim in simulacion" class="tablasA partida">
+		<li >
+			<label>{{sim.periodo}}</label>
+		</li>
+		<li >
+			<label>{{sim.saldoInicial}}</label>
+		</li>
+		<li >
+			<label>{{sim.intereses}}</label>
+		</li>
+		<li >
+			<label>{{sim.cuota}}</label>
+		</li>
+		<li >
+			<label>{{sim.amortizacion}}</label>
+		</li>
+		<li >
+			<label>{{sim.saldoFinal}}</label>
+		</li>
+		</ul>
+	</div>
+	
+</div>
+</form>

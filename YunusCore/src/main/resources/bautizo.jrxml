@@ -3,7 +3,7 @@
 	<property name="template.type" value="columnar"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="438"/>
 	<property name="ireport.background.image" value="C:\Users\David\Downloads\border-f.png"/>
 	<property name="ireport.background.image.properties" value="true,false,0.5,-10,563,0,0,611,866"/>
 	<import value="co.com.yunus.application.dto.*"/>
@@ -95,7 +95,7 @@
 				<textFieldExpression><![CDATA["MINISTRO DEL SACRAMENTO: "]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="56" y="393" width="463" height="18" uuid="aa060d80-b434-4194-b98f-148c66159404"/>
+				<reportElement x="56" y="393" width="471" height="18" uuid="aa060d80-b434-4194-b98f-148c66159404"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA["Así consta en el libro N° "+$P{partida}.getLibroNro()+" donde se halla inscrita la partida de Bautizo celebrado en el año "+$P{partida}.getAnioPartida()+" Folio N° "+$P{partida}.getFolio()+" Número "+$P{partida}.getNumero()]]></textFieldExpression>
 			</textField>
@@ -181,6 +181,11 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="228" y="344" width="318" height="18" uuid="57856c98-e58e-474f-ae05-34416676106f"/>
 				<textFieldExpression><![CDATA[$P{partida}.getNota()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="57" y="426" width="470" height="18" uuid="c4c746c6-76b1-4626-a995-4f36f7c047b4"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Expedida en la oficina parroquial de "+$P{direccionParroquia}+" el día "+new SimpleDateFormat("dd/MM/yy").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
