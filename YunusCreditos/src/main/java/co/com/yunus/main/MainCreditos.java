@@ -2,9 +2,11 @@ package co.com.yunus.main;
 
 import javax.enterprise.event.Observes;
 
+import org.apache.log4j.BasicConfigurator;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -30,8 +32,8 @@ public class MainCreditos {
 	    resourceConfig.register(SimulacionServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
-	    resourceConfig.register(new AppExceptionMapper());
-	    resourceConfig.register(new ResourceConfig()
+	    resourceConfig.registerInstances(new AppExceptionMapper());
+	    resourceConfig.registerInstances(new ResourceConfig()
 	    .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
 	    .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true));
 

@@ -13,12 +13,15 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import co.com.yunus.application.dto.Cliente;
 import co.com.yunus.application.dto.Vinculacion;
+import co.com.yunus.domain.repositories.IClientesRepository;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
+import co.com.yunus.domain.repositories.IVinculacionRepository;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -30,11 +33,11 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class VinculacionServices {
 	
 	@Inject
-	@Named("TransactionalRepositoryImpl")
+	@Named("mock")
 	private ITransactionalRepository transactionalRepository;
 	
 	@Inject
-	private ClientesServices clientes;
+	private IVinculacionRepository vinculacionRepository;
 	
 	@POST	
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -46,11 +49,31 @@ public class VinculacionServices {
 	}
 	
 	@GET
+	@Path("buscar/{documento}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Vinculacion> getReport(@PathParam("documento") String documento){
+		return vinculacionRepository.findByDocument(documento);
+	}
+	
+	@GET
+	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public byte[] reportById(@PathParam("id") Long id){
+		Vinculacion vinculacion = vinculacionRepository.findById(id).stream().findAny().get();
+		return getBytes(vinculacion);
+	}
+	
+	@GET
+	@Path("test")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public byte[] getReportBytes() {
-		Vinculacion vinculacion = new Vinculacion();
-		List<Cliente> cliente = clientes.getCliente("22014191");
-		vinculacion.setCliente(cliente.get(0));
+		Vinculacion vinculacion = vinculacionRepository.findByDocument("").stream().findAny().get();;
+		return getBytes(vinculacion);
+	}
+
+	private byte[] getBytes(Vinculacion vinculacion) {
 		byte[] exportReportToPdf = null;
 		try {
 			Map<String,Object> parametros = new HashMap<String,Object>();
@@ -60,11 +83,11 @@ public class VinculacionServices {
 			JasperPrint jasperPrint 	 = JasperFillManager.fillReport(jasperCompilado, parametros, new JREmptyDataSource());
 			exportReportToPdf = JasperExportManager.exportReportToPdf(jasperPrint);
 			
-			OutputStream out = new FileOutputStream("C:/Users/David/Documents/reporte.pdf");
+			OutputStream out = new FileOutputStream("C:/Users/david.ocampo/Documents/reporte.pdf");
 			out.write(exportReportToPdf);
 			out.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		return exportReportToPdf;

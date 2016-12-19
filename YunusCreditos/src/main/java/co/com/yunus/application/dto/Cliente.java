@@ -219,4 +219,19 @@ public class Cliente {
 	public void setAcudiente(Cliente acudiente) {
 		this.acudiente = acudiente;
 	}
+	public void setEstadocivilMaestro(Maestro estadocivilMaestro) {
+		this.estadocivilMaestro = estadocivilMaestro;
+	}
+	public void setNiveleducativoMaestro(Maestro niveleducativoMaestro) {
+		this.niveleducativoMaestro = niveleducativoMaestro;
+	}
+	public void setTipoviviendaMaestro(Maestro tipoviviendaMaestro) {
+		this.tipoviviendaMaestro = tipoviviendaMaestro;
+	}
+	public void setZonaviviendaMaestro(Maestro zonaviviendaMaestro) {
+		this.zonaviviendaMaestro = zonaviviendaMaestro;
+	}
+	public void setOcupacionMaestro(Maestro ocupacionMaestro) {
+		this.ocupacionMaestro = ocupacionMaestro;
+	}
 }

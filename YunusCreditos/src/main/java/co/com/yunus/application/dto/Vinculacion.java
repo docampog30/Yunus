@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 @Table(name="VINCULACION")
 public class Vinculacion {
@@ -35,6 +33,7 @@ public class Vinculacion {
 	private Date feingreso;
 	private Long tipoempresa;
 	private Long tipovivienda;
+	private Long tipoContrato;
 	private String cargo;
 	private String direcciontrabajo;
 	private String ciudadtrabajo;
@@ -79,11 +78,17 @@ public class Vinculacion {
 	private String entidaddeuda;
 	private Long pasivos;
 	private Long vigencia;
+	private String entidadcaja;
 	
 	@ManyToOne
 	@JoinColumn(name="IDCLIENTE",insertable=false,updatable=false)
 	private Cliente cliente;
 
+
+	@ManyToOne
+	@JoinColumn(name="TIPOCONTRATO",insertable=false,updatable=false)
+	private Maestro tipocontratoMaestro;
+	
 	@ManyToOne
 	@JoinColumn(name="TIPOEMPRESA",insertable=false,updatable=false)
 	private Maestro tipoempresaMaestro;
@@ -407,9 +412,37 @@ public class Vinculacion {
 	public Maestro getTipoempresaMaestro() {
 		return tipoempresaMaestro;
 	}
-	
 	public Maestro getReferenciaafinidadMaestro() {
 		return referenciaafinidadMaestro;
 	}
-	
+	public String getEntidadcaja() {
+		return entidadcaja;
+	}
+	public void setEntidadcaja(String entidadcaja) {
+		this.entidadcaja = entidadcaja;
+	}
+	public Maestro getTipoviviendaMaestro() {
+		return tipoviviendaMaestro;
+	}
+	public void setTipoviviendaMaestro(Maestro tipoviviendaMaestro) {
+		this.tipoviviendaMaestro = tipoviviendaMaestro;
+	}
+	public void setTipoempresaMaestro(Maestro tipoempresaMaestro) {
+		this.tipoempresaMaestro = tipoempresaMaestro;
+	}
+	public void setReferenciaafinidadMaestro(Maestro referenciaafinidadMaestro) {
+		this.referenciaafinidadMaestro = referenciaafinidadMaestro;
+	}
+	public Long getTipoContrato() {
+		return tipoContrato;
+	}
+	public void setTipoContrato(Long tipoContrato) {
+		this.tipoContrato = tipoContrato;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Long getId() {
+		return id;
+	}
 }

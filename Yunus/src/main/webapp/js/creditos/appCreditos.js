@@ -27,9 +27,9 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/simulador.html',
                controller: 'SimuladorController'
            }).
-           when('/reportes', {
-               templateUrl: 'reportes.html',
-               controller: 'ReportesController'
+           when('/formato', {
+               templateUrl: 'creditos/formatos.html',
+               controller: 'FormatosController'
            }).
            when('/ministros', {
                templateUrl: 'ministros.html',
@@ -77,10 +77,20 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	 	return $http.get($rootScope.urlServices+'/cliente/'+documento);
    	}
    	dataFactory.guardarVinculacion = function(vinculacion){
-   		return $http.post($rootScope.urlServices+'/vinculacion',vinculacion);
+   		return $http.post($rootScope.urlServices+'/vinculacion',vinculacion,{responseType: 'arraybuffer'});
    	}
    	dataFactory.simularCredito = function(request){
    		return $http.post($rootScope.urlServices+'/simulador',request);
+   	}
+   	dataFactory.buscarVinculaciones = function(filter){
+   		return $http.get($rootScope.urlServices+'/vinculacion/buscar/'+filter.documento);
+   	}
+   	dataFactory.descargarVinculacion = function(id){
+   		return $http.get($rootScope.urlServices+'/vinculacion/'+id, {responseType: 'arraybuffer'}).then(function(data) {
+   			dataFactory.imprimirReporteAfiliacion(data.data);
+		  }, function errorCallback(response) {
+			    alert("Error generando informe");
+		  });
    	}
    	dataFactory.imprimirReporteAfiliacion = function(data){
    		var file = new Blob([data], {type: 'application/pdf'});
