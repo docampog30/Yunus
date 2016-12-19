@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43321bd5-e0e1-4ca4-9cc1-ff185aece863">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="42"/>
-	<property name="ireport.y" value="900"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="924"/>
 	<parameter name="vinculacion" class="co.com.yunus.application.dto.Vinculacion"/>
 	<background>
 		<band/>
@@ -330,14 +330,14 @@
 				<textFieldExpression><![CDATA["Entidad "+$P{vinculacion}.getEntidadahorro() == null ? " " :$P{vinculacion}.getEntidadahorro()+" Valor: "+$P{vinculacion}.getVlrahorro() == null ? "0":$P{vinculacion}.getVlrahorro()]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0" isBlankWhenNull="true">
-				<reportElement x="338" y="259" width="210" height="20" uuid="96564b0c-3cd7-4fd6-9112-c469e0580ba3"/>
+				<reportElement x="332" y="259" width="98" height="20" uuid="96564b0c-3cd7-4fd6-9112-c469e0580ba3"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Entidad "+$P{vinculacion}.getEntidadcesantias()+" Valor: "+$P{vinculacion}.getVlrcesantias()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Entidad "+$P{vinculacion}.getEntidadcesantias()]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0">
-				<reportElement x="5" y="278" width="132" height="20" uuid="249a9297-726c-4d90-99ff-3cec08a4e067">
+				<reportElement x="5" y="278" width="56" height="20" uuid="249a9297-726c-4d90-99ff-3cec08a4e067">
 					<printWhenExpression><![CDATA[$P{vinculacion}.getVlrotros() != null]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -346,14 +346,14 @@
 				<textFieldExpression><![CDATA["Otros, ahorros "+$P{vinculacion}.getVlrotros()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="139" y="278" width="77" height="20" uuid="42ef312c-260b-43ca-8ba5-a70b0f4e7d4b"/>
+				<reportElement x="141" y="278" width="88" height="20" uuid="42ef312c-260b-43ca-8ba5-a70b0f4e7d4b"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Caja compensación: "]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement x="367" y="279" width="87" height="20" uuid="772980c4-bed2-49bf-94dd-6e55badb0be5"/>
+				<reportElement x="368" y="279" width="87" height="20" uuid="772980c4-bed2-49bf-94dd-6e55badb0be5"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -367,14 +367,14 @@
 				<textFieldExpression><![CDATA[" Entidad: "+$P{vinculacion}.getEntidadcaja()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="299" width="104" height="20" uuid="371cac7c-3cba-442f-b51c-aac85bed062a"/>
+				<reportElement x="2" y="299" width="102" height="20" uuid="371cac7c-3cba-442f-b51c-aac85bed062a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" Capacidad endeudamiento :"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Capacidad endeudamiento :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="367" y="298" width="96" height="20" uuid="d2c1e640-af48-4255-9dc1-d2dcf9c5a3bd"/>
+				<reportElement x="368" y="298" width="96" height="20" uuid="d2c1e640-af48-4255-9dc1-d2dcf9c5a3bd"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -842,17 +842,17 @@
 				<textFieldExpression><![CDATA[$P{vinculacion}.getCliente().getTelefono()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="207" y="299" width="75" height="20" uuid="ff36df65-1350-4732-88d3-f8a72c523af9"/>
+				<reportElement x="190" y="299" width="72" height="20" uuid="ff36df65-1350-4732-88d3-f8a72c523af9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Subsidio Municipal: "]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="205" y="298" width="1" height="20" uuid="d02c0261-d1a1-49bf-bb0e-efc682f203a8"/>
+				<reportElement x="190" y="298" width="1" height="20" uuid="d02c0261-d1a1-49bf-bb0e-efc682f203a8"/>
 			</line>
 			<textField pattern="¤ #,##0">
-				<reportElement x="101" y="299" width="104" height="20" uuid="5a49b767-7793-4941-87ed-69fd3d41bd40"/>
+				<reportElement x="105" y="299" width="82" height="20" uuid="5a49b767-7793-4941-87ed-69fd3d41bd40"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -920,11 +920,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vinculacion}.getCargo()]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="398" y="472" width="155" height="20" uuid="20c42d21-edc8-436b-8719-b93c800993c4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0">
 				<reportElement x="140" y="512" width="142" height="20" uuid="c6ea0646-6291-4082-8f00-0f8faf90eb89"/>
@@ -996,7 +997,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vinculacion}.getIsdeclarante().equals("S") ? "SI" :"NO"]]></textFieldExpression>
 			</textField>
-			<textField pattern="¤ #,##0" isBlankWhenNull="true">
+			<textField pattern="¤ #,##0" isBlankWhenNull="false">
 				<reportElement x="334" y="593" width="79" height="20" uuid="b00411c2-27da-4c76-9405-9388bbea9b7e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
@@ -1008,10 +1009,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{vinculacion}.getPagocooperativa()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getCuota()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="217" y="613" width="337" height="20" uuid="1ddbb349-d485-4614-acd6-9a1ff4aa7916"/>
+				<reportElement x="219" y="613" width="333" height="20" uuid="1ddbb349-d485-4614-acd6-9a1ff4aa7916"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -1046,20 +1047,13 @@
 				<textFieldExpression><![CDATA["Cesantias:  "]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0" isBlankWhenNull="true">
-				<reportElement x="219" y="279" width="143" height="20" uuid="2edbff66-57c0-4e70-994b-652cb570e34e">
+				<reportElement x="227" y="279" width="135" height="20" uuid="2edbff66-57c0-4e70-994b-652cb570e34e">
 					<printWhenExpression><![CDATA[$P{vinculacion}.getIscajacompensacion().equals("S")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vinculacion}.getSubsidiocaja()]]></textFieldExpression>
-			</textField>
-			<textField pattern="¤ #,##0" isBlankWhenNull="true">
-				<reportElement x="281" y="298" width="82" height="20" uuid="5d5bbc12-230b-42e8-87ff-6f60e73b69f3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{vinculacion}.getVlrsubsidiom()]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0" isBlankWhenNull="true">
 				<reportElement x="464" y="298" width="92" height="20" uuid="8e007e9a-68ce-47c5-b41c-fcc75f83d270"/>
@@ -1129,7 +1123,46 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{vinculacion}.getReferenciaafinidadMaestro()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getReferenciaafinidadMaestro().getDescripcion()]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0" isBlankWhenNull="true">
+				<reportElement x="262" y="299" width="105" height="20" uuid="94c9f3d8-5605-46c0-99fd-fb3f89079443"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getVlrsubsidiom()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="432" width="134" height="20" uuid="6b1bb960-4566-4a68-bae0-c8d61bd3a5ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getTipocontratoMaestro().getDescripcion()]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0" isBlankWhenNull="true">
+				<reportElement x="63" y="279" width="75" height="20" uuid="abc16f9b-7041-4acc-9119-ff408eae6b04">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getIscajacompensacion().equals("S")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getVlrotros()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="259" width="45" height="20" uuid="651999c9-4689-4b89-9570-0c2de9c490ab"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valor: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0" isBlankWhenNull="true">
+				<reportElement x="475" y="258" width="75" height="20" uuid="43329572-24d0-41ce-b4ca-805be700d05b">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getIscajacompensacion().equals("S")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getVlrcesantias()]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="760">

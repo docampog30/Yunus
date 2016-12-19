@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,7 +20,15 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="VINCULACION")
+@NamedQueries({
+	 @NamedQuery(name=Vinculacion.FIND_BY_DOCUMENT,query="select v from Vinculacion v where v.cliente.documento = :documento"),
+	 @NamedQuery(name=Vinculacion.FIND_BY_ID,query="select v from Vinculacion v where v.id = :id")
+})
 public class Vinculacion {
+	
+	public static final String FIND_BY_DOCUMENT = "Vinculacion.findByDocument";
+	public static final String FIND_BY_ID = "Vinculacion.findById";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -33,7 +43,7 @@ public class Vinculacion {
 	private Date feingreso;
 	private Long tipoempresa;
 	private Long tipovivienda;
-	private Long tipoContrato;
+	private Long tipocontrato;
 	private String cargo;
 	private String direcciontrabajo;
 	private String ciudadtrabajo;
@@ -433,16 +443,24 @@ public class Vinculacion {
 	public void setReferenciaafinidadMaestro(Maestro referenciaafinidadMaestro) {
 		this.referenciaafinidadMaestro = referenciaafinidadMaestro;
 	}
-	public Long getTipoContrato() {
-		return tipoContrato;
-	}
-	public void setTipoContrato(Long tipoContrato) {
-		this.tipoContrato = tipoContrato;
-	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 	public Long getId() {
 		return id;
+	}
+	public Maestro getTipocontratoMaestro() {
+		return tipocontratoMaestro;
+	}
+	public void setTipocontratoMaestro(Maestro tipocontratoMaestro) {
+		this.tipocontratoMaestro = tipocontratoMaestro;
+	}
+	
+	public Long getTipocontrato() {
+		return tipocontrato;
+	}
+	public void setTipocontrato(Long tipocontrato) {
+		this.tipocontrato = tipocontrato;
 	}
 }

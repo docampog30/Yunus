@@ -21,6 +21,7 @@ import co.com.yunus.exception.AppException;
 public class ClientesServices {
 
 	@Inject
+	@Named("ClienteRepositoryImpl")
 	private IClientesRepository clientesRepository;
 	
 	@Inject

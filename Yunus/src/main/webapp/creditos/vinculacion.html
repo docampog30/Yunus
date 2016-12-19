@@ -226,7 +226,7 @@
 		</li>
 		<li style="width: inherit;">
 			<label>Telefono Referencia Personal</label>
-			<input type="text" ng-model="vinculacion.telreferencia1" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.telreferencia1" required maxlength="12" />
 		</li>
 		<li style="width: inherit;">
 			<label>Referencia familiar (nombres y apellidos)</label>
@@ -238,7 +238,7 @@
 		</li>
 		<li >
 			<label>Telefono Referencia familiar</label>
-			<input type="text" ng-model="vinculacion.telreferenciaf" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.telreferenciaf" required maxlength="12" />
 		</li>
 		<li >
 			<label>Parentesco Referencia familiar</label>
@@ -250,7 +250,7 @@
 		</li>
 		<li style="width: inherit;">
 			<label>Teléfono</label>
-			<input type="text" ng-model="vinculacion.referenciacooptel" required maxlength="70" />
+			<input type="text" ng-model="vinculacion.referenciacooptel" required maxlength="12" />
 		</li>
 		<li >
 			<label>Afinidad</label>
@@ -295,7 +295,7 @@
 				<input type="text" ng-model="beneficiario.parentesco"/>
 			</li>
 			<li class="peq">
-				<input type="text" ng-model="beneficiario.telefono"/>
+				<input type="text" ng-model="beneficiario.telefono" maxlength="12"/>
 			</li>
 			<li>
 				<input type="text" ng-model="beneficiario.designacion"/>

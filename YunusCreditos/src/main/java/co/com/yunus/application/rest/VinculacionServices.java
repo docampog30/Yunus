@@ -17,9 +17,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import co.com.yunus.application.dto.Cliente;
 import co.com.yunus.application.dto.Vinculacion;
-import co.com.yunus.domain.repositories.IClientesRepository;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
 import co.com.yunus.domain.repositories.IVinculacionRepository;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -33,10 +31,11 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class VinculacionServices {
 	
 	@Inject
-	@Named("mock")
+	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
 	
 	@Inject
+	@Named("VinculacionRepositoryImpl")
 	private IVinculacionRepository vinculacionRepository;
 	
 	@POST	
@@ -45,7 +44,7 @@ public class VinculacionServices {
 	public byte[] guardar(Vinculacion vinculacion){
 		vinculacion.getBeneficiarios().stream().forEach(b->b.setVinculacion(vinculacion));
 		transactionalRepository.save(vinculacion);
-		return getReportBytes();
+		return reportById(vinculacion.getId());
 	}
 	
 	@GET
@@ -69,7 +68,7 @@ public class VinculacionServices {
 	@Path("test")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public byte[] getReportBytes() {
-		Vinculacion vinculacion = vinculacionRepository.findByDocument("").stream().findAny().get();;
+		Vinculacion vinculacion = vinculacionRepository.findByDocument("1047969179").stream().findAny().get();;
 		return getBytes(vinculacion);
 	}
 

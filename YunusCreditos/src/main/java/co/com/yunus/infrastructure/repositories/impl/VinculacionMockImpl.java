@@ -3,11 +3,14 @@ package co.com.yunus.infrastructure.repositories.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Named;
+
 import co.com.yunus.application.dto.Vinculacion;
 import co.com.yunus.domain.repositories.IVinculacionRepository;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+@Named("VinculacionMockImpl")
 public class VinculacionMockImpl implements IVinculacionRepository{
 
 	@Override

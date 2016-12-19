@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,6 +13,7 @@ import co.com.yunus.domain.repositories.IMaestroRepository;
 import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
 
 @Named("MaestroRepositoryImpl")
+@Default
 public class MaestroRepositoryImpl implements IMaestroRepository {
 	
 	@Inject

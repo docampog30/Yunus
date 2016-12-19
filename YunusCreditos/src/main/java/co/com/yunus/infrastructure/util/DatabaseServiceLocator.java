@@ -18,7 +18,7 @@ public class DatabaseServiceLocator {
 		Map<String, String> properties = new HashMap<String, String>();
 		properties.put( "javax.persistence.sharedCache.mode", "NONE");
 		try{
-			emf = Persistence.createEntityManagerFactory("ReservasUnit",properties);
+			emf = Persistence.createEntityManagerFactory("CreditosUnit",properties);
 			 
 		}catch(Exception e)
 		{

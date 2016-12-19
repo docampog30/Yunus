@@ -4,7 +4,6 @@
 	<div class="actions">
 		<label>Identificación</label>
 		<input type="number" required ng-model="filter.documento" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-		<label>Sacramento</label>
 		<button ng-click="buscar()" ng-disabled= "userForm.$invalid">
 			Buscar
 			<span class="fa fa-search"></span>
@@ -12,9 +11,9 @@
 	</div>
 	<div>
 		<ul class="titleA">
-			<li  >Fecha</li>
-			<li  >Identificación</li>
-			<li >Nombre</li>
+			<li>Fecha</li>
+			<li>Identificación</li>
+			<li>Nombre</li>
 			<li>Generar</li>
 		</ul>
 		<ul ng-repeat="vinculacion in vinculaciones" class="tablasA">

@@ -37,6 +37,7 @@ public class MainCreditos {
 	    .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
 	    .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true));
 
+	    BasicConfigurator.configure();
 	    final ServletContainer servletContainer = new ServletContainer(resourceConfig);
 	    final ServletHolder sh = new ServletHolder(servletContainer);
 	    final Server server = new Server(8181);
