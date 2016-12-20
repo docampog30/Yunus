@@ -88,7 +88,6 @@ public class VinculacionServices {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return exportReportToPdf;
 	}
 }
