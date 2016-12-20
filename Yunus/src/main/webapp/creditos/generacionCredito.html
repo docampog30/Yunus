@@ -1,6 +1,28 @@
 <form name="userForm" novalidate>
 <div class="clientes" >
-	<label for=""><i class="fa fa-credit-card""></i> Simulador de credito </label>
+	<label for=""><i class="fa fa-money""></i> Generación de credito </label>
+		<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="documento" required />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarCliente()">Buscar Cliente
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+		
+	<div ng-show="cliente">
+	<label for=""><i class="fa fa-check-circle"></i> Información general</label>
+	<ul class="add">
+		<li>
+			<p>{{cliente.nombres}}</p>
+		</li>
+		<li>
+			<p>{{cliente.apellidos}}</p>
+		</li>
+	</ul>
 	
 	<div class="actions">
 		<label id="obligatorio">*Campos Obligatorios</label>
@@ -13,10 +35,15 @@
 		
 		<label>Resultado($)</label>
 		<label>{{simulacion[0].cuota|currency}}</label>
-		
+	</div>
+	<div class="actions">
 		<button data-ng-click="simular()" data-ng-disabled="userForm.$invalid">
 			Simular
 			<span class="fa fa-magic"></span>
+		</button>
+		<button data-ng-click="generar()" data-ng-disabled="!simulacion">
+			Generar
+			<span class="fa fa-check-square"></span>
 		</button>
 	</div>
 	
@@ -50,6 +77,8 @@
 			<label>{{sim.saldoFinal|currency}}</label>
 		</li>
 		</ul>
+	</div>
+	
 	</div>
 	
 </div>

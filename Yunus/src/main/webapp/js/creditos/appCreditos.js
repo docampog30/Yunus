@@ -31,9 +31,9 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/formatos.html',
                controller: 'FormatosController'
            }).
-           when('/ministros', {
-               templateUrl: 'ministros.html',
-               controller: 'MinistrosController'
+           when('/credito', {
+               templateUrl: 'creditos/generacionCredito.html',
+               controller: 'CreditosController'
            }).
            when('/configuracion', {
                templateUrl: 'configuracion.html',
