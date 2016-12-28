@@ -1,9 +1,11 @@
 package co.com.yunus.application.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,6 +49,9 @@ public class Cliente {
 	private String celular;
 	private String telefono;
 	private Long ocupacion;
+	
+	@OneToMany(mappedBy="cliente",fetch=FetchType.EAGER)
+	private List<Vinculacion> vinculaciones;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="IDACUDIENTE")
@@ -233,5 +239,8 @@ public class Cliente {
 	}
 	public void setOcupacionMaestro(Maestro ocupacionMaestro) {
 		this.ocupacionMaestro = ocupacionMaestro;
+	}
+	public List<Vinculacion> getVinculaciones() {
+		return vinculaciones;
 	}
 }

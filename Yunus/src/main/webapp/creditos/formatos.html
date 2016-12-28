@@ -11,12 +11,16 @@
 	</div>
 	<div>
 		<ul class="titleA">
+			<li>Numero</li>
 			<li>Fecha</li>
 			<li>Identificación</li>
 			<li>Nombre</li>
 			<li>Generar</li>
 		</ul>
 		<ul ng-repeat="vinculacion in vinculaciones" class="tablasA">
+		<li >
+			<label>{{vinculacion.id}}</label>
+		</li>
 		<li >
 			<label>{{vinculacion.feingreso|date:'dd/MM/yyyy'}}</label>
 		</li>

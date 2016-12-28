@@ -46,7 +46,11 @@ public class ClientesServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cliente> getCliente(@PathParam("documento") String documento){
-		return clientesRepository.getClientByDocument(documento);
+		
+		List<Cliente> clientByDocument = clientesRepository.getClientByDocument(documento);
+		clientByDocument.stream()
+				.forEach(c->c.getVinculaciones().stream().forEach(v->v.setCliente(null)));
+		return clientByDocument;
 	}
 	
 }

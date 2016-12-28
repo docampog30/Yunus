@@ -29,7 +29,7 @@
 		<label>*Valor Credito($)</label>
 		<input required type="number" data-ng-model="credito.valor" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		<label>*Interes(%)</label>
-		<input required type="number" min="1" max="100" data-ng-model="credito.interes" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<input required type="number" min="0" max="100" data-ng-model="credito.interes" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		<label>*Tiempo en meses</label>
 		<input required type="number" data-ng-model="credito.meses" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		
