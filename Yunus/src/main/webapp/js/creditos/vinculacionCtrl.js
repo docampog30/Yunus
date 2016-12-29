@@ -1,6 +1,8 @@
 controllers
   .controller('VinculacionController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
 	  $scope.guardar = function() {
+		  $scope.vinculacion.confirmaciones = [];
+		  $scope.vinculacion.confirmaciones.push($scope.confirmacion);
 		  ServicesFactory.guardarVinculacion($scope.vinculacion)
 		  .then(function(data) {
 			  alert('Vinculación guardada correctamente');
@@ -76,6 +78,7 @@ controllers
 		  $scope.cliente = null;
 		  $scope.vinculacion = null;
 		  $scope.documento = null;
+		  $scope.confirmacion = null;
 	  }
 	  
 	  $scope.condicionales = [{key:undefined,value:undefined},{key:"S",value:"SI"},{key:"N",value:"NO"}];

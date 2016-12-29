@@ -243,4 +243,8 @@ public class Cliente {
 	public List<Vinculacion> getVinculaciones() {
 		return vinculaciones;
 	}
+	
+	public void setVinculaciones(List<Vinculacion> vinculaciones) {
+		this.vinculaciones = vinculaciones;
+	}
 }

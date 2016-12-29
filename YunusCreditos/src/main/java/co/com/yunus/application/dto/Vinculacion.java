@@ -111,6 +111,9 @@ public class Vinculacion {
 	@JoinColumn(name="REFERENCIACOOPAFI",insertable=false,updatable=false)
 	private Maestro referenciaafinidadMaestro;
 	
+	@OneToMany(mappedBy="vinculacion",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<Confirmacion> confirmaciones;
+	
 	public String getEntidadahorro() {
 		return entidadahorro;
 	}
@@ -462,5 +465,11 @@ public class Vinculacion {
 	}
 	public void setTipocontrato(Long tipocontrato) {
 		this.tipocontrato = tipocontrato;
+	}
+	public List<Confirmacion> getConfirmaciones() {
+		return confirmaciones;
+	}
+	public void setConfirmaciones(List<Confirmacion> confirmaciones) {
+		this.confirmaciones = confirmaciones;
 	}
 }

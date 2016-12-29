@@ -2,7 +2,9 @@ package co.com.yunus.main;
 
 import javax.enterprise.event.Observes;
 
+import org.apache.log4j.Appender;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -36,8 +38,9 @@ public class MainCreditos {
 	    resourceConfig.registerInstances(new ResourceConfig()
 	    .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
 	    .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true));
-
-	    //BasicConfigurator.configure();
+	    
+	    PropertyConfigurator.configure(this.getClass().getClassLoader().getResourceAsStream("META-INF/log4j.properties"));
+		BasicConfigurator.configure();
 	    final ServletContainer servletContainer = new ServletContainer(resourceConfig);
 	    final ServletHolder sh = new ServletHolder(servletContainer);
 	    final Server server = new Server(8181);

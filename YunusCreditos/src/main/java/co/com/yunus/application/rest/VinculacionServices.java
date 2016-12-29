@@ -3,6 +3,7 @@ package co.com.yunus.application.rest;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class VinculacionServices {
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public byte[] guardar(Vinculacion vinculacion){
 		vinculacion.getBeneficiarios().stream().forEach(b->b.setVinculacion(vinculacion));
+		vinculacion.getConfirmaciones().stream().forEach(c-> c.setVinculacion(vinculacion));
 		transactionalRepository.save(vinculacion);
 		return reportById(vinculacion.getId());
 	}
@@ -52,7 +54,13 @@ public class VinculacionServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Vinculacion> getReport(@PathParam("documento") String documento){
-		return vinculacionRepository.findByDocument(documento);
+		List<Vinculacion> vinculaciones = vinculacionRepository.findByDocument(documento);
+		vinculaciones.forEach(v-> {
+			v.getBeneficiarios().stream().forEach(b->b.setVinculacion(null));
+			v.getConfirmaciones().stream().forEach(c->c.setVinculacion(null));
+			v.getCliente().setVinculaciones(null);
+		});
+		return vinculaciones;
 	}
 	
 	@GET
