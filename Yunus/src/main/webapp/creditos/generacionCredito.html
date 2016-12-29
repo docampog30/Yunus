@@ -49,7 +49,8 @@
 	
 	<div id="partidas">
 		<ul class="titleA partida">
-			<li>Periodo</li>
+			<li class="colSmall">Periodo</li>
+			<li class="colSmall">Fecha</li>
 			<li>Saldo inicial</li>
 			<li>Intereses</li>
 			<li>Cuota</li>
@@ -58,8 +59,11 @@
 
 		</ul>
 		<ul ng-repeat="sim in simulacion" class="tablasA partida">
-		<li >
+		<li class="colSmall" >
 			<label>{{sim.periodo}}</label>
+		</li>
+		<li class="colSmall" >
+			<label>{{sim.fecha|date:'dd-MM-yyyy'}}</label>
 		</li>
 		<li >
 			<label>{{sim.saldoInicial|currency}}</label>

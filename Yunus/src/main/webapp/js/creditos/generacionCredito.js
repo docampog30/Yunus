@@ -2,7 +2,8 @@ controllers
   .controller('CreditosController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
 
 	  $scope.init = function() {
-
+		  $scope.cliente =	null;
+		  $scope.credito = null;
 	  }
 	  
 	  $scope.buscarCliente = function(){
@@ -24,6 +25,19 @@ controllers
 				    alert("Ocurrio un error recuperando el cliente");
 			  });
 		  }
+	  
+	  $scope.generar = function(){
+		  angular.forEach( $scope.simulacion,function(value){
+			  $scope.simulacion.idcliente =$scope.cliente.id;
+		  })
+		  ServicesFactory.generarCredito($scope.simulacion)
+		  .then(function(data) {
+			  alert("Crédito generado exitosamente");
+			  $scope.init();
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error guardando el crédito");
+		  });
+	  }
 	  
 	  $scope.simular = function(){
 		  ServicesFactory.simularCredito($scope.credito)

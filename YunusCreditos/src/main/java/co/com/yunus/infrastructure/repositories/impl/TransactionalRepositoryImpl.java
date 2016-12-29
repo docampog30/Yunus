@@ -1,5 +1,7 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
+import java.util.List;
+
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,5 +26,11 @@ public class TransactionalRepositoryImpl implements ITransactionalRepository {
 
 	public <T> void delete(T object) {
 		dataBaseOperations.delete(object);
+	}
+
+	@Override
+	public <T> void save(List<T> object) {
+		dataBaseOperations.save(object);
+		
 	}
 }

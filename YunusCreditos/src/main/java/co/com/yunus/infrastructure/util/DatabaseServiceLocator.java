@@ -30,6 +30,8 @@ public class DatabaseServiceLocator {
 
 	  @Produces
 	  public EntityManager em() {
+		if(!em.isOpen())
+			em = emf.createEntityManager();
 	    return em;
 	  }
 

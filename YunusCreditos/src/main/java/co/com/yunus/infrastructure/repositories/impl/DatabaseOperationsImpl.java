@@ -75,4 +75,26 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 			entityManager.close();
 		}
 	}
+
+	@Override
+	public <T> void save(List<T> object) {
+		EntityTransaction tx = null;
+		try {
+		    tx = entityManager.getTransaction();
+		    tx.begin();
+		    object.forEach(o->entityManager.persist(o));
+		    tx.commit();
+		}
+		catch (RuntimeException e) {
+		    if (tx != null && tx.isActive()) 
+		    	tx.rollback();
+		    	throw e;
+		}
+		finally {
+			entityManager.clear();
+			entityManager.close();
+			
+		}
+		
+	}
 }

@@ -8,4 +8,5 @@ public interface IRepositoryOperations {
 	<T> void save(T object);
 	<T> void update(T object);
 	<T> void delete(T object);
+	<T> void save(List<T> object);
 }

@@ -2,13 +2,11 @@ package co.com.yunus.main;
 
 import javax.enterprise.event.Observes;
 
-import org.apache.log4j.Appender;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -17,6 +15,7 @@ import org.jboss.weld.environment.se.StartMain;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 
 import co.com.yunus.application.rest.ClientesServices;
+import co.com.yunus.application.rest.CreditosServices;
 import co.com.yunus.application.rest.MaestrosServices;
 import co.com.yunus.application.rest.SimulacionServices;
 import co.com.yunus.application.rest.VinculacionServices;
@@ -32,6 +31,7 @@ public class MainCreditos {
 	    resourceConfig.register(MaestrosServices.class);
 	    resourceConfig.register(VinculacionServices.class);
 	    resourceConfig.register(SimulacionServices.class);
+	    resourceConfig.register(CreditosServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
 	    resourceConfig.registerInstances(new AppExceptionMapper());

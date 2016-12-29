@@ -35,9 +35,9 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/generacionCredito.html',
                controller: 'CreditosController'
            }).
-           when('/configuracion', {
-               templateUrl: 'configuracion.html',
-               controller: 'ConfiguracionController'
+           when('/maestros/:id?', {
+               templateUrl: 'creditos/maestro.html',
+               controller: 'MaestrosController'
            }).
            
          otherwise({
@@ -81,6 +81,13 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	}
    	dataFactory.simularCredito = function(request){
    		return $http.post($rootScope.urlServices+'/simulador',request);
+   	}
+	dataFactory.generarCredito = function(request){
+   		return $http.post($rootScope.urlServices+'/creditos',request);
+   	}
+   	
+   	dataFactory.actualizarMaestro = function(maestro){
+   	 	return $http.put($rootScope.urlServices+'/maestros',maestro);
    	}
    	dataFactory.buscarVinculaciones = function(filter){
    		return $http.get($rootScope.urlServices+'/vinculacion/buscar/'+filter.documento);

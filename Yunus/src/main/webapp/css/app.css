@@ -32,6 +32,10 @@ div.container4 h3 {
     line-height: 20px;
 }
 
+.colSmall {
+	width: 10% !important;
+}
+
 #partidas li.peq{
 	width: 9%;
 	padding: 5px 10px;
