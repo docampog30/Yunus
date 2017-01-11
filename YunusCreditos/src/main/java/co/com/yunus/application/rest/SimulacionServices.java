@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-import co.com.yunus.application.dto.Credito;
+import co.com.yunus.application.dto.Detalle;
 import co.com.yunus.application.dto.RequestSimulador;
 import co.com.yunus.domain.services.SimuladorBussinesService;
 
@@ -17,7 +17,7 @@ public class SimulacionServices {
 	private SimuladorBussinesService simuladorBussinesService;
 
 	@POST
-	public List<Credito> generarSimulacion(RequestSimulador request){
+	public List<Detalle> generarSimulacion(RequestSimulador request){
 		return simuladorBussinesService.generarSimulacion(request);
 	}
 }

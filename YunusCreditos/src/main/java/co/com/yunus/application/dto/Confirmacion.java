@@ -10,10 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- * The persistent class for the confirmacion database table.
- * 
- */
 @Entity
 @Table(name="CONFIRMACION")
 public class Confirmacion implements Serializable {

@@ -4,6 +4,7 @@ controllers
 	  $scope.init = function() {
 		  $scope.cliente =	null;
 		  $scope.credito = null;
+		  $scope.simulacion = null;
 	  }
 	  
 	  $scope.buscarCliente = function(){
@@ -27,10 +28,9 @@ controllers
 		  }
 	  
 	  $scope.generar = function(){
-		  angular.forEach( $scope.simulacion,function(value){
-			  $scope.simulacion.idcliente =$scope.cliente.id;
-		  })
-		  ServicesFactory.generarCredito($scope.simulacion)
+		  var request = {detalles:$scope.simulacion,valor:$scope.credito.valor,plazo:$scope.credito.meses,interes:$scope.credito.interes,idcliente:$scope.cliente.id};
+		  
+		  ServicesFactory.generarCredito(request)
 		  .then(function(data) {
 			  alert("Crédito generado exitosamente");
 			  $scope.init();

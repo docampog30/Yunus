@@ -1,7 +1,5 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,8 +14,8 @@ public class CreditosRepositoryImpl implements ICreditosRepository {
 	private ITransactionalRepository transactionalRepository;
 
 	@Override
-	public void guardarCreditoCliente(List<Credito> creditos) {
-		transactionalRepository.save(creditos);
+	public void guardarCreditoCliente(Credito credito) {
+		transactionalRepository.save(credito);
 	}
 
 }
