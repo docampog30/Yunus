@@ -85,7 +85,7 @@ public class Confirmacion implements Serializable {
 	public boolean getEstado() {
 		return this.estado;
 	}
-
+	
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}

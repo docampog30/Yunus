@@ -19,7 +19,7 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
              templateUrl: 'creditos/clientes.html',
              controller: 'ClientesController'
           }).
-          when('/vinculacion', {
+          when('/vinculacion/:id?', {
               templateUrl: 'creditos/vinculacion.html',
               controller: 'VinculacionController'
            }).
@@ -85,12 +85,17 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
 	dataFactory.generarCredito = function(request){
    		return $http.post($rootScope.urlServices+'/creditos',request);
    	}
-   	
    	dataFactory.actualizarMaestro = function(maestro){
    	 	return $http.put($rootScope.urlServices+'/maestros',maestro);
    	}
    	dataFactory.buscarVinculaciones = function(filter){
    		return $http.get($rootScope.urlServices+'/vinculacion/buscar/'+filter.documento);
+   	}
+   	dataFactory.recuperarVinculacionById = function(id){
+   		return $http.get($rootScope.urlServices+'/vinculacion/id/'+id);
+   	}
+   	dataFactory.actualizarVinculacion = function(vinculacion){
+   	 	return $http.post($rootScope.urlServices+'/vinculacion/actualizar',vinculacion,{responseType: 'arraybuffer'});
    	}
    	dataFactory.descargarVinculacion = function(id){
    		return $http.get($rootScope.urlServices+'/vinculacion/'+id, {responseType: 'arraybuffer'}).then(function(data) {

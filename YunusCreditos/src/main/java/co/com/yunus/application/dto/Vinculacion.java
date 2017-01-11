@@ -73,11 +73,7 @@ public class Vinculacion {
 	private String lugarentrevista;
 	@Temporal(TemporalType.DATE)
 	private Date feentrevista;
-	private String resultadoentrevista;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="vinculacion",fetch=FetchType.EAGER)
-	private List<Beneficiario> beneficiarios;
-	
+	private String resultadoentrevista;	
 	private Long idCliente;
 	private String iscajacompensacion;
 	private String issubsidiomunicipal;
@@ -113,6 +109,9 @@ public class Vinculacion {
 	
 	@OneToMany(mappedBy="vinculacion",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Confirmacion> confirmaciones;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="vinculacion",fetch=FetchType.EAGER)
+	private List<Beneficiario> beneficiarios;
+
 	
 	public String getEntidadahorro() {
 		return entidadahorro;

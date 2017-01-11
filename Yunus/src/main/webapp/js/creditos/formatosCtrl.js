@@ -12,7 +12,10 @@ controllers
 			    alert("Error consultando las vinculaciones, por favor informe al administrador del sistema");
 		  });
 	  }
-
+	  
+	  $scope.editar = function(vinculacion){
+		  $location.url('/vinculacion/'+vinculacion.id);
+	  }
 
 	  $scope.descargar = function(partida){
 		  ServicesFactory.descargarVinculacion(partida.id);

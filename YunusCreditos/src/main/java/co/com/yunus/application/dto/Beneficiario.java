@@ -26,7 +26,7 @@ public class Beneficiario {
 	private String telefono;
 	private String  designacion;
 	@ManyToOne
-	@JoinColumn(name="IDVINCULACION",nullable=false)
+	@JoinColumn(name="IDVINCULACION")
 	private Vinculacion vinculacion;
 	
 	public String getDocumento() {
@@ -67,5 +67,11 @@ public class Beneficiario {
 	}
 	public void setVinculacion(Vinculacion vinculacion) {
 		this.vinculacion = vinculacion;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

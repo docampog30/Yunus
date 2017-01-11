@@ -3,7 +3,6 @@ package co.com.yunus.application.rest;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -43,10 +43,24 @@ public class VinculacionServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public byte[] guardar(Vinculacion vinculacion){
-		vinculacion.getBeneficiarios().stream().forEach(b->b.setVinculacion(vinculacion));
-		vinculacion.getConfirmaciones().stream().forEach(c-> c.setVinculacion(vinculacion));
+		asignarVinculacion(vinculacion);
 		transactionalRepository.save(vinculacion);
 		return reportById(vinculacion.getId());
+	}
+	
+	@POST
+	@Path("actualizar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public byte[] actualizar(Vinculacion vinculacion){
+		asignarVinculacion(vinculacion);
+		transactionalRepository.update(vinculacion);
+		return reportById(vinculacion.getId());
+	}
+
+	private void asignarVinculacion(Vinculacion vinculacion) {
+		vinculacion.getBeneficiarios().stream().forEach(b->b.setVinculacion(vinculacion));
+		vinculacion.getConfirmaciones().stream().forEach(c-> c.setVinculacion(vinculacion));
 	}
 	
 	@GET
@@ -55,12 +69,25 @@ public class VinculacionServices {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Vinculacion> getReport(@PathParam("documento") String documento){
 		List<Vinculacion> vinculaciones = vinculacionRepository.findByDocument(documento);
+		parsearVinculacion(vinculaciones);
+		return vinculaciones;
+	}
+	@GET
+	@Path("id/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Vinculacion> getReport(@PathParam("id") Long id){
+		List<Vinculacion> vinculaciones = vinculacionRepository.findById(id);
+		parsearVinculacion(vinculaciones);
+		return vinculaciones;
+	}
+
+	private void parsearVinculacion(List<Vinculacion> vinculaciones) {
 		vinculaciones.forEach(v-> {
 			v.getBeneficiarios().stream().forEach(b->b.setVinculacion(null));
 			v.getConfirmaciones().stream().forEach(c->c.setVinculacion(null));
 			v.getCliente().setVinculaciones(null);
 		});
-		return vinculaciones;
 	}
 	
 	@GET
