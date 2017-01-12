@@ -39,8 +39,11 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/maestro.html',
                controller: 'MaestrosController'
            }).
-           
-         otherwise({
+           when('/abonos', {
+               templateUrl: 'creditos/abonos.html',
+               controller: 'AbonosController'
+           }).
+           otherwise({
             redirectTo: '/home'
          });
 
@@ -96,6 +99,9 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	}
    	dataFactory.actualizarVinculacion = function(vinculacion){
    	 	return $http.post($rootScope.urlServices+'/vinculacion/actualizar',vinculacion,{responseType: 'arraybuffer'});
+   	}
+   	dataFactory.buscarCreditosByCliente = function(cedula){
+   		return $http.get($rootScope.urlServices+'/creditos/findByCliente/'+cedula);
    	}
    	dataFactory.descargarVinculacion = function(id){
    		return $http.get($rootScope.urlServices+'/vinculacion/'+id, {responseType: 'arraybuffer'}).then(function(data) {

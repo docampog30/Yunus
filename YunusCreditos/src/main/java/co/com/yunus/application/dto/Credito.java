@@ -11,9 +11,11 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Credito.findAll", query="SELECT c FROM Credito c")
+@NamedQuery(name=Credito.FIND_BY_DOCUMENTO_CLIENTE, query="SELECT c FROM Credito c where c.cliente.documento = :documento")
 public class Credito implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_BY_DOCUMENTO_CLIENTE = "findByCliente";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,6 +24,11 @@ public class Credito implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 
+
+	@ManyToOne
+	@JoinColumn(name="IDCLIENTE",insertable=false,updatable=false)
+	private Cliente cliente;
+	
 	private int idcliente;
 
 	private float interes;

@@ -1,0 +1,86 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-money"></i> Abonos </label>
+	
+	<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="documento" required />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarCliente()">Buscar Cliente
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+	<ul class="add">
+		<li>
+			<p>{{cliente.nombres}}</p>
+		</li>
+		<li>
+			<p>{{cliente.apellidos}}</p>
+		</li>
+		<li>
+			<h3 style="color: red">{{valor|currency}}</h3>
+		</li>
+		<li>
+			<button ng-click="liquidar()" ng-show="valor>0">Liquidar</button>
+		</li>
+	</ul>
+	
+	<div id="partidas" ng-show="creditos">
+		<ul class="titleA partida">
+			<li>Fecha</li>
+			<li>Plazo</li>
+			<li>Valor</li>
+			<li></li>
+		</ul>
+		<ul ng-repeat="cre in creditos" class="tablasA partida">
+		<li >
+			<label>{{cre.fecha | date:'dd/mm/yyyy'}}</label>
+		</li>
+		<li >
+			<label>{{cre.plazo}}</label>
+		</li>
+		<li >
+			<label>{{cre.valor|currency}}</label>
+		</li>
+		<li>
+			<button ng-click="creditoSeleccionado(cre)" >Seleccionar</button>
+		</li>
+		</ul>
+	</div>
+	<br>
+	<br>
+	<div id="partidas" ng-show="credito">
+		<ul class="titleA partida">
+			<li class="colSmall">Fecha</li>
+			<li>Saldo inicial</li>
+			<li>Cuota</li>
+			<li>Saldo Final</li>
+			<li class="colSmall">Seleccionar</li>
+			<li>Estado</li>
+		</ul>
+		<ul ng-repeat="cre in credito.detalles" class="tablasA partida">
+		<li class="colSmall">
+			<label>{{cre.fecha | date:'dd/mm/yyyy'}}</label>
+		</li>
+		<li >
+			<label>{{cre.saldoinicial|currency}}</label>
+		</li>
+		<li >
+			<label>{{cre.cuota|currency}}</label>
+		</li>
+		<li >
+			<label>{{cre.saldofinal|currency}}</label>
+		</li>
+		<li class="colSmall">
+			<input type="checkbox" ng-change = "actualizarValor()" ng-model="cre.liquidar" ng-show="cre.estado == 'PENDIENTE' || cre.estado == 'VENCIDA'">
+		</li>
+		<li>
+			<label>{{cre.estado}}</label>
+		</li>
+		</ul>
+	</div>
+	</div>
+	</form>
