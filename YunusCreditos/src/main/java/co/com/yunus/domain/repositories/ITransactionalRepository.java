@@ -1,6 +1,7 @@
 package co.com.yunus.domain.repositories;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ITransactionalRepository {
 
@@ -11,4 +12,6 @@ public interface ITransactionalRepository {
 	<T> void delete(T object);
 	
 	<T> void save(List<T> object);
+
+	void executeSQL(String sql, Map<String, Object> parametros);
 }

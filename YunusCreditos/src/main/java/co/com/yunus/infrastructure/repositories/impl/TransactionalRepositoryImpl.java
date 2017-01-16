@@ -1,6 +1,7 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -31,6 +32,12 @@ public class TransactionalRepositoryImpl implements ITransactionalRepository {
 	@Override
 	public <T> void save(List<T> object) {
 		dataBaseOperations.save(object);
+		
+	}
+
+	@Override
+	public void executeSQL(String sql,Map<String, Object> parametros) {
+		dataBaseOperations.executeSQL(sql, parametros);
 		
 	}
 }

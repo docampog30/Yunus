@@ -7,11 +7,13 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import co.com.yunus.application.dto.Aporte;
 import co.com.yunus.application.dto.Credito;
 import co.com.yunus.application.dto.RequestCredito;
 import co.com.yunus.domain.repositories.ICreditosRepository;
@@ -49,5 +51,17 @@ public class CreditosServices {
 		List<Credito> credito = creditosRepository.findByCliente(cedula);
 		credito.forEach(d-> d.getDetalles().forEach(c-> c.setCredito(null)));
 		return credito;
+	}
+	
+	@PUT
+	@Path("aporte")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void liquidarAporte(RequestCredito request){
+		Aporte aporte = new Aporte();
+		aporte.setFecha(new Date());
+		aporte.setIdcliente(request.getIdcliente());
+		aporte.setValor(request.getValor());
+		aporte.setTipo(request.getTipaporte());
+		creditosRepository.guardarAporte(aporte);
 	}
 }

@@ -1,6 +1,7 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Named;
 
@@ -29,6 +30,12 @@ public class TransactionalMockImpl implements ITransactionalRepository {
 
 	@Override
 	public <T> void save(List<T> object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeSQL(String sql, Map<String, Object> parametros) {
 		// TODO Auto-generated method stub
 		
 	}

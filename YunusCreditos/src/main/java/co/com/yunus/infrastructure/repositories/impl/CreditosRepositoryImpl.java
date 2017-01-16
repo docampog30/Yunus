@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import co.com.yunus.application.dto.Aporte;
 import co.com.yunus.application.dto.Credito;
 import co.com.yunus.domain.repositories.ICreditosRepository;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
@@ -31,6 +32,11 @@ public class CreditosRepositoryImpl implements ICreditosRepository {
 		Map<String,Object> parametros = new HashMap<>();
 		parametros.put("documento", cedula);
 		return databaseOperations.listar(Credito.FIND_BY_DOCUMENTO_CLIENTE, parametros, Credito.class);
+	}
+
+	@Override
+	public void guardarAporte(Aporte aporte) {
+		transactionalRepository.save(aporte);
 	}
 
 }

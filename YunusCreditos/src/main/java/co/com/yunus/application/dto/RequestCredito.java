@@ -10,6 +10,7 @@ public class RequestCredito {
 	private int plazo;
 	private float interes;
 	private int idcliente;
+	private String tipaporte;
 	public List<Detalle> getDetalles() {
 		return detalles;
 	}
@@ -39,6 +40,12 @@ public class RequestCredito {
 	}
 	public void setIdcliente(int idcliente) {
 		this.idcliente = idcliente;
+	}
+	public String getTipaporte() {
+		return tipaporte;
+	}
+	public void setTipaporte(String tipaporte) {
+		this.tipaporte = tipaporte;
 	}
 	
 	

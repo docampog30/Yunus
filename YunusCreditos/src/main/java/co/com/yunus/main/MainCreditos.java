@@ -1,5 +1,7 @@
 package co.com.yunus.main;
 
+import java.util.Calendar;
+
 import javax.enterprise.event.Observes;
 
 import org.apache.log4j.BasicConfigurator;
@@ -21,11 +23,15 @@ import co.com.yunus.application.rest.SimulacionServices;
 import co.com.yunus.application.rest.VinculacionServices;
 import co.com.yunus.config.AppExceptionMapper;
 import co.com.yunus.config.CORSFilter;
+import co.com.yunus.infrastructure.timer.RunnableCuotas;
+import co.com.yunus.infrastructure.timer.TimerVencimientoCuotas;
 
 public class MainCreditos {
-
+	
     private void initServer() {
 	try {
+		
+		initTimer();
 	    final ResourceConfig resourceConfig = new ResourceConfig();
 	    resourceConfig.register(ClientesServices.class);
 	    resourceConfig.register(MaestrosServices.class);
@@ -54,6 +60,8 @@ public class MainCreditos {
 	    server.setHandler(context);
 	    server.start();
 	    server.join();
+	    
+	    
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -61,6 +69,7 @@ public class MainCreditos {
 
     public static void main(String[] args) {
     	StartMain.main(args);
+    	
     }
 
     public void start(@Observes final ContainerInitialized event) {
@@ -70,5 +79,24 @@ public class MainCreditos {
 	    throw new RuntimeException(e);
 	}
     }
+
+	private void initTimer() {
+	    Calendar with = Calendar.getInstance();
+		int hour = with.get(Calendar.HOUR_OF_DAY);
+	    int intDelayInHour = getHoursUntilTarget(23);
+	   
+	    System.out.println("Current Hour: " + hour);
+	    System.out.println("Comuted Delay for next 1 am: " + intDelayInHour);
+	    
+	    RunnableCuotas runnable = new RunnableCuotas();
+	    
+	    TimerVencimientoCuotas.schedule(runnable, intDelayInHour);
+	}
+	
+	private int getHoursUntilTarget(int targetHour) {
+	    Calendar calendar = Calendar.getInstance();
+	    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+	    return hour < targetHour ? targetHour - hour : targetHour - hour + 24;
+	}
 
 }

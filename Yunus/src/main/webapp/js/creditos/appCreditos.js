@@ -43,6 +43,10 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/abonos.html',
                controller: 'AbonosController'
            }).
+           when('/aporte', {
+               templateUrl: 'creditos/aportes.html',
+               controller: 'AportesController'
+           }).
            otherwise({
             redirectTo: '/home'
          });
@@ -102,6 +106,9 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	}
    	dataFactory.buscarCreditosByCliente = function(cedula){
    		return $http.get($rootScope.urlServices+'/creditos/findByCliente/'+cedula);
+   	}
+	dataFactory.liquidarAporte = function(request){
+   		return $http.put($rootScope.urlServices+'/creditos/aporte',request);
    	}
    	dataFactory.descargarVinculacion = function(id){
    		return $http.get($rootScope.urlServices+'/vinculacion/'+id, {responseType: 'arraybuffer'}).then(function(data) {

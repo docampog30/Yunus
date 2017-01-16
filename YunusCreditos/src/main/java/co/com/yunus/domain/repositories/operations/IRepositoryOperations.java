@@ -9,4 +9,5 @@ public interface IRepositoryOperations {
 	<T> void update(T object);
 	<T> void delete(T object);
 	<T> void save(List<T> object);
+	void executeSQL(String sql,Map<String, Object> parametros);
 }

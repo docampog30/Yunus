@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recibosCreditosAportes" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4cb77ee-cf1d-4229-a73d-492bd077ba37">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="aporte" class="co.com.yunus.application.dto.Aporte"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="117" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="84" y="45" width="426" height="62" uuid="43be2462-d167-4135-aff7-792e12804b21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Deposito de aportes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="573" y="10" width="196" height="22" uuid="3ce22865-049d-40b6-9be8-8722221bcc73"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Aporte N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="SubTitle" x="573" y="32" width="196" height="22" uuid="13ef2a2b-9d20-4aea-891c-3542800b7082"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{aporte}.getId()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="SubTitle" x="84" y="10" width="426" height="22" uuid="2263dcc9-5a44-487f-a525-d7baf71c9918"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Cooperativa de aporte y credito COOPECEJA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="48" height="15" forecolor="#736343" uuid="112acc94-7680-4fad-8390-4c8a7a2a0caf"/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="28" width="802" height="1" uuid="c45f90f7-c97e-4ece-b44c-64615bab0b8d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="238" y="7" width="42" height="15" forecolor="#736343" uuid="d3a7701d-13aa-4b0b-b540-1f4773681344"/>
+				<text><![CDATA[HORA:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="48" y="7" width="180" height="20" uuid="962040c8-5e37-4cff-b05d-fc4bd31bedbc"/>
+				<textFieldExpression><![CDATA[$P{aporte}.getFecha()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="280" y="8" width="124" height="20" uuid="277de5be-ea2c-493e-968d-fcb442743449"/>
+				<textFieldExpression><![CDATA[$P{aporte}.getFecha()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="284">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="139" width="802" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="eff2b606-e8a0-41e7-8a91-b99620650dd8"/>
+				<staticText>
+					<reportElement style="SubTitle" x="0" y="2" width="196" height="22" uuid="6df5b78a-1203-4f56-aec1-0868b2339517"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+					</textElement>
+					<text><![CDATA[Valor depósito:]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="53" width="802" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="5343e2c9-c5e4-45e4-9340-e005e6eff372"/>
+				<staticText>
+					<reportElement style="SubTitle" x="0" y="2" width="196" height="22" uuid="a57dcc3c-8845-43be-970b-bed7b1489ba2"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+					</textElement>
+					<text><![CDATA[Código beneficiario:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="196" y="4" width="573" height="20" uuid="c08a2bda-8c6b-46ee-a968-703e6f7fe75d"/>
+					<textFieldExpression><![CDATA[$P{aporte}.getCliente().getDocumento()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="97" width="802" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="6af9700e-28cc-46c6-ba6d-c157e6ae6117"/>
+				<staticText>
+					<reportElement style="SubTitle" x="0" y="2" width="196" height="22" uuid="1638ea72-d50d-4656-aaa5-328a1841d779"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+					</textElement>
+					<text><![CDATA[Tipo de aporte:]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="12" width="802" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="eb41a391-eb72-4e34-9d2f-51b554af4db8"/>
+				<staticText>
+					<reportElement style="SubTitle" x="0" y="2" width="196" height="22" uuid="fa06cf35-74f1-4bf5-b654-558faef67ef4"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+					</textElement>
+					<text><![CDATA[Cuenta beneficiario:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="196" y="4" width="573" height="20" uuid="2ec2d6fa-fba8-479a-8350-138a971f4b75"/>
+					<textFieldExpression><![CDATA[$P{aporte}.getCliente().getNombres()+" "+$P{aporte}.getCliente().getApellidos()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="SubTitle" x="510" y="247" width="273" height="22" uuid="2595c2a0-ea26-4a4c-9c29-324c241f1dc8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Firma encargado COOPECEJA]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="510" y="241" width="273" height="1" uuid="8dee18ff-1b88-4a78-9bfd-9d18e48bcb12"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="196" y="100" width="573" height="20" uuid="2e3319f0-5a8c-458e-bfdd-2cd09f67454a"/>
+				<textFieldExpression><![CDATA[$P{aporte}.getTipo().equals("O") ? "Ordinario":"Extraordinario"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0">
+				<reportElement x="195" y="142" width="573" height="20" uuid="dbdcb209-b5fa-43e8-a11a-20bf3b6f9bd2"/>
+				<textFieldExpression><![CDATA[$P{aporte}.getValor()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="53" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

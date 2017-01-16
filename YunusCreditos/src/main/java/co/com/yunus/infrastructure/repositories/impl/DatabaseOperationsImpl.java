@@ -1,11 +1,13 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
@@ -95,6 +97,17 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 			entityManager.close();
 			
 		}
+		
+	}
+
+	@Override
+	public void executeSQL(String sql,Map<String, Object> parametros) {
+		Query q = entityManager.createQuery(sql);
+		
+		for (Map.Entry<String, Object> entry : parametros.entrySet()) {
+			q.setParameter((String) entry.getKey(), entry.getValue());
+		}
+		int updated = q.executeUpdate();
 		
 	}
 }
