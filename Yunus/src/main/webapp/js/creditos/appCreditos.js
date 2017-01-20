@@ -108,7 +108,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    		return $http.get($rootScope.urlServices+'/creditos/findByCliente/'+cedula);
    	}
 	dataFactory.liquidarAporte = function(request){
-   		return $http.put($rootScope.urlServices+'/creditos/aporte',request);
+   		return $http.post($rootScope.urlServices+'/creditos/aporte',request,{responseType: 'arraybuffer'});
    	}
    	dataFactory.descargarVinculacion = function(id){
    		return $http.get($rootScope.urlServices+'/vinculacion/'+id, {responseType: 'arraybuffer'}).then(function(data) {
@@ -116,6 +116,20 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
 		  }, function errorCallback(response) {
 			    alert("Error generando informe");
 		  });
+   	}
+   	dataFactory.imprimirReporteAporte = function(data){
+   		var file = new Blob([data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+       
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        
+        a.href = fileURL;
+        a.download = 'Aporte';
+        a.click();
+        window.open(fileURL);
+        window.URL.revokeObjectURL(fileURL);
    	}
    	dataFactory.imprimirReporteAfiliacion = function(data){
    		var file = new Blob([data], {type: 'application/pdf'});

@@ -102,12 +102,28 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 
 	@Override
 	public void executeSQL(String sql,Map<String, Object> parametros) {
-		Query q = entityManager.createQuery(sql);
 		
-		for (Map.Entry<String, Object> entry : parametros.entrySet()) {
-			q.setParameter((String) entry.getKey(), entry.getValue());
+		EntityTransaction tx = null;
+		try {
+			tx = entityManager.getTransaction();
+			Query q = entityManager.createQuery(sql);
+		    tx.begin();
+		    for (Map.Entry<String, Object> entry : parametros.entrySet()) {
+				q.setParameter((String) entry.getKey(), entry.getValue());
+			}
+			q.executeUpdate();
+		    tx.commit();
 		}
-		int updated = q.executeUpdate();
+		catch (RuntimeException e) {
+			e.printStackTrace();
+		    if (tx != null && tx.isActive()) 
+		    	tx.rollback();
+		    	throw e;
+		}
+		finally {
+			entityManager.clear();
+			entityManager.close();
+		}
 		
 	}
 }

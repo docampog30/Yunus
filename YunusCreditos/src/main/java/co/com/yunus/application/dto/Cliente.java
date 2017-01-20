@@ -20,11 +20,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="CLIENTES")
 @NamedQueries({
-	@NamedQuery(name=Cliente.BUSCAR_POR_DOCUMENTO,query="SELECT C FROM Cliente C WHERE C.documento = :documento")
+	@NamedQuery(name=Cliente.BUSCAR_POR_DOCUMENTO,query="SELECT C FROM Cliente C WHERE C.documento = :documento"),
+	@NamedQuery(name=Cliente.BUSCAR_POR_ID,query="SELECT C FROM Cliente C WHERE C.id = :id")
 })
 public class Cliente {
 	
 	public static final String BUSCAR_POR_DOCUMENTO = "Cliente.buscarXDocumento";
+	public static final String BUSCAR_POR_ID= "Cliente.buscarXId";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

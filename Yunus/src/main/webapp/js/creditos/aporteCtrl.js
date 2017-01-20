@@ -32,6 +32,7 @@ controllers
 			  ServicesFactory.liquidarAporte(request)
 			  .then(function(data) {
 				  alert("Aporte liquidado correctamente");
+				  ServicesFactory.imprimirReporteAporte(data.data);
 				  $scope.init();
 			  }, function errorCallback(response) {
 				    alert("Ocurrio un error liquidando el aporte");

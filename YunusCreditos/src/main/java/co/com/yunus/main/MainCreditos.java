@@ -3,6 +3,8 @@ package co.com.yunus.main;
 import java.util.Calendar;
 
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.PropertyConfigurator;
@@ -27,6 +29,9 @@ import co.com.yunus.infrastructure.timer.RunnableCuotas;
 import co.com.yunus.infrastructure.timer.TimerVencimientoCuotas;
 
 public class MainCreditos {
+	
+	@Inject
+	private TimerVencimientoCuotas timerVencimiento;
 	
     private void initServer() {
 	try {
@@ -83,14 +88,13 @@ public class MainCreditos {
 	private void initTimer() {
 	    Calendar with = Calendar.getInstance();
 		int hour = with.get(Calendar.HOUR_OF_DAY);
-	    int intDelayInHour = getHoursUntilTarget(23);
+	    int intDelayInHour = getHoursUntilTarget(20);
 	   
 	    System.out.println("Current Hour: " + hour);
 	    System.out.println("Comuted Delay for next 1 am: " + intDelayInHour);
 	    
-	    RunnableCuotas runnable = new RunnableCuotas();
 	    
-	    TimerVencimientoCuotas.schedule(runnable, intDelayInHour);
+	    timerVencimiento.schedule(intDelayInHour);
 	}
 	
 	private int getHoursUntilTarget(int targetHour) {

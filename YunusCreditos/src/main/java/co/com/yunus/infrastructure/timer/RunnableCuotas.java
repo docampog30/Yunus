@@ -9,17 +9,17 @@ import javax.inject.Named;
 
 import co.com.yunus.domain.repositories.ITransactionalRepository;
 
-public class RunnableCuotas implements Runnable {
+public class RunnableCuotas {
 	
 	@Inject
 	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
-	@Override
+	
 	public void run() {
 		System.err.println("Runnable ::::::::");
 		Map<String, Object> parametros = new HashMap<>();
 		parametros.put("today", new Date());
-		transactionalRepository.executeSQL("UPDATE DETALLE s SET s.ESTADO = 'VENCIDA' WHERE s.FECHA < :today AND s.ESTADO = 'VIGENTE'",parametros);
+		transactionalRepository.executeSQL("UPDATE Detalle s SET s.estado = 'VENCIDA' WHERE s.fecha < :today AND s.estado = 'VIGENTE'",parametros);
 	}
 
 }

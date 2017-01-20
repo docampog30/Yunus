@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,4 +21,11 @@ public class ClienteRepositoryImpl implements IClientesRepository {
 		return databaseOperations.listar(Cliente.BUSCAR_POR_DOCUMENTO, parametros, Cliente.class);
 	}
 
+	@Override
+	public List<Cliente> getClientByID(Long id) {
+		Map<String, Object> parametros = new HashMap<>();
+		parametros.put("id", id);
+		return databaseOperations.listar(Cliente.BUSCAR_POR_ID, parametros, Cliente.class);
+	}
+	
 }

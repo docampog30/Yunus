@@ -1,0 +1,28 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-money"></i> Reporte total de ingresos de créditos </label>
+	
+	<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="documento" />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscar()">Buscar x cliente
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarTotales()">Buscar totales
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+	<ul class="add">
+		<li>
+			<label>Valor Total: </label>
+			<input type="number" ng-model="valorAporte" ng-show="cliente" >
+		</li>
+	</ul>
+	</div>
+	</form>

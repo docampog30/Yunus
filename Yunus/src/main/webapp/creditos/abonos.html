@@ -8,7 +8,7 @@
 				<input type="text" ng-model="documento" required />
 			</li>
 			<li>
-				<button type="submit" ng-click="buscarCliente()">Buscar Cliente
+				<button ng-click="buscarCliente()">Buscar Cliente
 					<span class="fa fa-search"></span>
 				</button>
 			</li>
@@ -27,8 +27,7 @@
 			<button ng-click="liquidar()" ng-show="valor>0">Liquidar</button>
 		</li>
 	</ul>
-	
-	<div id="partidas" ng-show="creditos">
+	<div id="creditos" ng-show="creditos">
 		<ul class="titleA partida">
 			<li>Fecha</li>
 			<li>Plazo</li>
@@ -52,7 +51,7 @@
 	</div>
 	<br>
 	<br>
-	<div id="partidas" ng-show="credito">
+	<div id="cuotas" ng-show="credito">
 		<ul class="titleA partida">
 			<li class="colSmall">Fecha</li>
 			<li>Saldo inicial</li>
@@ -63,7 +62,7 @@
 		</ul>
 		<ul ng-repeat="cre in credito.detalles" class="tablasA partida">
 		<li class="colSmall">
-			<label>{{cre.fecha | date:'dd/mm/yyyy'}}</label>
+			<label>{{cre.fecha | date:'dd/MM/yyyy'}}</label>
 		</li>
 		<li >
 			<label>{{cre.saldoinicial|currency}}</label>

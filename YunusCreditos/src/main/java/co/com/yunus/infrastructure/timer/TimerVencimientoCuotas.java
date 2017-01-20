@@ -1,18 +1,25 @@
 package co.com.yunus.infrastructure.timer;
 
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class TimerVencimientoCuotas {
+import javax.inject.Inject;
 
-	  public static void schedule(final Runnable r, long delay) {
+public class TimerVencimientoCuotas {
+	
+	@Inject
+	private RunnableCuotas task;
+	
+	  public void schedule(long delay) {
 		  ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
 	        Runnable pinger = new Runnable() {
 	            public void run() {
-	                System.out.println("PING!");
+	                System.out.println("PING! "+new Date());
+	                task.run();
 	            }
 	        };
-	        ses.scheduleAtFixedRate(pinger, delay, 24, TimeUnit.HOURS);
+	        ses.scheduleAtFixedRate(pinger, 0, 24, TimeUnit.HOURS);
 	  }
 	}
