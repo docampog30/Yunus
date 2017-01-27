@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AmortizacionCreditos1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14f6bfa0-c0f0-4573-a98a-2eb0f3df8bd8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="credito" class="co.com.yunus.application.dto.Credito"/>
+	<parameter name="cliente" class="co.com.yunus.application.dto.Cliente"/>
+	<field name="periodo" class="java.lang.Integer"/>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="saldoinicial" class="java.math.BigDecimal"/>
+	<field name="intereses" class="java.math.BigDecimal"/>
+	<field name="cuota" class="java.lang.Number"/>
+	<field name="amortizacion" class="java.math.BigDecimal"/>
+	<field name="saldofinal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="171" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="1" width="374" height="30" forecolor="#6F6343" uuid="5a56e2b2-a5b3-406d-8dd2-f10350ff3bce"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Cooperativa de aporte y crédito COOPECEJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="35" width="345" height="37" uuid="97f30825-0eba-494a-83e9-2221aa379855"/>
+				<textElement>
+					<font size="28"/>
+				</textElement>
+				<text><![CDATA[Amortización créditos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="0" width="119" height="30" forecolor="#6F6343" uuid="b3006ed1-7253-48d6-95f9-79aa9014ae2b"/>
+				<textElement markup="none">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Crédito N° "+$P{credito}.getId()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="98" width="555" height="1" uuid="e9a8d31d-fa0f-4c0a-ac9a-5051bc3857ac"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="80" width="39" height="13" forecolor="#6F6343" uuid="f2c3e525-b232-4ea9-8a69-69a9f2404f7c"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="80" width="38" height="13" forecolor="#6F6343" uuid="50eb35c0-3c91-4946-ab16-7f7c7aa35ba1"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA:]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="1" y="102" width="554" height="20" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="40e4f19b-1d84-4586-bbb8-5b44b9b08ec2"/>
+				<staticText>
+					<reportElement x="1" y="5" width="125" height="13" forecolor="#6F6343" uuid="7ac2b0d3-7c72-45b6-9d9c-fae8ba49eb40"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cuenta beneficiario:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="126" y="6" width="226" height="13" forecolor="#6F6343" uuid="263f0d21-7af0-4339-931e-66ddc104d5c2"/>
+					<textElement markup="none">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{cliente}.getNombres()+" "+$P{cliente}.getApellidos()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="1" y="125" width="554" height="20" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="63ee133c-ace3-4f0e-866c-96f2818074bb"/>
+				<staticText>
+					<reportElement x="1" y="5" width="125" height="13" forecolor="#6F6343" uuid="5f215583-10c2-46d4-9aa4-f590c113222a"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código beneficiario:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="124" y="5" width="228" height="13" forecolor="#6F6343" uuid="7678a871-c503-4c4d-802b-14c31cd4480b"/>
+					<textElement markup="none">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{cliente}.getDocumento()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="0" y="153" width="48" height="13" forecolor="#6F6343" uuid="27faeeef-aa03-4101-9552-6edff0a0e828"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="153" width="61" height="13" forecolor="#6F6343" uuid="31820c5e-3473-4e21-8286-12cb6d9cfbc8"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="153" width="61" height="13" forecolor="#6F6343" uuid="684bd15e-f867-4411-b97f-486866d98552"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="153" width="61" height="13" forecolor="#6F6343" uuid="34bb0dbb-eb94-4b19-8443-34f8e44c3545"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Interes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="153" width="61" height="13" forecolor="#6F6343" uuid="1d3f49ad-6490-49d8-a34a-49a2acabc933"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="153" width="72" height="13" forecolor="#6F6343" uuid="d42ad696-6da4-42ff-83ea-5c00112f9461"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amortización]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="153" width="72" height="13" forecolor="#6F6343" uuid="4a7e5386-3b6e-408b-bb3d-90e63f29c10f"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo final]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="148" width="555" height="1" uuid="692d747f-9529-41cf-979d-b79d3ca97b1e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="40" y="80" width="48" height="13" forecolor="#6F6343" uuid="d15193e6-7e39-4d24-89f6-3fb795f055e9"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{credito}.getFecha()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="293" y="80" width="48" height="13" forecolor="#6F6343" uuid="4b3e9a62-4008-4159-b254-36d4fa0e3f27"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{credito}.getFecha()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="0" width="48" height="20" forecolor="#6F6343" uuid="827e33b4-2dc7-4406-b9a6-9a9911d13ab6"/>
+				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="67" y="0" width="63" height="20" forecolor="#6F6343" uuid="f1b1ebd0-840b-4728-aaf9-3c561a913e7a"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="147" y="0" width="75" height="20" forecolor="#6F6343" uuid="962df50c-d47b-4353-9bd8-972e75d50c82"/>
+				<textFieldExpression><![CDATA[$F{saldoinicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="224" y="0" width="79" height="20" forecolor="#6F6343" uuid="12de0ea4-b268-4054-84d6-080a379f47d4"/>
+				<textFieldExpression><![CDATA[$F{intereses}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="306" y="0" width="78" height="20" forecolor="#6F6343" uuid="2e5a265c-3054-4ad2-a30d-5ee055ba7a13"/>
+				<textFieldExpression><![CDATA[$F{cuota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="389" y="0" width="88" height="20" forecolor="#6F6343" uuid="1994f1cf-3dbd-4c9a-a88e-efb73111d2aa"/>
+				<textFieldExpression><![CDATA[$F{amortizacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="480" y="0" width="72" height="20" forecolor="#6F6343" uuid="257c1b11-5cce-4295-be45-532c8f69cc01"/>
+				<textFieldExpression><![CDATA[$F{saldofinal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="-5" width="555" height="1" uuid="7a01c4b3-6819-4f64-a74d-fccf56dd4599"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement x="143" y="23" width="156" height="13" forecolor="#6F6343" uuid="f2ffd65a-cacb-4ac5-8ff3-6278fbd4dea5"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma encargado COOPECEJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="23" width="156" height="13" forecolor="#6F6343" uuid="9b0bf1ac-c36a-4895-8e41-fa433d8278f0"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Vinculado COOPECEJA]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="364" y="18" width="180" height="1" uuid="aa553926-e499-45fe-9c12-b955054b0fd8"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="141" y="17" width="180" height="1" uuid="3982893b-9370-40da-916b-05d0bf2adafe"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</lastPageFooter>
+</jasperReport>

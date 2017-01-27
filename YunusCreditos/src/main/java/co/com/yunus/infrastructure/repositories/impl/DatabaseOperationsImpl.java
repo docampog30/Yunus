@@ -1,6 +1,5 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -97,7 +96,6 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 			entityManager.close();
 			
 		}
-		
 	}
 
 	@Override
@@ -123,6 +121,28 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 		finally {
 			entityManager.clear();
 			entityManager.close();
+		}
+		
+	}
+
+	@Override
+	public <T> void update(List<T> object) {
+		EntityTransaction tx = null;
+		try {
+		    tx = entityManager.getTransaction();
+		    tx.begin();
+		    object.forEach(o->entityManager.merge(o));
+		    tx.commit();
+		}
+		catch (RuntimeException e) {
+		    if (tx != null && tx.isActive()) 
+		    	tx.rollback();
+		    	throw e;
+		}
+		finally {
+			entityManager.clear();
+			entityManager.close();
+			
 		}
 		
 	}

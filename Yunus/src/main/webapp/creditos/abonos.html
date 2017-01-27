@@ -29,12 +29,16 @@
 	</ul>
 	<div id="creditos" ng-show="creditos">
 		<ul class="titleA partida">
+			<li>Número</li>
 			<li>Fecha</li>
 			<li>Plazo</li>
 			<li>Valor</li>
 			<li></li>
 		</ul>
 		<ul ng-repeat="cre in creditos" class="tablasA partida">
+		<li >
+			<label>{{$index+1}}</label>
+		</li>
 		<li >
 			<label>{{cre.fecha | date:'dd/mm/yyyy'}}</label>
 		</li>
@@ -53,24 +57,28 @@
 	<br>
 	<div id="cuotas" ng-show="credito">
 		<ul class="titleA partida">
+			<li class="colSmall">Número</li>
 			<li class="colSmall">Fecha</li>
-			<li>Saldo inicial</li>
-			<li>Cuota</li>
-			<li>Saldo Final</li>
+			<li class="colSmall">Saldo inicial</li>
+			<li class="colSmall">Cuota</li>
+			<li class="colSmall">Saldo Final</li>
 			<li class="colSmall">Seleccionar</li>
 			<li>Estado</li>
 		</ul>
 		<ul ng-repeat="cre in credito.detalles" class="tablasA partida">
 		<li class="colSmall">
+			<label>{{cre.id}}</label>
+		</li>
+		<li class="colSmall">
 			<label>{{cre.fecha | date:'dd/MM/yyyy'}}</label>
 		</li>
-		<li >
+		<li class="colSmall">
 			<label>{{cre.saldoinicial|currency}}</label>
 		</li>
-		<li >
+		<li class="colSmall">
 			<label>{{cre.cuota|currency}}</label>
 		</li>
-		<li >
+		<li class="colSmall">
 			<label>{{cre.saldofinal|currency}}</label>
 		</li>
 		<li class="colSmall">

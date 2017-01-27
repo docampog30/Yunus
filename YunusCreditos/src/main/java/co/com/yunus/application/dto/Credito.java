@@ -24,7 +24,6 @@ public class Credito implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 
-
 	@ManyToOne
 	@JoinColumn(name="IDCLIENTE",insertable=false,updatable=false)
 	private Cliente cliente;

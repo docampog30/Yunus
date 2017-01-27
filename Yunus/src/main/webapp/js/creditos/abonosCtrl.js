@@ -3,6 +3,8 @@ controllers
 
 	  $scope.init = function() {
 		  $scope.cliente = null;
+		  $scope.creditos = null;
+		  $scope.credito = null;
 	  }
 	  
 	  $scope.buscarCliente = function(){
@@ -53,9 +55,16 @@ controllers
 	  
 	  $scope.liquidar = function(){
 		  var seleccionados = $scope.credito.detalles.filter(isSelected);
-		  ServicesFactory.liquidarCuotas(seleccionados)
+		  angular.forEach(seleccionados, function(value, key) {
+		  	delete(value.liquidar);
+		  })
+		  
+		  var request = {idcliente:$scope.cliente.id,detalles:seleccionados,idcredito:$scope.credito.id};
+		  ServicesFactory.liquidarCuotas(request)
 		  .then(function(data) {
 			  alert("Cuotas liquidadas correctamente");
+			  ServicesFactory.imprimirReporteAbonos(data.data);
+			  $scope.init();
 		  }, function errorCallback(response) {
 			    alert("Ocurrio un error liquidando las cuotas");
 		  });

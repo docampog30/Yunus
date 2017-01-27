@@ -90,10 +90,13 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    		return $http.post($rootScope.urlServices+'/simulador',request);
    	}
 	dataFactory.generarCredito = function(request){
-   		return $http.post($rootScope.urlServices+'/creditos',request);
+   		return $http.post($rootScope.urlServices+'/creditos',request,{responseType: 'arraybuffer'});
    	}
    	dataFactory.actualizarMaestro = function(maestro){
    	 	return $http.put($rootScope.urlServices+'/maestros',maestro);
+   	}
+   	dataFactory.liquidarCuotas = function(cuotas){
+   		return $http.post($rootScope.urlServices+'/creditos/liquidar',cuotas,{responseType: 'arraybuffer'});
    	}
    	dataFactory.buscarVinculaciones = function(filter){
    		return $http.get($rootScope.urlServices+'/vinculacion/buscar/'+filter.documento);
@@ -131,6 +134,35 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
         window.open(fileURL);
         window.URL.revokeObjectURL(fileURL);
    	}
+   	dataFactory.imprimirReporteAbonos = function(data){
+   		var file = new Blob([data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+       
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        
+        a.href = fileURL;
+        a.download = 'Abonos';
+        a.click();
+        window.open(fileURL);
+        window.URL.revokeObjectURL(fileURL);
+   	}
+   	
+   	dataFactory.imprimirReporteCredito = function (data) {
+   		var file = new Blob([data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+       
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        
+        a.href = fileURL;
+        a.download = 'Credito';
+        a.click();
+        window.open(fileURL);
+        window.URL.revokeObjectURL(fileURL);
+    }
    	dataFactory.imprimirReporteAfiliacion = function(data){
    		var file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);

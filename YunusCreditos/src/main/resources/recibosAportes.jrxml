@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recibosCreditosAportes" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4cb77ee-cf1d-4229-a73d-492bd077ba37">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="79"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -18,11 +18,11 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="117" splitType="Stretch">
+		<band height="97" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="84" y="45" width="426" height="62" uuid="43be2462-d167-4135-aff7-792e12804b21"/>
+				<reportElement style="Title" x="84" y="32" width="426" height="62" uuid="43be2462-d167-4135-aff7-792e12804b21"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font pdfFontName="Times-Roman"/>
+					<font size="42" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Deposito de aportes]]></text>
 			</staticText>
@@ -79,7 +79,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="284">
+		<band height="258">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="139" width="802" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="eff2b606-e8a0-41e7-8a91-b99620650dd8"/>
 				<staticText>
@@ -129,14 +129,14 @@
 				</textField>
 			</frame>
 			<staticText>
-				<reportElement style="SubTitle" x="510" y="247" width="273" height="22" uuid="2595c2a0-ea26-4a4c-9c29-324c241f1dc8"/>
+				<reportElement style="SubTitle" x="510" y="220" width="273" height="22" uuid="2595c2a0-ea26-4a4c-9c29-324c241f1dc8"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Firma encargado COOPECEJA]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="510" y="241" width="273" height="1" uuid="8dee18ff-1b88-4a78-9bfd-9d18e48bcb12"/>
+				<reportElement positionType="FixRelativeToBottom" x="510" y="219" width="273" height="1" uuid="8dee18ff-1b88-4a78-9bfd-9d18e48bcb12"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
@@ -151,9 +151,6 @@
 			</textField>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="53" splitType="Stretch"/>
-	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
 	</summary>

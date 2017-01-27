@@ -40,4 +40,10 @@ public class TransactionalMockImpl implements ITransactionalRepository {
 		
 	}
 
+	@Override
+	public <T> void update(List<T> object) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

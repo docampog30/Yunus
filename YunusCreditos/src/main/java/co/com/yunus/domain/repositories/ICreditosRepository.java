@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.com.yunus.application.dto.Aporte;
 import co.com.yunus.application.dto.Credito;
+import co.com.yunus.application.dto.Detalle;
 
 public interface ICreditosRepository {
 	void guardarCreditoCliente(Credito credito);
@@ -11,4 +12,6 @@ public interface ICreditosRepository {
 	List<Credito> findByCliente(String cedula);
 
 	void guardarAporte(Aporte aporte);
+
+	void liquidarCuotas(List<Detalle> detalles);
 }

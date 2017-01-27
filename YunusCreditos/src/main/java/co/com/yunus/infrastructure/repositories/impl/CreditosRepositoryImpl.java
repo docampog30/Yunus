@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import co.com.yunus.application.dto.Aporte;
 import co.com.yunus.application.dto.Credito;
+import co.com.yunus.application.dto.Detalle;
 import co.com.yunus.domain.repositories.ICreditosRepository;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
 import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
@@ -37,6 +38,12 @@ public class CreditosRepositoryImpl implements ICreditosRepository {
 	@Override
 	public void guardarAporte(Aporte aporte) {
 		transactionalRepository.save(aporte);
+	}
+
+	@Override
+	public void liquidarCuotas(List<Detalle> detalles) {
+		transactionalRepository.update(detalles);
+		
 	}
 
 }

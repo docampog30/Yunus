@@ -33,6 +33,7 @@ controllers
 		  ServicesFactory.generarCredito(request)
 		  .then(function(data) {
 			  alert("Crédito generado exitosamente");
+			  ServicesFactory.imprimirReporteCredito(data.data);
 			  $scope.init();
 		  }, function errorCallback(response) {
 			    alert("Ocurrio un error guardando el crédito");

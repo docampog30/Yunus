@@ -12,6 +12,7 @@ public interface ITransactionalRepository {
 	<T> void delete(T object);
 	
 	<T> void save(List<T> object);
+	<T> void update(List<T> object);
 
 	void executeSQL(String sql, Map<String, Object> parametros);
 }

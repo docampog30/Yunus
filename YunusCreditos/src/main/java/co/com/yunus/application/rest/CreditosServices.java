@@ -1,5 +1,6 @@
 package co.com.yunus.application.rest;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,6 @@ import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -21,6 +21,7 @@ import co.com.yunus.application.dto.Cliente;
 import co.com.yunus.application.dto.Credito;
 import co.com.yunus.application.dto.Detalle;
 import co.com.yunus.application.dto.RequestCredito;
+import co.com.yunus.application.dto.RequestLiquidarCuota;
 import co.com.yunus.domain.repositories.IClientesRepository;
 import co.com.yunus.domain.repositories.ICreditosRepository;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
@@ -45,7 +46,7 @@ public class CreditosServices {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Credito guardarCredito(RequestCredito request){
+	public byte[] guardarCredito(RequestCredito request){
 		Credito credito = new Credito();
 		credito.setFecha(new Date());
 		credito.setIdcliente(request.getIdcliente());
@@ -60,9 +61,10 @@ public class CreditosServices {
 		
 		creditosRepository.guardarCreditoCliente(credito);
 		credito.getDetalles().forEach(d-> d.setCredito(null));
-		return credito;
+		Cliente cliente = clientesRepository.getClientByID((long) request.getIdcliente()).get(0);
+		return reportGenerator.getBytes(getParametersCreditos(credito,cliente), "amortizacionCreditos.jasper",credito.getDetalles());
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("findByCliente/{cedula}")
@@ -84,16 +86,49 @@ public class CreditosServices {
 		creditosRepository.guardarAporte(aporte);
 		Cliente cliente = getCliente((long) request.getIdcliente());
 		aporte.setCliente(cliente);
-		return reportGenerator.getBytes(getParameters(aporte), "recibosAportes.jasper");
+		return reportGenerator.getBytes(getParametersAporte(aporte), "recibosAportes.jasper");
 	}
 	
+	@POST
+	@Path("liquidar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public byte[] liquidarCuotas(RequestLiquidarCuota request){
+		request.getDetalles().forEach(d->d.setEstado("PAGADA"));
+		creditosRepository.liquidarCuotas(request.getDetalles());
+		Cliente cliente = getCliente((long) request.getIdcliente());
+		return reportGenerator.getBytes(getParametrosAbonos(cliente,request), "recibosAbonosCreditos.jasper");
+	}
+	
+	private Map<String, Object> getParametrosAbonos(Cliente cliente, RequestLiquidarCuota request) {
+		
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("credito", request.getIdcredito());
+		parameters.put("cliente", cliente);
+		parameters.put("cuotas", request.getDetalles().size());
+		parameters.put("saldo", request.getDetalles().stream()
+                .max((p1, p2) -> Integer.compare( p1.getPeriodo(), p2.getPeriodo()))
+                .get().getSaldofinal());
+		parameters.put("valor", request.getDetalles()
+								.stream()
+								 .map(Detalle::getCuota)
+							        .reduce(BigDecimal.ZERO, BigDecimal::add));
+		return parameters;
+	}
+
 	private Cliente getCliente(Long id) {
 		return clientesRepository.getClientByID(id).get(0);
 	}
 
-	private Map<String, Object> getParameters(Aporte aporte) {
+	private Map<String, Object> getParametersAporte(Aporte aporte) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("aporte", aporte);
+		return parameters;
+	}
+	
+	private Map<String, Object> getParametersCreditos(Credito credito, Cliente cliente) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("credito", credito);
+		parameters.put("cliente", cliente);
 		return parameters;
 	}
 }

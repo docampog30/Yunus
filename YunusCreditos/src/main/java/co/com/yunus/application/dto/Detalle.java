@@ -39,8 +39,11 @@ public class Detalle implements Serializable {
 	private BigDecimal saldoinicial;
 	
 	@ManyToOne
-	@JoinColumn(name="IDCREDITO")
+	@JoinColumn(name="IDCREDITO",updatable=false)
 	private Credito credito;
+	
+	@JoinColumn(name="IDCREDITO",insertable=false)
+	private int idcredito;
 
 	public Detalle() {
 	}
@@ -123,6 +126,13 @@ public class Detalle implements Serializable {
 
 	public void setCredito(Credito credito) {
 		this.credito = credito;
+	}
+	
+	public int getIdcredito() {
+		return idcredito;
+	}
+	public void setIdcredito(int idcredito) {
+		this.idcredito = idcredito;
 	}
 
 }

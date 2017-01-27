@@ -40,4 +40,10 @@ public class TransactionalRepositoryImpl implements ITransactionalRepository {
 		dataBaseOperations.executeSQL(sql, parametros);
 		
 	}
+
+	@Override
+	public <T> void update(List<T> object) {
+		dataBaseOperations.update(object);
+		
+	}
 }
