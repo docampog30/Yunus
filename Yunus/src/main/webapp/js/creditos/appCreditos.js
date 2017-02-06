@@ -43,10 +43,16 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/abonos.html',
                controller: 'AbonosController'
            }).
+           when('/reportecreditos', {
+               templateUrl: 'creditos/reporteCreditos.html',
+               controller: 'ReporteCreditosController'
+           }).
            when('/aporte', {
                templateUrl: 'creditos/aportes.html',
                controller: 'AportesController'
            }).
+           
+           
            otherwise({
             redirectTo: '/home'
          });
@@ -89,6 +95,13 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
    	dataFactory.simularCredito = function(request){
    		return $http.post($rootScope.urlServices+'/simulador',request);
    	}
+   	dataFactory.imprimirSimulacion = function(request){
+   		return $http.post($rootScope.urlServices+'/simulador/imprimir',request,{responseType: 'arraybuffer'}).then(function(data) {
+   			dataFactory.imprimirReporteAfiliacion(data.data);
+		  }, function errorCallback(response) {
+			    alert("Error generando informe");
+		  });
+   	}
 	dataFactory.generarCredito = function(request){
    		return $http.post($rootScope.urlServices+'/creditos',request,{responseType: 'arraybuffer'});
    	}
@@ -113,6 +126,12 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
 	dataFactory.liquidarAporte = function(request){
    		return $http.post($rootScope.urlServices+'/creditos/aporte',request,{responseType: 'arraybuffer'});
    	}
+	
+	dataFactory.buscarTotales = function(feini,fefin){
+   		return $http.post($rootScope.urlServices+'/creditos/sum/'+feini+"/"+fefin);
+   	}
+	
+	
    	dataFactory.descargarVinculacion = function(id){
    		return $http.get($rootScope.urlServices+'/vinculacion/'+id, {responseType: 'arraybuffer'}).then(function(data) {
    			dataFactory.imprimirReporteAfiliacion(data.data);

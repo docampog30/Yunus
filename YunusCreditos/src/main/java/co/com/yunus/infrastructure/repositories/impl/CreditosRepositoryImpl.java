@@ -1,5 +1,7 @@
 package co.com.yunus.infrastructure.repositories.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,16 @@ public class CreditosRepositoryImpl implements ICreditosRepository {
 	public void liquidarCuotas(List<Detalle> detalles) {
 		transactionalRepository.update(detalles);
 		
+	}
+
+	@Override
+	public BigDecimal findSumBetweenDates(Date feIni, Date feFin) {
+		Map<String,Object> parametros = new HashMap<>();
+		parametros.put("startDate", feIni);
+		parametros.put("endDate", feFin);
+		List<Detalle> detalles = databaseOperations.listar(Detalle.FINDBYBETWEENDATE, parametros, Detalle.class);
+		return detalles.stream().map(Detalle::getCuota)
+		        .reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 }

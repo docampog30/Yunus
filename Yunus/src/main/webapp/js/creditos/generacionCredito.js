@@ -7,6 +7,23 @@ controllers
 		  $scope.simulacion = null;
 	  }
 	  
+	  $scope.recuperarDatos = function(idmaestro){
+		  ServicesFactory.listarMaestro(idmaestro)
+		  .then(function(data) {
+			  $scope.maestros = data.data;
+			  angular.forEach($scope.maestros,function(object){
+				  object.descripcion = parseFloat(object.descripcion);
+				  object.codigo = $scope.getName(object);
+			  })
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error recuperando los datos");
+		  });
+	  }
+	  
+	  $scope.actualizaInteres = function(){
+		  $scope.credito.interes = $scope.tipo.descripcion;
+	  }
+	  
 	  $scope.buscarCliente = function(){
 		  	$scope.cliente = null;
 			  ServicesFactory.buscarCliente($scope.documento)
@@ -17,6 +34,7 @@ controllers
 					  }else{
 						  $scope.cliente = data.data[0];
 						  $scope.credito = {};
+						  $scope.recuperarDatos(30);
 					  }
 				  }else{
 					  alert("No se encontraron datos");
@@ -28,7 +46,7 @@ controllers
 		  }
 	  
 	  $scope.generar = function(){
-		  var request = {detalles:$scope.simulacion,valor:$scope.credito.valor,plazo:$scope.credito.meses,interes:$scope.credito.interes,idcliente:$scope.cliente.id};
+		  var request = {detalles:$scope.simulacion,valor:$scope.credito.valor,plazo:$scope.credito.meses,interes:$scope.credito.interes,idcliente:$scope.cliente.id,idmaestro:$scope.tipo.id};
 		  
 		  ServicesFactory.generarCredito(request)
 		  .then(function(data) {
@@ -39,6 +57,14 @@ controllers
 			    alert("Ocurrio un error guardando el crédito");
 		  });
 	  }
+	  
+	  $scope.getName = function(maestro){
+	    	var rpta = "Crédito de vivienda";
+	    	if(maestro.codigo == "CL"){
+	    		rpta = "Crédito de libre inversión";
+	    	}
+	    	return rpta;
+	    }
 	  
 	  $scope.simular = function(){
 		  ServicesFactory.simularCredito($scope.credito)

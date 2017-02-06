@@ -27,20 +27,26 @@
 			<button ng-click="liquidar()" ng-show="valor>0">Liquidar</button>
 		</li>
 	</ul>
+	<label>CREDITOS</label>
 	<div id="creditos" ng-show="creditos">
 		<ul class="titleA partida">
-			<li>Número</li>
+			<li class="colSmall">Número</li>
+			<li class="colSmall">Tipo</li>
 			<li>Fecha</li>
 			<li>Plazo</li>
 			<li>Valor</li>
+			
 			<li></li>
 		</ul>
 		<ul ng-repeat="cre in creditos" class="tablasA partida">
-		<li >
+		<li  class="colSmall" >
 			<label>{{$index+1}}</label>
 		</li>
+		<li class="colSmall">
+			<label>{{getName(cre.tipocredito)}}</label>
+		</li>
 		<li >
-			<label>{{cre.fecha | date:'dd/mm/yyyy'}}</label>
+			<label>{{cre.fecha | date:'dd/MM/yyyy'}}</label>
 		</li>
 		<li >
 			<label>{{cre.plazo}}</label>
@@ -55,6 +61,7 @@
 	</div>
 	<br>
 	<br>
+	<label>LISTA DE CUOTAS</label>
 	<div id="cuotas" ng-show="credito">
 		<ul class="titleA partida">
 			<li class="colSmall">Número</li>

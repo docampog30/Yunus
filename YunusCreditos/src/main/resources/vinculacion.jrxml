@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43321bd5-e0e1-4ca4-9cc1-ff185aece863">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="126"/>
-	<property name="ireport.y" value="527"/>
+	<property name="ireport.x" value="97"/>
+	<property name="ireport.y" value="1154"/>
 	<parameter name="vinculacion" class="co.com.yunus.application.dto.Vinculacion"/>
 	<background>
 		<band/>
@@ -190,7 +190,7 @@
 				<reportElement x="0" y="200" width="556" height="1" forecolor="#666666" uuid="8fd626b1-38e7-43d0-a34a-7a4a03ac8e59"/>
 			</line>
 			<textField>
-				<reportElement mode="Opaque" x="0" y="56" width="556" height="13" backcolor="#CCCCFF" uuid="9c663aa3-a1f3-4c75-9026-df0d4a233185"/>
+				<reportElement mode="Opaque" x="21" y="59" width="556" height="13" backcolor="#CCCCFF" uuid="9c663aa3-a1f3-4c75-9026-df0d4a233185"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true" isItalic="false"/>
 				</textElement>
@@ -1164,6 +1164,20 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vinculacion}.getVlrcesantias()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="296" y="11" width="68" height="20" uuid="b8df3cda-1b10-4c48-89a2-ab827df5c02c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[La Ceja (ant.)]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="492" y="11" width="62" height="20" uuid="da129382-48a4-46cb-bf3d-fe024615cf56"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="760">
 			<textField>
@@ -1746,6 +1760,156 @@
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vinculacion}.getResultadoentrevista()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="39" width="67" height="20" uuid="9e2d156a-11b7-425c-bb16-d2955277d9e7"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(0).getDocumento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="40" width="198" height="20" uuid="78983bad-72cd-41c8-924a-d49faade90be"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(0).getNombre()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="271" y="40" width="68" height="20" uuid="da8728fc-8a63-491b-af65-82630d9e98c8"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(0).getFechanacimiento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="39" width="51" height="20" uuid="d887de78-91a1-411f-8994-435c802114fa"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(0).getParentesco()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="39" width="51" height="20" uuid="86e3882e-9e46-45f5-9376-05a10182af01"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(0).getTelefono()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="40" width="86" height="20" uuid="7b6be093-6dfe-48a4-a986-f1b128580947"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(0).getDesignacion()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="59" width="198" height="20" uuid="19d4629e-a472-4c0c-a072-bde16ad80d04">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size()>1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getNombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="58" width="51" height="20" uuid="f5a4391a-2ffb-40e6-97ce-989b788863ca">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size()>1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getTelefono()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="58" width="51" height="20" uuid="9298e60a-90f8-4808-9ba9-5bf48d7f384a">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size()>1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getParentesco()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="271" y="59" width="68" height="20" uuid="a166d11a-ae6e-4fed-aae3-a0b4a93e733b">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size()>1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getFechanacimiento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="59" width="67" height="20" uuid="2c19fe42-0826-4483-8ee0-3450a3015213">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size()>1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getDocumento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="59" width="86" height="20" uuid="60034e3b-797d-4552-9366-e461fdb985d9">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size()>1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getDesignacion()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="79" width="198" height="20" uuid="54a626fa-78d1-4789-b5e5-aba0540e2464">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size() > 2]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(2).getNombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="78" width="51" height="20" uuid="610e4f71-5442-479a-9f99-9b4769f78a18">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size() > 2]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(2).getTelefono()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="79" width="51" height="20" uuid="772874b5-9520-40d8-85b7-342501a04677">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size() > 2]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(2).getParentesco()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="273" y="79" width="68" height="20" uuid="aa3f8363-4d9b-4620-a37f-6de4df6c5d18">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size() > 2]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(2).getFechanacimiento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="78" width="67" height="20" uuid="2198b464-3130-4a7a-98bf-5c29fbc72c0c">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size() > 2]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(1).getDocumento()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="80" width="86" height="20" uuid="90e61303-e023-49cb-b7eb-b1982800eda3">
+					<printWhenExpression><![CDATA[$P{vinculacion}.getBeneficiarios().size() > 2]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getBeneficiarios().get(2).getDesignacion()]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="458">

@@ -12,9 +12,9 @@ import javax.mail.internet.MimeMessage;
 
 public class MailSender {
 	
-	public void enviarMailAbono(String destinatario) {
+	public void enviarMailAbono(String destinatario,String asunto,String contenido) {
 	    Properties props = new Properties();
-	    props.put("mail.smtp.host", "smtp.gmail.com");
+	    props.put("mail.smtp.host", "mail.coopeceja.com");
 	    props.put("mail.smtp.socketFactory.port", "465");
 	    props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
 	    props.put("mail.smtp.auth", "true");
@@ -23,18 +23,18 @@ public class MailSender {
 	        new javax.mail.Authenticator() {
 	                            @Override
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication("docampog30@gmail.com","lenovoz460");
+	                return new PasswordAuthentication("servicios@coopeceja.com","alexrosco2017");
 	            }
 	        });
 
 	    try {
 
 	        Message message = new MimeMessage(session);
-	        message.setFrom(new InternetAddress("David Ocampo"));
+	        message.setFrom(new InternetAddress("servicios@coopeceja.com"));
 	        message.setRecipients(Message.RecipientType.TO,
-	                InternetAddress.parse("docampog30@hotmail.com"));
-	        message.setSubject("Testing Subject");
-	        message.setText("Test Mail");
+	                InternetAddress.parse(destinatario));
+	        message.setSubject(asunto);
+	        message.setText(contenido);
 
 	        Transport.send(message);
 

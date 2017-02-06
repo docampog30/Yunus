@@ -11,6 +11,7 @@ public class RequestCredito {
 	private float interes;
 	private int idcliente;
 	private String tipaporte;
+	private Long idmaestro;
 	public List<Detalle> getDetalles() {
 		return detalles;
 	}
@@ -46,6 +47,12 @@ public class RequestCredito {
 	}
 	public void setTipaporte(String tipaporte) {
 		this.tipaporte = tipaporte;
+	}
+	public Long getIdmaestro() {
+		return idmaestro;
+	}
+	public void setIdmaestro(Long idmaestro) {
+		this.idmaestro = idmaestro;
 	}
 	
 	

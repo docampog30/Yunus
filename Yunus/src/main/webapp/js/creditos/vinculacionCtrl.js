@@ -107,6 +107,7 @@ controllers
 			  ServicesFactory.recuperarVinculacionById( $scope.id).then(function(data) {
 				  $scope.vinculacion = $scope.parseData(data.data[0]);
 				  $scope.cliente = $scope.vinculacion.cliente;
+				  $scope.documento = $scope.cliente.documento;
 				  $scope.confirmacion = $scope.vinculacion.confirmaciones[0];
 			  }, function(response) {
 			    alert("Error consultando la partida");

@@ -36,7 +36,7 @@
 				<textElement markup="none">
 					<font size="16"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Crédito N° "+$P{credito}.getId()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{cliente} != null ? "Crédito N° "+$P{credito}.getId():"Simulación"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="98" width="555" height="1" uuid="e9a8d31d-fa0f-4c0a-ac9a-5051bc3857ac"/>
@@ -67,7 +67,7 @@
 					</textElement>
 					<text><![CDATA[Cuenta beneficiario:]]></text>
 				</staticText>
-				<textField pattern="dd/MM/yyyy">
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 					<reportElement x="126" y="6" width="226" height="13" forecolor="#6F6343" uuid="263f0d21-7af0-4339-931e-66ddc104d5c2"/>
 					<textElement markup="none">
 						<font size="10" isBold="true"/>
@@ -84,7 +84,7 @@
 					</textElement>
 					<text><![CDATA[Código beneficiario:]]></text>
 				</staticText>
-				<textField pattern="dd/MM/yyyy">
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 					<reportElement x="124" y="5" width="228" height="13" forecolor="#6F6343" uuid="7678a871-c503-4c4d-802b-14c31cd4480b"/>
 					<textElement markup="none">
 						<font size="10" isBold="true"/>

@@ -1,5 +1,7 @@
 package co.com.yunus.domain.repositories;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import co.com.yunus.application.dto.Aporte;
@@ -14,4 +16,6 @@ public interface ICreditosRepository {
 	void guardarAporte(Aporte aporte);
 
 	void liquidarCuotas(List<Detalle> detalles);
+
+	BigDecimal findSumBetweenDates(Date feIni, Date feFin);
 }

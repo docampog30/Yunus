@@ -10,13 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name=Detalle.FINDBYBETWEENDATE,query="SELECT e FROM Detalle e WHERE e.fechapago BETWEEN :startDate AND :endDate")	
+})
 public class Detalle implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	public static final String FINDBYBETWEENDATE = "findBetweenDate";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -29,6 +35,9 @@ public class Detalle implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechapago;
 
 	private BigDecimal intereses;
 
@@ -41,9 +50,6 @@ public class Detalle implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="IDCREDITO",updatable=false)
 	private Credito credito;
-	
-	@JoinColumn(name="IDCREDITO",insertable=false)
-	private int idcredito;
 
 	public Detalle() {
 	}
@@ -127,12 +133,10 @@ public class Detalle implements Serializable {
 	public void setCredito(Credito credito) {
 		this.credito = credito;
 	}
-	
-	public int getIdcredito() {
-		return idcredito;
+	public Date getFechapago() {
+		return fechapago;
 	}
-	public void setIdcredito(int idcredito) {
-		this.idcredito = idcredito;
+	public void setFechapago(Date fechapago) {
+		this.fechapago = fechapago;
 	}
-
 }

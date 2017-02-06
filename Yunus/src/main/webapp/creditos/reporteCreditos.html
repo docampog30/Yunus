@@ -8,21 +8,68 @@
 				<input type="text" ng-model="documento" />
 			</li>
 			<li>
-				<button type="submit" ng-click="buscar()">Buscar x cliente
-					<span class="fa fa-search"></span>
-				</button>
-			</li>
-			<li>
-				<button type="submit" ng-click="buscarTotales()">Buscar totales
+				<button type="submit" ng-click="buscarCliente()">Buscar x cliente
 					<span class="fa fa-search"></span>
 				</button>
 			</li>
 		</ul>
-	<ul class="add">
+		<ul class = "add">
 		<li>
-			<label>Valor Total: </label>
-			<input type="number" ng-model="valorAporte" ng-show="cliente" >
+				<label>Fecha Inicio</label>
+				<input type="date" ng-model="fechaini" />
+			</li>
+			<li>
+				<label>Fecha Fin</label>
+				<input type="date" ng-model="fechafin" />
+			</li>
+		<li>
+				<button type="submit" ng-click="buscarTotales()">Buscar totales entre fechas
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+		<ul class="add" ng-show="cliente">
+		<li>
+			<h2>{{cliente.nombres}}</h2>
 		</li>
-	</ul>
+		<li>
+			<h2>{{cliente.apellidos}}</h2>
+		</li>
+		<li>
+			<h2>Total pagos</h2>
+		</li>
+		<li>
+			<h2>{{totalPagos|currency}}</h2>
+		</li>
+		</ul>
+		<div ng-show = "detalles">
+		<label>CUOTAS PAGADAS POR CLIENTE</label>
+		<div id="creditos" ng-show="detalles">
+			<ul class="titleA partida">
+				<li>Fecha</li>
+				<li>Crédito</li>
+				<li>Periodo</li>
+				<li>Valor abono</li>
+				<li>Fecha pago</li>
+			</ul>
+			<ul ng-repeat="de in detalles" class="tablasA partida">
+			<li >
+				<label>{{de.fecha | date:'dd/MM/yyyy'}}</label>
+			</li>
+			<li >
+				<label>{{de.idcredito}}</label>
+			</li>
+			<li >
+				<label>{{de.periodo}}</label>
+			</li>
+			<li >
+				<label>{{de.cuota|currency}}</label>
+			</li>
+			<li >
+				<label>{{de.fechapago| date:'dd/MM/yyyy'}}</label>
+			</li>
+			</ul>
+		</div>
+		</div>
 	</div>
 	</form>

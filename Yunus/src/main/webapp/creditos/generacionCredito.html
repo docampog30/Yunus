@@ -26,6 +26,9 @@
 	
 	<div class="actions">
 		<label id="obligatorio">*Campos Obligatorios</label>
+		
+		<label>*Tipo de crédito</label>
+		<select ng-model="tipo" ng-change="actualizaInteres()" ng-options="v as v.codigo for (k, v) in maestros" required></select>
 		<label>*Valor Credito($)</label>
 		<input required type="number" data-ng-model="credito.valor" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 		<label>*Interes(%)</label>

@@ -29,6 +29,8 @@ public class Credito implements Serializable {
 	private Cliente cliente;
 	
 	private int idcliente;
+	
+	private Long idmaestro;
 
 	private float interes;
 
@@ -38,6 +40,10 @@ public class Credito implements Serializable {
 
 	@OneToMany(mappedBy="credito",cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	private List<Detalle> detalles;
+	
+	@ManyToOne
+	@JoinColumn(name="idmaestro",insertable=false,updatable=false)
+	private Maestro tipocredito;
 
 	public Credito() {
 	}
@@ -110,6 +116,18 @@ public class Credito implements Serializable {
 		detalle.setCredito(null);
 
 		return detalle;
+	}
+
+	public Long getIdmaestro() {
+		return idmaestro;
+	}
+
+	public void setIdmaestro(Long idmaestro) {
+		this.idmaestro = idmaestro;
+	}
+	
+	public Maestro getTipocredito() {
+		return tipocredito;
 	}
 
 }

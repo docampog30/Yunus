@@ -5,6 +5,7 @@ controllers
 		  $scope.cliente = null;
 		  $scope.creditos = null;
 		  $scope.credito = null;
+		  $scope.valor = null;
 	  }
 	  
 	  $scope.buscarCliente = function(){
@@ -69,6 +70,18 @@ controllers
 			    alert("Ocurrio un error liquidando las cuotas");
 		  });
 	  }
+	  
+	  $scope.getName = function(maestro){
+	    	var rpta = "";
+	    	if(maestro != undefined){
+		    	if(maestro.codigo == "CL"){
+		    		rpta = "Crédito de libre inversión";
+		    	}else if(maestro.codigo == "CV"){
+		    		rpta = "Crédito de vivienda"
+		    	}
+	    	}
+	    	return rpta;
+	    }
 	  
 	  function isSelected(elemento) {
 		  return elemento.liquidar;

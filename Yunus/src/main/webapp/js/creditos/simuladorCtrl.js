@@ -15,5 +15,9 @@ controllers
 		  });
 	  }
 	  
+	  $scope.imprimir = function(){
+		  ServicesFactory.imprimirSimulacion($scope.simulacion);
+	  }
+	  
 	  $scope.init();
    }]);
