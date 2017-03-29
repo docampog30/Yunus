@@ -18,6 +18,7 @@
 	<parameter name="cuotas" class="java.lang.Integer"/>
 	<parameter name="valor" class="java.math.BigDecimal"/>
 	<parameter name="saldo" class="java.math.BigDecimal"/>
+	<parameter name="numaporte" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -62,7 +63,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="238" y="7" width="42" height="15" forecolor="#736343" uuid="d3a7701d-13aa-4b0b-b540-1f4773681344"/>
+				<reportElement style="Column header" x="184" y="7" width="42" height="15" forecolor="#736343" uuid="d3a7701d-13aa-4b0b-b540-1f4773681344"/>
 				<text><![CDATA[HORA:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
@@ -70,8 +71,16 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="h.mm a">
-				<reportElement x="281" y="7" width="100" height="15" uuid="f1832dd4-8980-43c1-8508-21480614aad7"/>
+				<reportElement x="227" y="7" width="100" height="15" uuid="f1832dd4-8980-43c1-8508-21480614aad7"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="374" y="7" width="60" height="15" forecolor="#736343" uuid="59f2e06b-cee6-409a-9827-0419b1aa494c"/>
+				<text><![CDATA[# ABONO:]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="434" y="7" width="100" height="15" uuid="3779c60a-d981-434f-9c7d-a996680b7892"/>
+				<textFieldExpression><![CDATA[$P{numaporte}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>

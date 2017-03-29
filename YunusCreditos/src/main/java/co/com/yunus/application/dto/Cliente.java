@@ -17,16 +17,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="CLIENTES")
 @NamedQueries({
 	@NamedQuery(name=Cliente.BUSCAR_POR_DOCUMENTO,query="SELECT C FROM Cliente C WHERE C.documento = :documento"),
-	@NamedQuery(name=Cliente.BUSCAR_POR_ID,query="SELECT C FROM Cliente C WHERE C.id = :id")
+	@NamedQuery(name=Cliente.BUSCAR_POR_ID,query="SELECT C FROM Cliente C WHERE C.id = :id"),
+	@NamedQuery(name=Cliente.BUSCAR_TODOS,query="SELECT C FROM Cliente C")
 })
 public class Cliente {
 	
 	public static final String BUSCAR_POR_DOCUMENTO = "Cliente.buscarXDocumento";
 	public static final String BUSCAR_POR_ID= "Cliente.buscarXId";
+	public static final String BUSCAR_TODOS = "Cliente.findAll";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -248,5 +252,9 @@ public class Cliente {
 	
 	public void setVinculaciones(List<Vinculacion> vinculaciones) {
 		this.vinculaciones = vinculaciones;
+	}
+	@JsonIgnore
+	public String getClienteName() {
+		return getNombres() + " "+getApellidos();
 	}
 }

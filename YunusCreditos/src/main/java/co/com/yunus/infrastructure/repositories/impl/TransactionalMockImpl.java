@@ -19,14 +19,9 @@ public class TransactionalMockImpl implements ITransactionalRepository {
 	@Override
 	public <T> void update(T object) {
 		// TODO Auto-generated method stub
-		
+			
 	}
 
-	@Override
-	public <T> void delete(T object) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public <T> void save(List<T> object) {
@@ -42,6 +37,12 @@ public class TransactionalMockImpl implements ITransactionalRepository {
 
 	@Override
 	public <T> void update(List<T> object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> void delete(Class<T> clazz, Object pk) {
 		// TODO Auto-generated method stub
 		
 	}

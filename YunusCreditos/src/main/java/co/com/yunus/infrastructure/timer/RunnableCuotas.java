@@ -19,7 +19,7 @@ public class RunnableCuotas {
 		System.err.println("Runnable ::::::::");
 		Map<String, Object> parametros = new HashMap<>();
 		parametros.put("today", new Date());
-		transactionalRepository.executeSQL("UPDATE Detalle s SET s.estado = 'VENCIDA' WHERE s.fecha < :today AND s.estado = 'VIGENTE'",parametros);
+		transactionalRepository.executeSQL("UPDATE Detalle s SET s.estado = 'VENCIDA' WHERE s.fecha < :today AND s.estado = 'PENDIENTE'",parametros);
 	}
 
 }

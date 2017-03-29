@@ -6,13 +6,15 @@ controllers
 		  $scope.documento = null;
 		  $scope.creditos = null;
 		  $scope.totalPagos = 0;
-
+		  $scope.valor = null;
 	  }
 	  
 	  $scope.buscarTotales = function(){
-		  ServicesFactory.buscarTotales($scope.feini,$scope.feiin)
+		  $scope.detalles = null;
+		  $scope.cliente = null;
+		  ServicesFactory.buscarTotales($scope.fechaini.getTime(),$scope.fechafin.getTime())
 		  .then(function(data) {
-			  $scope.totales = data.data;
+			  $scope.valor = data.data;
 			  
 		  }, function errorCallback(response) {
 			    alert("Ocurrio un error recuperando totales");
@@ -21,6 +23,7 @@ controllers
 	  
 	  $scope.buscarCliente = function(){
 		  $scope.cliente = null;
+		  $scope.valor = null;
 			  ServicesFactory.buscarCliente($scope.documento)
 			  .then(function(data) {
 				  if(data.data.length > 0){
@@ -39,18 +42,13 @@ controllers
 			  });
 		  }
 	  
-	  $scope.buscarConsolidado = function(){
-		  ServicesFactory.buscarSaldoEntreFechas($scope.cliente.documento)
-		  .then(function(data) {
-			  
-		  }, function errorCallback(response) {
-			    alert("Ocurrio un error recuperando los saldos");
-		  });
+	  $scope.generarReporte = function () {
+		  ServicesFactory.generarReporteCliente($scope.documento);
 	  }
 	  
 	  $scope.buscarCreditos = function(){
-		  $scope.init();
 		  $scope.detalles = [];
+		  $scope.totalPagos =0;
 		  ServicesFactory.buscarCreditosByCliente($scope.cliente.documento)
 		  .then(function(data) {
 			  if(data.data.length > 0){
@@ -60,7 +58,7 @@ controllers
 					  angular.forEach(detalles, function(detalle, key) {
 						  detalle.idcredito = value.id;
 					  	$scope.detalles.push(detalle);
-					  	$scope.totalPagos+= detalle.cuota;
+					  	$scope.totalPagos+= detalle.valorpagado;
 					  })
 				  })
 			  }else{

@@ -594,3 +594,116 @@ input.ng-invalid-required,
 select.ng-invalid-required {
   border: 1px solid #FF7D7D;
 }
+#login {
+  max-width: 420px;
+  margin: 70px auto 0 auto;
+}
+#login .logo {
+  margin: 0 auto 30px auto;
+}
+#login .logo img {
+  width: 100%;
+}
+#login .contLogin {
+  background: #EEEEF0;
+  padding: 20px 35px;
+}
+#login .contLogin input {
+  width: 100%;
+  margin-bottom: 8px;
+  text-transform: inherit !important;
+}
+#login .contLogin button {
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+}
+#login .contLogin .actions {
+  margin: 10px 0;
+}
+#login .contLogin .actions .recordar {
+  float: left;
+}
+#login .contLogin .actions .recordar .check {
+  height: 12px;
+  width: inherit;
+  margin: 0;
+}
+#login .contLogin .actions a {
+  float: right;
+  text-decoration: underline;
+  color: ;
+  cursor: pointer;
+}
+#login .languages nav {
+  float: right;
+}
+#login .languages .language {
+  margin-bottom: 6px;
+}
+#login .languages .language a {
+  text-decoration: none;
+  color: ;
+}
+#login .languages .language i {
+  width: 20px;
+  display: inline-block;
+}
+#login .languages .language i img {
+  width: 100%;
+}
+.dropdown-menu {
+  border-radius: 0;
+  left: inherit;
+  background: #44A4BA;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.175);
+  border: none;
+  min-width: inherit;
+}
+#login .languages .dropdown-menu li {
+  padding: 0;
+}
+#login .languages .dropdown-menu a {
+  font-size: 12px;
+}
+#login .languages .dropdown-menu a:hover {
+  background: transparent;
+}
+.fondo {
+  background: rgba(255,255,255,0.7);
+}
+#olvido .modal-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: inherit;
+  width: 250px;
+  transform: translate(-50%,-50%) !important;
+  -webkit-transform: translate(-50%,-50%) !important;
+}
+#olvido .modal-content {
+  border-radius: 0;
+  padding: 5px;
+}
+#olvido .modal-content h2 {
+  background: #023859;
+  color: #fff;
+  padding: 6px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+#olvido .modal-content input {
+  width: 100%;
+}
+#olvido .modal-content .actions {
+  margin: 7px 0;
+}
+#olvido .modal-content .actions .check {
+  height: 12px;
+  width: inherit;
+  margin: 0;
+}
+#olvido .modal-content button {
+  height: 30px;
+  width: 100%;
+}

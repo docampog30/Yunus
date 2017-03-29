@@ -91,7 +91,29 @@ controllers
 		    }
 		  });
 	  
+	  $scope.buscarCliente = function(){
+		  ServicesFactory.buscarCliente($scope.cliente.documento)
+		  .then(function(data) {
+			  if(data.data.length > 0){
+				  $scope.cliente = $scope.parseData(data.data[0]);
+			  }
+			  
+		  }, function errorCallback(response) {
+			    alert("Ocurrio un error recuperando el cliente");
+		  });
+	  }
 	  
+	  $scope.descargarClientes = function(){
+		  ServicesFactory.descargarClientes();
+	  }
+	  
+	  $scope.parseData = function(cliente){
+		  cliente.feexpedicion 	= new Date(cliente.feexpedicion);
+		  cliente.fenacimiento 		= new Date(cliente.fenacimiento);
+		  cliente.celular			= parseInt( cliente.celular);
+		  cliente.telefono			= parseInt(cliente.telefono);
+		  return cliente;
+	  }
 	  
 	  function calculateAge(birthday) {
 		    var ageDifMs = Date.now() - birthday.getTime();

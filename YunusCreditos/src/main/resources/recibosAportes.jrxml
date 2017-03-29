@@ -143,7 +143,7 @@
 			</line>
 			<textField>
 				<reportElement x="196" y="100" width="573" height="20" uuid="2e3319f0-5a8c-458e-bfdd-2cd09f67454a"/>
-				<textFieldExpression><![CDATA[$P{aporte}.getTipo().equals("O") ? "Ordinario":"Extraordinario"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{aporte}.getTipo().equals("O") ? "Ordinario":$P{aporte}.getTipo().equals("E")?"Extraordinario":$P{aporte}.getTipo().equals("A")?"Afiliación":"Honorarios"]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0">
 				<reportElement x="195" y="142" width="573" height="20" uuid="dbdcb209-b5fa-43e8-a11a-20bf3b6f9bd2"/>

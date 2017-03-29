@@ -45,13 +45,16 @@ controllers
 		  $scope.credito = cre;
 	  }
 	  
-	  $scope.actualizarValor = function(cuota){
+	  $scope.actualizarValor = function(){
 		  $scope.valor = 0;
 		 var seleccionados = $scope.credito.detalles.filter(isSelected);
 		 angular.forEach(seleccionados, function(value) {
-		 	$scope.valor += value.cuota;
-
-		 })
+			 if(moment(value.fecha).isBefore(new Date())){
+				 $scope.valor += value.amortizacion;
+			 }else{
+				 $scope.valor += value.cuota;
+			 }
+		 });
 	  }
 	  
 	  $scope.liquidar = function(){

@@ -27,5 +27,11 @@ public class ClienteRepositoryImpl implements IClientesRepository {
 		parametros.put("id", id);
 		return databaseOperations.listar(Cliente.BUSCAR_POR_ID, parametros, Cliente.class);
 	}
+
+	@Override
+	public List<Cliente> getClients() {
+		Map<String, Object> parametros = new HashMap<>();
+		return databaseOperations.listar(Cliente.BUSCAR_TODOS, parametros, Cliente.class);
+	}
 	
 }

@@ -28,4 +28,10 @@ public class ClienteMockImpl implements IClientesRepository {
 		return null;
 	}
 
+	@Override
+	public List<Cliente> getClients() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

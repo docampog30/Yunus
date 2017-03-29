@@ -12,11 +12,7 @@ controllers
 			  ServicesFactory.buscarCliente($scope.documento)
 			  .then(function(data) {
 				  if(data.data.length > 0){
-					  if(data.data[0].vinculaciones.length == 0){
-						  alert("El cliente no poseé vinculaciones asociadas");
-					  }else{
 						  $scope.cliente = data.data[0];
-					  }
 				  }else{
 					  alert("No se encontraron datos");
 				  }
@@ -42,7 +38,7 @@ controllers
 		  }
 	  }
 	  
-	  $scope.condicionales = [{key:"O",value:"Ordinario"},{key:"E",value:"Extraordinario"}];
+	  $scope.condicionales = [{key:"O",value:"Ordinario"},{key:"E",value:"Extraordinario"},{key:"A",value:"Afiliación"},{key:"H",value:"Honorarios"}];
 	  
 	  $scope.init();
    }]);

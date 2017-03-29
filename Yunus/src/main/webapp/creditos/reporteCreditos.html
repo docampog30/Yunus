@@ -41,29 +41,34 @@
 		<li>
 			<h2>{{totalPagos|currency}}</h2>
 		</li>
+		<li>
+			<button type="submit" ng-click="generarReporte()">Generar reporte
+					<span class="fa fa-search"></span>
+				</button>
+		</li>
 		</ul>
 		<div ng-show = "detalles">
 		<label>CUOTAS PAGADAS POR CLIENTE</label>
 		<div id="creditos" ng-show="detalles">
 			<ul class="titleA partida">
-				<li>Fecha</li>
-				<li>Crédito</li>
-				<li>Periodo</li>
+				<li class="colSmall">Fecha</li>
+				<li class="colSmall">Crédito</li>
+				<li class="colSmall">Periodo</li>
 				<li>Valor abono</li>
 				<li>Fecha pago</li>
 			</ul>
 			<ul ng-repeat="de in detalles" class="tablasA partida">
-			<li >
+			<li class="colSmall">
 				<label>{{de.fecha | date:'dd/MM/yyyy'}}</label>
 			</li>
-			<li >
+			<li class="colSmall">
 				<label>{{de.idcredito}}</label>
 			</li>
-			<li >
+			<li class="colSmall" >
 				<label>{{de.periodo}}</label>
 			</li>
 			<li >
-				<label>{{de.cuota|currency}}</label>
+				<label>{{de.valorpagado|currency}}</label>
 			</li>
 			<li >
 				<label>{{de.fechapago| date:'dd/MM/yyyy'}}</label>
@@ -71,5 +76,9 @@
 			</ul>
 		</div>
 		</div>
-	</div>
+		<div ng-show = "valor">
+			<label>TOTAL DE INGRESOS POR CREDITOS</label>
+			<h3 style="color: red">{{valor|currency}}</h3>
+		</div>
+	</div>		
 	</form>

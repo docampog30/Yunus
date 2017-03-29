@@ -15,14 +15,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @NamedQueries({
-	@NamedQuery(name=Detalle.FINDBYBETWEENDATE,query="SELECT e FROM Detalle e WHERE e.fechapago BETWEEN :startDate AND :endDate")	
-})
+	@NamedQuery(name=Detalle.FINDBYBETWEENDATE,query="SELECT e FROM Detalle e WHERE e.fechapago BETWEEN :startDate AND :endDate"),
+	@NamedQuery(name=Detalle.FINDMOROSOSBYBETWEENDATE,query="SELECT s FROM Detalle s  WHERE s.estado = 'VENCIDA' AND s.fecha BETWEEN :startDate AND :endDate")
+	})
 public class Detalle implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FINDBYBETWEENDATE = "findBetweenDate";
-	
+	public static final String FINDMOROSOSBYBETWEENDATE = "findBetweenDateMorosos";	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -50,12 +53,24 @@ public class Detalle implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="IDCREDITO",updatable=false)
 	private Credito credito;
+	
+	private BigDecimal valorpagado;
 
 	public Detalle() {
 	}
 
 	public int getId() {
 		return this.id;
+	}
+	
+	@JsonIgnore
+	public String getCliente(){
+		return credito.getCliente().getNombres().concat(" ").concat(credito.getCliente().getApellidos());
+	}
+	
+	@JsonIgnore
+	public String getDocumentoCliente(){
+		return credito.getCliente().getDocumento();
 	}
 
 	public void setId(int id) {
@@ -138,5 +153,18 @@ public class Detalle implements Serializable {
 	}
 	public void setFechapago(Date fechapago) {
 		this.fechapago = fechapago;
+	}
+	
+	@JsonIgnore
+	public int getidcredito(){
+		return this.credito.getId();
+	}
+
+	public BigDecimal getValorpagado() {
+		return valorpagado;
+	}
+
+	public void setValorpagado(BigDecimal valorpagado) {
+		this.valorpagado = valorpagado;
 	}
 }

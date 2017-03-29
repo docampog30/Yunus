@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43321bd5-e0e1-4ca4-9cc1-ff185aece863">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="97"/>
-	<property name="ireport.y" value="1154"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="vinculacion" class="co.com.yunus.application.dto.Vinculacion"/>
+	<parameter name="user" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -190,7 +191,7 @@
 				<reportElement x="0" y="200" width="556" height="1" forecolor="#666666" uuid="8fd626b1-38e7-43d0-a34a-7a4a03ac8e59"/>
 			</line>
 			<textField>
-				<reportElement mode="Opaque" x="21" y="59" width="556" height="13" backcolor="#CCCCFF" uuid="9c663aa3-a1f3-4c75-9026-df0d4a233185"/>
+				<reportElement mode="Opaque" x="0" y="59" width="556" height="13" backcolor="#CCCCFF" uuid="9c663aa3-a1f3-4c75-9026-df0d4a233185"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true" isItalic="false"/>
 				</textElement>
@@ -1178,6 +1179,18 @@
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="455" y="85" width="98" height="20" uuid="a99493ba-1370-4683-b91c-ac8f45002810"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getCliente().getSexo().equals("M") ? "Masculino" :"Femenino"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="31" width="68" height="20" uuid="331006ce-9ab5-43f8-9915-0a082a00e6d0"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{user}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="760">
 			<textField>
@@ -1745,7 +1758,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{vinculacion}.getReferenciacoop()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getLugarentrevista()]]></textFieldExpression>
 			</textField>
 			<textField pattern="MM/yyyy HH.mm" isBlankWhenNull="true">
 				<reportElement x="295" y="611" width="136" height="20" uuid="27aa316f-39b3-4f76-a437-9df7399d34fa"/>
@@ -1759,7 +1772,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{vinculacion}.getResultadoentrevista()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getResultadoentrevista().equals("A") ? "Aceptado":"Rechazado"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="2" y="39" width="67" height="20" uuid="9e2d156a-11b7-425c-bb16-d2955277d9e7"/>
@@ -2163,7 +2176,7 @@
 				<textFieldExpression><![CDATA[$P{vinculacion}.getConfirmaciones().get(0).getCurso() ? "X":""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="129" y="238" width="69" height="20" uuid="2bde4144-9f7f-419f-bacd-d5cd01748c36"/>
+				<reportElement x="214" y="238" width="324" height="20" uuid="2bde4144-9f7f-419f-bacd-d5cd01748c36"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -2175,6 +2188,13 @@
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vinculacion}.getConfirmaciones().get(0).getEstado() ? "X":""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="129" y="238" width="68" height="20" uuid="9345c3ac-753a-4eed-a288-de1630d7deba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vinculacion}.getConfirmaciones().get(0).getOtro() != null ? "X" :""]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

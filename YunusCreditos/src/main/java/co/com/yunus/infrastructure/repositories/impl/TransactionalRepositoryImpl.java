@@ -25,8 +25,8 @@ public class TransactionalRepositoryImpl implements ITransactionalRepository {
 		dataBaseOperations.update(object);
 	}
 
-	public <T> void delete(T object) {
-		dataBaseOperations.delete(object);
+	public <T> void delete(Class<T> clazz,Object pk) {
+		dataBaseOperations.delete(clazz,pk);
 	}
 
 	@Override

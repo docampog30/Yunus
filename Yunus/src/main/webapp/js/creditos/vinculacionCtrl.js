@@ -15,7 +15,8 @@ controllers
 			  alert('Vinculación guardada correctamente');
 			  print = window.confirm('Desea imprimir el reporte de afiliación ?');
 			  if(print){
-				  ServicesFactory.imprimirReporteAfiliacion(data.data);
+				  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
+				  ServicesFactory.imprimirReporteAfiliacion(data.data,user);
 			  }
 			  $scope.init();
 			  
@@ -27,12 +28,14 @@ controllers
 	  $scope.grabar = function(){
 		  $scope.vinculacion.confirmaciones = [];
 		  $scope.vinculacion.confirmaciones.push($scope.confirmacion);
-		  ServicesFactory.guardarVinculacion($scope.vinculacion)
+		  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
+		  ServicesFactory.guardarVinculacion($scope.vinculacion,user)
 		  .then(function(data) {
 			  alert('Vinculación guardada correctamente');
 			  print = window.confirm('Desea imprimir el reporte de afiliación ?');
 			  if(print){
-				  ServicesFactory.imprimirReporteAfiliacion(data.data);
+				  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
+				  ServicesFactory.imprimirReporteAfiliacion(data.data,user);
 			  }
 			  $scope.init();
 			  

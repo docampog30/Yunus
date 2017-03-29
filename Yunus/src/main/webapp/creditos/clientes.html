@@ -3,11 +3,14 @@
 <div class="actions" style="float: right;">
 	<ul>
 		<li>
-			<button ng-click="descargar()">Nuevo
+			<button ng-click="init()">Nuevo
 				<span class="fa fa-plus-circle"></span>
 			</button>
 			<button type="submit" ng-click="guardar()" ng-disabled="userForm.$invalid">Guardar
 				<span class="fa fa-floppy-o"></span>
+			</button>
+			<button type="submit" ng-click="descargarClientes()">Descargar clientes
+				<span class="fa fa-download"></span>
 			</button>
 		</li>
 	</ul>
@@ -16,6 +19,12 @@
 	<label id="obligatorio">*Campos Obligatorios</label>
 	<label for=""><i class="fa fa-check-circle"></i> Información general</label>
 	<ul class = "add">
+		<li>
+			<label>Numero documento #</label>
+			<input type="number" ng-blur="buscarCliente()" ng-model="cliente.documento" required maxlength="12"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+			/>
+		</li>
 		<li>
 			<label>Nombres</label>
 			<input type="text" ng-model="cliente.nombres" required />
@@ -33,12 +42,6 @@
 			<label>Tipo de documento :</label>
 			<select ng-model="cliente.tipdoc" ng-options="m.id as m.descripcion for m in tiposDocumento" required></select>
 			
-		</li>
-		<li>
-			<label>Numero documento #</label>
-			<input type="number" ng-model="cliente.documento" required maxlength="12"
-				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-			/>
 		</li>
 		<li>
 			<label>Expedido en</label>

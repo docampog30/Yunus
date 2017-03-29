@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import co.com.yunus.domain.repositories.operations.IRepositoryOperations;
+import co.com.yunus.infrastructure.util.DatabaseServiceLocator;
 
 public class DatabaseOperationsImpl implements IRepositoryOperations {
 
@@ -65,10 +66,11 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 		}
 	}
 
-	public <T> void delete(T object) {
+	public <T> void delete(Class<T> clazz,Object pk) {
 		try {
+			Object find = entityManager.find(clazz, pk);
 			entityManager.getTransaction().begin();
-			entityManager.remove(object);
+			entityManager.remove(find);
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,6 +104,10 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 	public void executeSQL(String sql,Map<String, Object> parametros) {
 		
 		EntityTransaction tx = null;
+		if(!entityManager.isOpen()){
+			entityManager = DatabaseServiceLocator.emf.createEntityManager();
+		}
+		
 		try {
 			tx = entityManager.getTransaction();
 			Query q = entityManager.createQuery(sql);

@@ -1,0 +1,32 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-money"></i> Generar reporte Morosos </label>
+		
+		<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="cliente.documento" />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarCliente()">Buscar x cliente
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+		<ul class = "add">
+		<li>
+				<label>Fecha Inicio</label>
+				<input required type="date" ng-model="fechaini" />
+			</li>
+			<li>
+				<label>Fecha Fin</label>
+				<input required type="date" ng-model="fechafin" />
+			</li>
+		<li>
+				<button ng-disabled= "userForm.$invalid" type="submit" ng-click="generarReporte()">Generar entre fechas
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+		</div>
+	</form>

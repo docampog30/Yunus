@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 
 public class DatabaseServiceLocator {
 
-	private static EntityManagerFactory emf;
+	public static EntityManagerFactory emf;
 	
 	static{
 		

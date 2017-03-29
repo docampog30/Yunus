@@ -18,4 +18,14 @@ public interface ICreditosRepository {
 	void liquidarCuotas(List<Detalle> detalles);
 
 	BigDecimal findSumBetweenDates(Date feIni, Date feFin);
+
+	BigDecimal findAportesSumBetweenDates(Date date, Date date2);
+	List<Aporte> findAportesBetweenDates(Date date, Date date2);
+	List<Aporte> findAporteByCliente(String cedula);
+
+	List<Detalle> findDetallesMora(Date date, Date date2);
+
+	void deleteAporte(Long id);
+
+	List<Detalle> findDetallesMoraByCliente(String documento);
 }

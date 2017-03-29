@@ -1,5 +1,7 @@
 package co.com.yunus.application.rest;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,11 +13,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import co.com.yunus.application.dto.Cliente;
+import co.com.yunus.application.dto.InformeClientes;
 import co.com.yunus.domain.repositories.IClientesRepository;
 import co.com.yunus.domain.repositories.ITransactionalRepository;
-import co.com.yunus.exception.AppException;
+import co.com.yunus.infrastructure.excel.ExcelFileDescriptor;
+import co.com.yunus.infrastructure.excel.ExcelGenerator;
 
 @Path("cliente")
 public class ClientesServices {
@@ -28,19 +34,16 @@ public class ClientesServices {
 	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
 	
+	@Inject
+	@Named("excelGeneric")
+	private ExcelGenerator<Cliente> excelGenerator;
+	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void guardar(Cliente cliente) throws Exception{
-		validarCedula(cliente.getDocumento());
-		transactionalRepository.save(cliente);
+	public void guardar(Cliente cliente){
+		transactionalRepository.update(cliente);
 	}
 	
-	private void validarCedula(String documento) {
-		if(!clientesRepository.getClientByDocument(documento).isEmpty()){
-			throw new AppException("Este cliente ya existe");
-		}
-	}
-
 	@GET
 	@Path("{documento}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -51,6 +54,20 @@ public class ClientesServices {
 		clientByDocument.stream()
 				.forEach(c->c.getVinculaciones().stream().forEach(v->v.setCliente(null)));
 		return clientByDocument;
+	}
+	
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getClientes() throws IOException{
+		
+		List<Cliente> clients = clientesRepository.getClients();
+		byte[] generate = excelGenerator.generate(clients, new ExcelFileDescriptor(InformeClientes.values()), "Reporte Clientes");
+		java.nio.file.Path path = Files.createTempFile("Clientes", ".xlsx");
+		Files.write(path, generate);
+		ResponseBuilder response = Response.ok(path.toFile());
+		response.header("Content-Disposition","attachment; filename=clientes.xlsx");
+		return response.build();
 	}
 	
 }

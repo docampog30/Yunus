@@ -10,10 +10,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
-import co.com.yunus.application.dto.Cliente;
 import co.com.yunus.application.dto.Credito;
 import co.com.yunus.application.dto.Detalle;
-import co.com.yunus.application.dto.RequestCredito;
 import co.com.yunus.application.dto.RequestSimulador;
 import co.com.yunus.domain.services.SimuladorBussinesService;
 import co.com.yunus.infrastructure.reports.ReportGenerator;

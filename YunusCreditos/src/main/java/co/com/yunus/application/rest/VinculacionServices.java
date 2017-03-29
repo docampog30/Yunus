@@ -41,20 +41,21 @@ public class VinculacionServices {
 	@POST	
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] guardar(Vinculacion vinculacion){
+	@Path("{user}")
+	public byte[] guardar(Vinculacion vinculacion,@PathParam("user") String user){
 		asignarVinculacion(vinculacion);
 		transactionalRepository.save(vinculacion);
-		return reportById(vinculacion.getId());
+		return reportById(vinculacion.getId(),user);
 	}
 	
 	@POST
-	@Path("actualizar")
+	@Path("actualizar/{user}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] actualizar(Vinculacion vinculacion){
+	public byte[] actualizar(Vinculacion vinculacion,@PathParam("user") String user){
 		asignarVinculacion(vinculacion);
 		transactionalRepository.update(vinculacion);
-		return reportById(vinculacion.getId());
+		return reportById(vinculacion.getId(),user);
 	}
 
 	private void asignarVinculacion(Vinculacion vinculacion) {
@@ -90,27 +91,20 @@ public class VinculacionServices {
 	}
 	
 	@GET
-	@Path("{id}")
+	@Path("{id}/{user}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] reportById(@PathParam("id") Long id){
+	public byte[] reportById(@PathParam("id") Long id,@PathParam("user") String user){
 		Vinculacion vinculacion = vinculacionRepository.findById(id).stream().findAny().get();
-		return getBytes(vinculacion);
-	}
-	
-	@GET
-	@Path("test")
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getReportBytes() {
-		Vinculacion vinculacion = vinculacionRepository.findByDocument("1047969179").stream().findAny().get();;
-		return getBytes(vinculacion);
+		return getBytes(vinculacion,user);
 	}
 
-	private byte[] getBytes(Vinculacion vinculacion) {
+	private byte[] getBytes(Vinculacion vinculacion,String user) {
 		byte[] exportReportToPdf = null;
 		try {
 			Map<String,Object> parametros = new HashMap<String,Object>();
 			parametros.put("vinculacion", vinculacion);
+			parametros.put("user", user);
 			InputStream jasperSin = this.getClass().getClassLoader().getResourceAsStream("vinculacion.jasper");
 		    JasperReport jasperCompilado = (JasperReport) JRLoader.loadObject(jasperSin);
 			JasperPrint jasperPrint 	 = JasperFillManager.fillReport(jasperCompilado, parametros, new JREmptyDataSource());

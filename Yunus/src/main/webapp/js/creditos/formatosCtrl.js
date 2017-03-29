@@ -18,7 +18,8 @@ controllers
 	  }
 
 	  $scope.descargar = function(partida){
-		  ServicesFactory.descargarVinculacion(partida.id);
+		  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
+		  ServicesFactory.descargarVinculacion(partida.id,user);
 	  }
 	  
 }]);

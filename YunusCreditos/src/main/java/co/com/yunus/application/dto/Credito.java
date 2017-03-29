@@ -2,6 +2,9 @@ package co.com.yunus.application.dto;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,11 +14,14 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name=Credito.FIND_BY_DOCUMENTO_CLIENTE, query="SELECT c FROM Credito c where c.cliente.documento = :documento")
+@NamedQueries({
+	@NamedQuery(name=Credito.FIND_BY_DOCUMENTO_CLIENTE, query="SELECT c FROM Credito c where c.cliente.documento = :documento")
+})
 public class Credito implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIND_BY_DOCUMENTO_CLIENTE = "findByCliente";
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -128,6 +134,11 @@ public class Credito implements Serializable {
 	
 	public Maestro getTipocredito() {
 		return tipocredito;
+	}
+	
+	@JsonIgnore
+	public Cliente getCliente() {
+		return cliente;
 	}
 
 }

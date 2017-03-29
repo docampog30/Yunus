@@ -20,6 +20,7 @@ import org.jboss.weld.environment.se.events.ContainerInitialized;
 import co.com.yunus.application.rest.ClientesServices;
 import co.com.yunus.application.rest.CreditosServices;
 import co.com.yunus.application.rest.MaestrosServices;
+import co.com.yunus.application.rest.SeguridadServices;
 import co.com.yunus.application.rest.SimulacionServices;
 import co.com.yunus.application.rest.VinculacionServices;
 import co.com.yunus.config.AppExceptionMapper;
@@ -33,14 +34,13 @@ public class MainCreditos {
 	
     private void initServer() {
 	try {
-		
-		initTimer();
 	    final ResourceConfig resourceConfig = new ResourceConfig();
 	    resourceConfig.register(ClientesServices.class);
 	    resourceConfig.register(MaestrosServices.class);
 	    resourceConfig.register(VinculacionServices.class);
 	    resourceConfig.register(SimulacionServices.class);
 	    resourceConfig.register(CreditosServices.class);
+	    resourceConfig.register(SeguridadServices.class);
 	    resourceConfig.register(JacksonFeature.class);
 	    resourceConfig.register(new CORSFilter());	    
 	    resourceConfig.registerInstances(new AppExceptionMapper());
@@ -58,11 +58,10 @@ public class MainCreditos {
         context.setContextPath("/app");
         context.addServlet(sh, "/*");
         
-        System.out.println("Server Iniciado !!");
-
 	    server.setHandler(context);
 	    server.start();
 	    server.join();
+	    System.out.println("Server Iniciado !!");
 	    
 	    
 	} catch (Exception ex) {
@@ -76,29 +75,10 @@ public class MainCreditos {
     }
 
     public void start(@Observes final ContainerInitialized event) {
-	try {
-	    initServer();
-	} catch (Exception e) {
-	    throw new RuntimeException(e);
-	}
+		try {
+		    initServer();
+		} catch (Exception e) {
+		    throw new RuntimeException(e);
+		}
     }
-
-	private void initTimer() {
-	    Calendar with = Calendar.getInstance();
-		int hour = with.get(Calendar.HOUR_OF_DAY);
-	    int intDelayInHour = getHoursUntilTarget(22);
-	   
-	    System.out.println("Current Hour: " + hour);
-	    System.out.println("Comuted Delay for next 1 am: " + intDelayInHour);
-	    
-	    
-	    timerVencimiento.schedule(intDelayInHour);
-	}
-	
-	private int getHoursUntilTarget(int targetHour) {
-	    Calendar calendar = Calendar.getInstance();
-	    int hour = calendar.get(Calendar.HOUR_OF_DAY);
-	    return hour < targetHour ? targetHour - hour : targetHour - hour + 24;
-	}
-
 }
