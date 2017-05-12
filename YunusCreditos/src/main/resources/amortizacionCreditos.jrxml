@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AmortizacionCreditos1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14f6bfa0-c0f0-4573-a98a-2eb0f3df8bd8">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="203"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="credito" class="co.com.yunus.application.dto.Credito"/>
 	<parameter name="cliente" class="co.com.yunus.application.dto.Cliente"/>
@@ -93,49 +93,49 @@
 				</textField>
 			</frame>
 			<staticText>
-				<reportElement x="0" y="153" width="48" height="13" forecolor="#6F6343" uuid="27faeeef-aa03-4101-9552-6edff0a0e828"/>
-				<textElement textAlignment="Center">
+				<reportElement x="0" y="153" width="40" height="13" forecolor="#6F6343" uuid="27faeeef-aa03-4101-9552-6edff0a0e828"/>
+				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Periodo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="64" y="153" width="61" height="13" forecolor="#6F6343" uuid="31820c5e-3473-4e21-8286-12cb6d9cfbc8"/>
+				<reportElement x="41" y="153" width="61" height="13" forecolor="#6F6343" uuid="31820c5e-3473-4e21-8286-12cb6d9cfbc8"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha Pago]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="143" y="153" width="61" height="13" forecolor="#6F6343" uuid="684bd15e-f867-4411-b97f-486866d98552"/>
-				<textElement textAlignment="Center">
+				<reportElement x="106" y="154" width="94" height="13" forecolor="#6F6343" uuid="684bd15e-f867-4411-b97f-486866d98552"/>
+				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Saldo Inicial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="222" y="153" width="61" height="13" forecolor="#6F6343" uuid="34bb0dbb-eb94-4b19-8443-34f8e44c3545"/>
+				<reportElement x="202" y="153" width="61" height="13" forecolor="#6F6343" uuid="34bb0dbb-eb94-4b19-8443-34f8e44c3545"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Interes]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="303" y="153" width="61" height="13" forecolor="#6F6343" uuid="1d3f49ad-6490-49d8-a34a-49a2acabc933"/>
+				<reportElement x="283" y="153" width="61" height="13" forecolor="#6F6343" uuid="1d3f49ad-6490-49d8-a34a-49a2acabc933"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cuota]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="384" y="153" width="72" height="13" forecolor="#6F6343" uuid="d42ad696-6da4-42ff-83ea-5c00112f9461"/>
-				<textElement textAlignment="Center">
+				<reportElement x="364" y="153" width="72" height="13" forecolor="#6F6343" uuid="d42ad696-6da4-42ff-83ea-5c00112f9461"/>
+				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Amortización]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="477" y="153" width="72" height="13" forecolor="#6F6343" uuid="4a7e5386-3b6e-408b-bb3d-90e63f29c10f"/>
+				<reportElement x="457" y="153" width="72" height="13" forecolor="#6F6343" uuid="4a7e5386-3b6e-408b-bb3d-90e63f29c10f"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -164,33 +164,33 @@
 		</band>
 	</title>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="5" y="0" width="48" height="20" forecolor="#6F6343" uuid="827e33b4-2dc7-4406-b9a6-9a9911d13ab6"/>
+				<reportElement x="2" y="0" width="38" height="20" forecolor="#6F6343" uuid="827e33b4-2dc7-4406-b9a6-9a9911d13ab6"/>
 				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="67" y="0" width="63" height="20" forecolor="#6F6343" uuid="f1b1ebd0-840b-4728-aaf9-3c561a913e7a"/>
+				<reportElement x="41" y="0" width="63" height="20" forecolor="#6F6343" uuid="f1b1ebd0-840b-4728-aaf9-3c561a913e7a"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="147" y="0" width="75" height="20" forecolor="#6F6343" uuid="962df50c-d47b-4353-9bd8-972e75d50c82"/>
+				<reportElement x="105" y="0" width="95" height="20" forecolor="#6F6343" uuid="962df50c-d47b-4353-9bd8-972e75d50c82"/>
 				<textFieldExpression><![CDATA[$F{saldoinicial}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="224" y="0" width="79" height="20" forecolor="#6F6343" uuid="12de0ea4-b268-4054-84d6-080a379f47d4"/>
+				<reportElement x="203" y="0" width="79" height="20" forecolor="#6F6343" uuid="12de0ea4-b268-4054-84d6-080a379f47d4"/>
 				<textFieldExpression><![CDATA[$F{intereses}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="306" y="0" width="78" height="20" forecolor="#6F6343" uuid="2e5a265c-3054-4ad2-a30d-5ee055ba7a13"/>
+				<reportElement x="284" y="0" width="78" height="20" forecolor="#6F6343" uuid="2e5a265c-3054-4ad2-a30d-5ee055ba7a13"/>
 				<textFieldExpression><![CDATA[$F{cuota}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="389" y="0" width="88" height="20" forecolor="#6F6343" uuid="1994f1cf-3dbd-4c9a-a88e-efb73111d2aa"/>
+				<reportElement x="364" y="0" width="88" height="20" forecolor="#6F6343" uuid="1994f1cf-3dbd-4c9a-a88e-efb73111d2aa"/>
 				<textFieldExpression><![CDATA[$F{amortizacion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="480" y="0" width="72" height="20" forecolor="#6F6343" uuid="257c1b11-5cce-4295-be45-532c8f69cc01"/>
+				<reportElement x="454" y="0" width="101" height="20" forecolor="#6F6343" uuid="257c1b11-5cce-4295-be45-532c8f69cc01"/>
 				<textFieldExpression><![CDATA[$F{saldofinal}]]></textFieldExpression>
 			</textField>
 			<line>

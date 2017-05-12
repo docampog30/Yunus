@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,12 +21,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @NamedQueries({
 	@NamedQuery(name=Detalle.FINDBYBETWEENDATE,query="SELECT e FROM Detalle e WHERE e.fechapago BETWEEN :startDate AND :endDate"),
-	@NamedQuery(name=Detalle.FINDMOROSOSBYBETWEENDATE,query="SELECT s FROM Detalle s  WHERE s.estado = 'VENCIDA' AND s.fecha BETWEEN :startDate AND :endDate")
+	@NamedQuery(name=Detalle.FINDMOROSOSBYBETWEENDATE,query="SELECT s FROM Detalle s  WHERE s.estado = 'VENCIDA' AND s.fecha BETWEEN :startDate AND :endDate"),
+	@NamedQuery(name=Detalle.FINDLASTCONS,query="SELECT coalesce(MAX(s.consecutivo)+1,1) FROM Detalle s ")
 	})
+@Table(name="DETALLE")
 public class Detalle implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FINDBYBETWEENDATE = "findBetweenDate";
 	public static final String FINDMOROSOSBYBETWEENDATE = "findBetweenDateMorosos";	
+	public static final String FINDLASTCONS = "findLastCons";	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -55,6 +59,8 @@ public class Detalle implements Serializable {
 	private Credito credito;
 	
 	private BigDecimal valorpagado;
+	
+	private BigDecimal consecutivo;
 
 	public Detalle() {
 	}
@@ -166,5 +172,13 @@ public class Detalle implements Serializable {
 
 	public void setValorpagado(BigDecimal valorpagado) {
 		this.valorpagado = valorpagado;
+	}
+
+	public BigDecimal getConsecutivo() {
+		return consecutivo;
+	}
+
+	public void setConsecutivo(BigDecimal consecutivo) {
+		this.consecutivo = consecutivo;
 	}
 }

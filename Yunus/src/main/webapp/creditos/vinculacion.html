@@ -111,6 +111,9 @@
 			/>
 		</li>
 		</ul>
+		
+		<label style="color: red">Total ingresos : {{totalIngresos|currency}}</label>
+		<br></br>
 		<label for=""><i class="fa fa-check-circle"></i>Datos laborales</label>
 	
 	<ul class = "add">
@@ -208,7 +211,7 @@
 			</li>
 			<li style="width: inherit;">
 				<label>Declaro que el origen de mis fondos y/o bienes proviene de</label>
-				<input type="text" ng-model="vinculacion.origen" required maxlength="50"/>
+				<select ng-model="vinculacion.origen" ng-options="m.value as m.value for m in origenes" required></select>
 			</li>
 			
 		</ul>
@@ -277,7 +280,6 @@
 				<li>Fecha de nacimiento</li>
 				<li >Parentesco</li>
 				<li class="peq" >Teléfono</li>
-				<li >Designación como:</li>
 				<li class="peq">%</li>
 				<li class="peq">Eliminar</li>
 			</ul>
@@ -297,10 +299,9 @@
 			<li class="peq">
 				<input type="text" ng-model="beneficiario.telefono" maxlength="12"/>
 			</li>
-			<li>
-				<input type="text" ng-model="beneficiario.designacion"/>
-			</li>
 			<li class="peq">
+				<input type="number" ng-model="beneficiario.designacion"  maxlength="3"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 			</li>
 			<li class="peq">
 				<button class="descargar" ng-click="eliminarBeneficiario($index)" >Eliminar  <i class="fa fa-drash"></i></button>

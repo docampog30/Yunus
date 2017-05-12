@@ -26,9 +26,11 @@ controllers
 		  if($scope.valorAporte > 0){
 			  var request = {idcliente:$scope.cliente.id,valor:$scope.valorAporte,tipaporte:$scope.tipo}
 			  ServicesFactory.liquidarAporte(request)
-			  .then(function(data) {
+			  .success(function (data, status, headers, config) {
+				  var cons = parseInt(headers('cons'));
 				  alert("Aporte liquidado correctamente");
-				  ServicesFactory.imprimirReporteAporte(data.data);
+				  var filename = "Aporte "+$scope.cliente.nombres+$scope.cliente.apellidos+"_"+cons;
+				  ServicesFactory.imprimirReporteAporte(data,filename);
 				  $scope.init();
 			  }, function errorCallback(response) {
 				    alert("Ocurrio un error liquidando el aporte");

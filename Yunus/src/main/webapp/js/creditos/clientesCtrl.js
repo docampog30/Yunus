@@ -115,6 +115,10 @@ controllers
 		  return cliente;
 	  }
 	  
+	  $scope.onKeydown = function(keycode){
+		  alert(keycode);
+	  }
+	  
 	  function calculateAge(birthday) {
 		    var ageDifMs = Date.now() - birthday.getTime();
 		    var ageDate = new Date(ageDifMs);

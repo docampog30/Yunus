@@ -1,5 +1,5 @@
-<form name="userForm" novalidate>
-<div class="clientes" >
+<form name="userForm" novalidate ng-enter>
+<div class="clientes" on-keydown="onKeydown">
 <div class="actions" style="float: right;">
 	<ul>
 		<li>
@@ -21,7 +21,7 @@
 	<ul class = "add">
 		<li>
 			<label>Numero documento #</label>
-			<input type="number" ng-blur="buscarCliente()" ng-model="cliente.documento" required maxlength="12"
+			<input type="number" ng-blur="buscarCliente()" ng-model="cliente.documento" required maxlength="40" on-keydown="onKeydown"
 				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 			/>
 		</li>

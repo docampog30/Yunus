@@ -71,6 +71,7 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
 
 		    return {
 			    'request' : function(config) {
+			    	
 				    return config || $q.when(config);
 			    }
 		    };
@@ -82,7 +83,10 @@ mainApp.run(
 		  [
 		    "$rootScope",'$cookies','$location',
 		    function($rootScope,$cookies,$location) {
-		    	$rootScope.urlServices = 'http://localhost:8181/app';		    	
+		    	
+		    	//$rootScope.urlServices = window.location.protocol+'//'+window.location.hostname+':'+'8181/app';
+		    	$rootScope.urlServices = 'http://52.1.235.127:8181/app';
+		    	
 		    	 $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
 		    		 var logged = false;
 		    		
@@ -96,6 +100,32 @@ mainApp.run(
 		    	        	}
 		    	        }
 		    	    });
+}]);
+
+mainApp.directive('onKeydown', ['$document',function($document) {
+    return {
+        restrict: 'EA',
+        link: function(scope, elem, attributes) {
+        	attributes.$observe('active', function() {
+				if (attributes.active === 'true') {
+					$document.off('keydown', keyHandler);
+				} else {
+					$document.on('keydown', keyHandler);
+				}
+			});
+        	
+        	keyHandler = function($event) {
+				if (isCtrlKey) {
+					isCtrlKey = false;
+					return prevent($event);
+				}
+        	}
+
+			return elem.on('$destroy', function() {
+				return $document.off('keydown', keyHandler);
+			});
+        }
+    };
 }]);
 
 mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$http) {
@@ -227,9 +257,9 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
 			    alert("Error generando informe");
 		  });
     }
-   	dataFactory.descargarVinculacion = function(id,user){
+   	dataFactory.descargarVinculacion = function(id,user,filename){
    		return $http.get($rootScope.urlServices+'/vinculacion/'+id+'/'+user, {responseType: 'arraybuffer'}).then(function(data) {
-   			dataFactory.imprimirReporteAfiliacion(data.data);
+   			dataFactory.imprimirReporteAfiliacion(data.data,filename);
 		  }, function errorCallback(response) {
 			    alert("Error generando informe");
 		  });
@@ -266,7 +296,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
 		  });
    	}
 
-   	dataFactory.imprimirReporteAporte = function(data){
+   	dataFactory.imprimirReporteAporte = function(data,filename){
    		var file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);
        
@@ -275,12 +305,12 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
         a.style = "display: none";
         
         a.href = fileURL;
-        a.download = 'Aporte';
+        a.download = filename;
         a.click();
         window.open(fileURL);
         window.URL.revokeObjectURL(fileURL);
    	}
-   	dataFactory.imprimirReporteAbonos = function(data){
+   	dataFactory.imprimirReporteAbonos = function(data,filename){
    		var file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);
        
@@ -289,7 +319,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
         a.style = "display: none";
         
         a.href = fileURL;
-        a.download = 'Abonos';
+        a.download = filename;
         a.click();
         window.open(fileURL);
         window.URL.revokeObjectURL(fileURL);
@@ -309,7 +339,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
         window.open(fileURL);
         window.URL.revokeObjectURL(fileURL);
     }
-   	dataFactory.imprimirReporteAfiliacion = function(data){
+   	dataFactory.imprimirReporteAfiliacion = function(data,filename){
    		var file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);
        
@@ -318,7 +348,7 @@ mainApp.factory('ServicesFactory', [ '$rootScope','$http', function($rootScope,$
         a.style = "display: none";
         
         a.href = fileURL;
-        a.download = 'Vinculacion';
+        a.download = filename;
         a.click();
         window.open(fileURL);
         window.URL.revokeObjectURL(fileURL);

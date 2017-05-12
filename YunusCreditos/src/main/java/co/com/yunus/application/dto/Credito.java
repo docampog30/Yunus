@@ -17,6 +17,7 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name=Credito.FIND_BY_DOCUMENTO_CLIENTE, query="SELECT c FROM Credito c where c.cliente.documento = :documento")
 })
+@Table(name="CREDITO")
 public class Credito implements Serializable {
 	private static final long serialVersionUID = 1L;
 

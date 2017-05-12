@@ -1,5 +1,6 @@
 package co.com.yunus.application.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -336,7 +337,7 @@ public class Vinculacion {
 		this.resultadoentrevista = resultadoentrevista;
 	}
 	public List<Beneficiario> getBeneficiarios() {
-		return beneficiarios;
+		return beneficiarios == null ? new ArrayList<>() : beneficiarios;
 	}
 	public void setBeneficiarios(List<Beneficiario> beneficiarios) {
 		this.beneficiarios = beneficiarios;
@@ -466,7 +467,7 @@ public class Vinculacion {
 		this.tipocontrato = tipocontrato;
 	}
 	public List<Confirmacion> getConfirmaciones() {
-		return confirmaciones;
+		return confirmaciones == null ? new ArrayList<>() : confirmaciones;
 	}
 	public void setConfirmaciones(List<Confirmacion> confirmaciones) {
 		this.confirmaciones = confirmaciones;

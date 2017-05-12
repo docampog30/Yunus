@@ -20,6 +20,6 @@ public class TimerVencimientoCuotas {
 	                task.run();
 	            }
 	        };
-	        ses.scheduleAtFixedRate(pinger,delay,10,TimeUnit.SECONDS);
+	        ses.scheduleAtFixedRate(pinger,delay,1,TimeUnit.HOURS);
 	  }
 	}

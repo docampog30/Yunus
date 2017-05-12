@@ -36,6 +36,7 @@ public class ReportGenerator {
 			JasperReport jasperCompilado = getJasperReport(reportName);
 			JasperPrint jasperPrint 	 = JasperFillManager.fillReport(jasperCompilado, parametros, new JREmptyDataSource());
 			exportReportToPdf = getReportBytes(jasperPrint);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

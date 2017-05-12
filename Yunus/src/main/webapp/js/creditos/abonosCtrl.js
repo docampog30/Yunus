@@ -49,7 +49,7 @@ controllers
 		  $scope.valor = 0;
 		 var seleccionados = $scope.credito.detalles.filter(isSelected);
 		 angular.forEach(seleccionados, function(value) {
-			 if(moment(value.fecha).isBefore(new Date())){
+			 if(moment(value.fecha).isAfter(new Date())){
 				 $scope.valor += value.amortizacion;
 			 }else{
 				 $scope.valor += value.cuota;
@@ -65,9 +65,11 @@ controllers
 		  
 		  var request = {idcliente:$scope.cliente.id,detalles:seleccionados,idcredito:$scope.credito.id};
 		  ServicesFactory.liquidarCuotas(request)
-		  .then(function(data) {
+		  .success(function (data, status, headers, config) {
+			  var cons = parseInt(headers('cons'));
 			  alert("Cuotas liquidadas correctamente");
-			  ServicesFactory.imprimirReporteAbonos(data.data);
+			  var filename = "Abono "+$scope.cliente.nombres+$scope.cliente.apellidos+"_"+cons;
+			  ServicesFactory.imprimirReporteAbonos(data,filename);
 			  $scope.init();
 		  }, function errorCallback(response) {
 			    alert("Ocurrio un error liquidando las cuotas");

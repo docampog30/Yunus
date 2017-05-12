@@ -11,4 +11,5 @@ public interface IRepositoryOperations {
 	<T> void save(List<T> object);
 	<T> void update(List<T> object);
 	void executeSQL(String sql,Map<String, Object> parametros);
+	<T> Object findOne(String namedQueryName, Map<String, Object> parametros,Class<T> clazz);
 }

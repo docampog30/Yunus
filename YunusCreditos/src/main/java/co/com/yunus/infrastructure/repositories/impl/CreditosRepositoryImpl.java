@@ -108,4 +108,25 @@ public class CreditosRepositoryImpl implements ICreditosRepository {
 						.collect(Collectors.toList());
 		return list;
 	}
+
+	@Override
+	public BigDecimal findLastConsDetalles() {
+		Map<String,Object> parametros = new HashMap<>();
+		return (BigDecimal) databaseOperations.findOne(Detalle.FINDLASTCONS, parametros, BigDecimal.class);
+	}
+
+	@Override
+	public BigDecimal findConsByType(String tipaporte) {
+		Map<String,Object> parametros = new HashMap<>();
+		if("O".equals(tipaporte) ||"E".equals(tipaporte)){
+			parametros.put("tipo1", "O");
+			parametros.put("tipo2","E");
+		}else{
+			parametros.put("tipo1", tipaporte);
+			parametros.put("tipo2", tipaporte);
+		}
+		
+		
+		return (BigDecimal) databaseOperations.findOne(Aporte.FINDLASTCONS, parametros, BigDecimal.class);
+	}
 }

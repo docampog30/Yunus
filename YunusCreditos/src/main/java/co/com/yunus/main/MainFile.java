@@ -16,7 +16,6 @@ import org.apache.commons.lang.StringUtils;
 import co.com.yunus.application.dto.Cliente;
 
 public class MainFile {
-	 private static final String COMMA = ";";
 
 	public static void main(String[] args) {
 		 List<Cliente> inputList = new ArrayList<>();

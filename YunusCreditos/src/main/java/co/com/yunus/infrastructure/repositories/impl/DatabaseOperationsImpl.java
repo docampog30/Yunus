@@ -27,6 +27,16 @@ public class DatabaseOperationsImpl implements IRepositoryOperations {
 		return query.getResultList();
 	}
 	
+	public <T> Object findOne(String namedQueryName,Map<String, Object> parametros, Class<T> clazz) {
+		TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName,clazz);
+		if(parametros!= null){
+			for (Map.Entry<String, Object> entry : parametros.entrySet()) {
+				query.setParameter((String) entry.getKey(), entry.getValue());
+			}
+		}
+		return query.getSingleResult();
+	}
+	
 	public <T> void save(T object) {
 		EntityTransaction tx = null;
 		try {

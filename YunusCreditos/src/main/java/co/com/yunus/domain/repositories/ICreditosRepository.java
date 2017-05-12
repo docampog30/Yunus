@@ -28,4 +28,8 @@ public interface ICreditosRepository {
 	void deleteAporte(Long id);
 
 	List<Detalle> findDetallesMoraByCliente(String documento);
+
+	BigDecimal findLastConsDetalles();
+
+	BigDecimal findConsByType(String tipaporte);
 }

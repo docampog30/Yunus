@@ -110,9 +110,9 @@ public class VinculacionServices {
 			JasperPrint jasperPrint 	 = JasperFillManager.fillReport(jasperCompilado, parametros, new JREmptyDataSource());
 			exportReportToPdf = JasperExportManager.exportReportToPdf(jasperPrint);
 			
-			OutputStream out = new FileOutputStream("C:/Users/david.ocampo/Documents/reporte.pdf");
-			out.write(exportReportToPdf);
-			out.close();
+//			OutputStream out = new FileOutputStream("C:/Users/david.ocampo/Documents/reporte.pdf");
+//			out.write(exportReportToPdf);
+//			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

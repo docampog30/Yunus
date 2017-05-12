@@ -110,22 +110,25 @@ public class CreditosServices {
 	@POST
 	@Path("aporte")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public byte[] liquidarAporte(RequestCredito request){
+	public Response liquidarAporte(RequestCredito request){
 		Aporte aporte = new Aporte();
 		aporte.setFecha(new Date());
 		aporte.setIdcliente(request.getIdcliente());
 		aporte.setValor(request.getValor());
 		aporte.setTipo(request.getTipaporte());
+		aporte.setConsecutivo(creditosRepository.findConsByType(request.getTipaporte()));
 		creditosRepository.guardarAporte(aporte);
 		Cliente cliente = getCliente((long) request.getIdcliente());
 		aporte.setCliente(cliente);
 		
-
 		Map<String, Object> parametersAporte = getParametersAporte(aporte);
 		sender.enviarMailAbono(cliente.getEmail(),"Comprobante aporte COOPECEJA",getMailContentAporte(parametersAporte));
 		
+		byte[] bytes = reportGenerator.getBytes(parametersAporte, "recibosAportes.jasper");
 		
-		return reportGenerator.getBytes(parametersAporte, "recibosAportes.jasper");
+		ResponseBuilder responseBuilder = Response.ok(bytes);
+		responseBuilder.header("cons", aporte.getConsecutivo());
+		return responseBuilder.build();
 	}
 	
 	@GET
@@ -224,22 +227,30 @@ public class CreditosServices {
 	@POST
 	@Path("liquidar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public byte[] liquidarCuotas(RequestLiquidarCuota request){
+	public Response liquidarCuotas(RequestLiquidarCuota request){
+		
+		 
+		 BigDecimal cons = creditosRepository.findLastConsDetalles();
+		
 		request.getDetalles().forEach(d->{d.setEstado("PAGADA");
 										d.setFechapago(new Date());
 										d.setValorpagado(d.getFecha().after(new Date()) ? d.getAmortizacion():d.getCuota());
+										d.setConsecutivo(cons);
 									});
 		creditosRepository.liquidarCuotas(request.getDetalles());
 		Cliente cliente = getCliente((long) request.getIdcliente());
 		
-		Map<String, Object> parametrosAbonos = getParametrosAbonos(cliente,request);
+		Map<String, Object> parametrosAbonos = getParametrosAbonos(cliente,request,cons);
 		
 		String periodos = request.getDetalles().stream().map(x -> ""+x.getPeriodo()).collect(Collectors.joining(", ", "[", "]"));
 		
 		sender.enviarMailAbono(cliente.getEmail(),String.format("Abono al credito # %s COOPECEJA, %s %s", request.getIdcredito(),cliente.getNombres(),cliente.getApellidos()),getMailContent(parametrosAbonos,periodos));
 		
+		byte[] bytes = reportGenerator.getBytes(parametrosAbonos, "recibosAbonosCreditos.jasper");
 		
-		return reportGenerator.getBytes(parametrosAbonos, "recibosAbonosCreditos.jasper");
+		ResponseBuilder responseBuilder = Response.ok(bytes);
+		responseBuilder.header("cons", cons);
+		return responseBuilder.build();
 	}
 	
 	@GET
@@ -290,11 +301,11 @@ public class CreditosServices {
 		return String.format(content,cliente.getNombres(),cliente.getApellidos(),parametrosAbonos.get("credito"),parametrosAbonos.get("cuotas"),periodos,parametrosAbonos.get("valor"));
 	}
 
-	private Map<String, Object> getParametrosAbonos(Cliente cliente, RequestLiquidarCuota request) {
+	private Map<String, Object> getParametrosAbonos(Cliente cliente, RequestLiquidarCuota request,BigDecimal cons) {
 		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("credito", request.getIdcredito());
-		parameters.put("numaporte", request.getDetalles().get(0).getId());
+		parameters.put("numaporte", cons.intValue());
 		parameters.put("cliente", cliente);
 		parameters.put("cuotas", request.getDetalles().size());
 		parameters.put("saldo", request.getDetalles().stream()

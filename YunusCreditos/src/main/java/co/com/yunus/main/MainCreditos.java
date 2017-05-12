@@ -1,9 +1,6 @@
 package co.com.yunus.main;
 
-import java.util.Calendar;
-
 import javax.enterprise.event.Observes;
-import javax.inject.Inject;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.PropertyConfigurator;
@@ -25,12 +22,8 @@ import co.com.yunus.application.rest.SimulacionServices;
 import co.com.yunus.application.rest.VinculacionServices;
 import co.com.yunus.config.AppExceptionMapper;
 import co.com.yunus.config.CORSFilter;
-import co.com.yunus.infrastructure.timer.TimerVencimientoCuotas;
 
 public class MainCreditos {
-	
-	@Inject
-	private TimerVencimientoCuotas timerVencimiento;
 	
     private void initServer() {
 	try {
