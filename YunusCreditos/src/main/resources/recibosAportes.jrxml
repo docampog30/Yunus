@@ -18,7 +18,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="97" splitType="Stretch">
+		<band height="117" splitType="Stretch">
 			<textField>
 				<reportElement style="Title" x="16" y="32" width="545" height="62" uuid="1f052a12-62bd-4898-a0e1-9a5abc87187a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
@@ -27,14 +27,14 @@
 				<textFieldExpression><![CDATA[$P{aporte}.getTipo().equals("O") ? "Depósito de aportes":$P{aporte}.getTipo().equals("E")?"Depósito de aportes":$P{aporte}.getTipo().equals("A")?"Afiliaciones":"Honorarios"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="SubTitle" x="573" y="10" width="229" height="22" uuid="59fcd88e-47d6-4df4-bf12-deada9e1fd76"/>
+				<reportElement style="SubTitle" x="573" y="0" width="229" height="22" uuid="59fcd88e-47d6-4df4-bf12-deada9e1fd76"/>
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="SansSerif" size="16" pdfFontName="Times-Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{aporte}.getTipo().equals("O") ? "Aporte N°":$P{aporte}.getTipo().equals("E")?"Aporte N°":$P{aporte}.getTipo().equals("A")?"Afiliación N°":"Honorarios N°"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="SubTitle" x="573" y="32" width="229" height="22" uuid="13ef2a2b-9d20-4aea-891c-3542800b7082"/>
+				<reportElement style="SubTitle" x="573" y="22" width="229" height="22" uuid="13ef2a2b-9d20-4aea-891c-3542800b7082"/>
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="SansSerif" size="16" pdfFontName="Times-Roman"/>
 				</textElement>
@@ -47,6 +47,10 @@
 				</textElement>
 				<text><![CDATA[Cooperativa de aporte y credito COOPECEJA]]></text>
 			</staticText>
+			<image>
+				<reportElement x="579" y="54" width="210" height="60" uuid="aceaa273-4c6a-49d9-b702-38754f808eb3"/>
+				<imageExpression><![CDATA["http://coopeceja.com/images/logo_reportes.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
