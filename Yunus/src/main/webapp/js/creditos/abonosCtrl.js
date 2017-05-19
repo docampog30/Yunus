@@ -6,6 +6,8 @@ controllers
 		  $scope.creditos = null;
 		  $scope.credito = null;
 		  $scope.valor = null;
+		  $scope.isDocumentoEscaneado = false;
+		  angular.element(document.querySelector('#mainDiv'))[0].focus();
 	  }
 	  
 	  $scope.buscarCliente = function(){
@@ -90,6 +92,13 @@ controllers
 	  
 	  function isSelected(elemento) {
 		  return elemento.liquidar;
+		}
+		
+	$scope.scan = function(infoCedula) {
+		  $scope.cliente = {};
+		  $scope.documento = parseInt(infoCedula.numeroIdentificacion);
+		  $scope.$digest();
+		  $scope.buscarCliente();
 		}
 	  
 	  $scope.init();

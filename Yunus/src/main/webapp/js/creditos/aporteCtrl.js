@@ -5,6 +5,8 @@ controllers
 		  $scope.cliente = null;
 		  $scope.valorAporte = null;
 		  $scope.tipo= "O";
+		  $scope.isDocumentoEscaneado = false;
+		  angular.element(document.querySelector('#mainDiv'))[0].focus();
 	  }
 	  
 	  $scope.buscarCliente = function(){
@@ -39,6 +41,13 @@ controllers
 			  alert("El aporte debe ser mayor a 0");
 		  }
 	  }
+	  
+	  	$scope.scan = function(infoCedula) {
+		  $scope.cliente = {};
+		  $scope.documento = parseInt(infoCedula.numeroIdentificacion);
+		  $scope.$digest();
+		  $scope.buscarCliente();
+		}
 	  
 	  $scope.condicionales = [{key:"O",value:"Ordinario"},{key:"E",value:"Extraordinario"},{key:"A",value:"Afiliación"},{key:"H",value:"Honorarios"}];
 	  

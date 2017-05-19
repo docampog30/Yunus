@@ -1,5 +1,5 @@
 controllers
-  .controller('ClientesController',['$scope','$rootScope','$http', 'ServicesFactory','$modal', function($scope,$rootScope,$http,ServicesFactory,$modal) {
+  .controller('ClientesController',['$scope','$rootScope','$http', 'ServicesFactory','$modal','$window', function($scope,$rootScope,$http,ServicesFactory,$modal, $window) {
 	  $scope.guardar = function() {
 		  ServicesFactory.guardarCliente($scope.cliente)
 		  .then(function(data) {
@@ -113,10 +113,6 @@ controllers
 		  cliente.celular			= parseInt( cliente.celular);
 		  cliente.telefono			= parseInt(cliente.telefono);
 		  return cliente;
-	  }
-	  
-	  $scope.onKeydown = function(keycode){
-		  alert(keycode);
 	  }
 	  
 	  function calculateAge(birthday) {

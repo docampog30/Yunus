@@ -1,5 +1,5 @@
-<form name="userForm" novalidate ng-enter>
-<div class="clientes" on-keydown="onKeydown">
+<form name="userForm" novalidate >
+<div class="clientes" id="mainDiv" sac-scan on-scan="scan(data)" active="{{isDocumentoEscaneado}}">
 <div class="actions" style="float: right;">
 	<ul>
 		<li>
@@ -15,14 +15,14 @@
 		</li>
 	</ul>
 </div>
+<div>
 	<h2>Ingresar Cliente</h2>
 	<label id="obligatorio">*Campos Obligatorios</label>
 	<label for=""><i class="fa fa-check-circle"></i> Información general</label>
 	<ul class = "add">
 		<li>
 			<label>Numero documento #</label>
-			<input type="number" ng-blur="buscarCliente()" ng-model="cliente.documento" required maxlength="40" on-keydown="onKeydown"
-				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+			<input type="number" ng-model="cliente.documento" required maxlength="40"
 			/>
 		</li>
 		<li>
@@ -136,5 +136,6 @@
 			</li>
 			</ul>
 		</div>
+</div>
 </div>
 </form>

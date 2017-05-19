@@ -6,6 +6,115 @@ function NavBarCtrl($scope) {
     $scope.navbarCollapsed = true;
 }
 
+mainApp.directive('sacScan', ['$rootScope', '$document', function($rootScope, $document) {
+	return {
+		restrict : 'EA',
+		scope : {
+			onScan : '&'
+		},
+		link : function(scope, element, attributes) {
+			var isCtrlKey = false, isFirstEnter = true, separator = '|', chars = [], getCedula, getCedulaExtranjeria, prevent, keyHandler;
+			var NUMERO_IDENTIFICACION = 2, APELLIDO_1 = 3, APELLIDO_2 = 4, NOMBRE_1 = 5, NOMBRE_2 = 6, SEXO = 7, FECHA_NACIMIENTO = 8;
+			var EXT_APELLIDO_2 = 4, EXT_NOMBRES = 5;
+			var expression = new RegExp(String.fromCharCode(17) + "2", 'g');
+
+			getCedula = function(source) {
+				return {
+					tipoIdentificacion : 13,
+					numeroIdentificacion : Number(source[NUMERO_IDENTIFICACION]).toString(),
+					primerNombre : source[NOMBRE_1],
+					segundoNombre : source[NOMBRE_2],
+					primerApellido : source[APELLIDO_1],
+					segundoApellido : source[APELLIDO_2],
+					genero : source[SEXO],
+					fechaNacimiento : !source[FECHA_NACIMIENTO] ? null : new Date(source[FECHA_NACIMIENTO].replace(/(\d{4})(\d{2})(\d{2})/, '$1/$2/$3'))
+				};
+			};
+
+			getCedulaExtranjeria = function(source) {
+				var nombres = source[EXT_NOMBRES].split(' ');
+				var data = source[1] + source[2] + source[3];
+				var tokens = /([0-9]+)([a-zA-Z]+)/.exec(data);
+
+				return {
+					tipoIdentificacion : 22,
+					numeroIdentificacion : Number(tokens[1]).toString(),
+					primerNombre : nombres[0],
+					segundoNombre : nombres[1],
+					primerApellido : tokens[2],
+					segundoApellido : source[EXT_APELLIDO_2]
+				};
+			};
+
+			prevent = function(event) {
+				event.preventDefault();
+				return false;
+			};
+
+			keyHandler = function($event) {
+				if (isCtrlKey) {
+					isCtrlKey = false;
+					return prevent($event);
+				}
+
+				if ($event.which === 16) {
+					return prevent($event);
+				}
+
+				if ($event.which === 17) {
+					isCtrlKey = true;
+					return prevent($event);
+				}
+
+				if ($event.which === 9) {
+					chars.push(separator);
+					return prevent($event);
+				}
+
+				if ($event.which === 13) {
+					if (isFirstEnter === true) {
+						isFirstEnter = false;
+						return prevent($event);
+					}
+					if (chars && chars.length > 0) {
+						var data = [], items = chars.join('').split(separator);
+						angular.forEach(items, function(item) {
+							data.push(item.trim().replace(expression, ''));
+						});
+
+						var response, out = data.join(separator);
+
+						if (/(TEMPO|RESID)/.test(data[0])) {
+							response = getCedulaExtranjeria(data);
+						} else {
+							response = getCedula(data);
+						}
+
+						scope.onScan({data : response});
+					}
+					isFirstEnter = true;
+					chars = [];
+					return prevent($event);
+				}
+
+				chars.push(String.fromCharCode($event.which));
+			};
+
+			attributes.$observe('active', function() {
+				if (attributes.active === 'true') {
+					$document.off('keydown', keyHandler);
+				} else {
+					$document.on('keydown', keyHandler);
+				}
+			});
+
+			return element.on('$destroy', function() {
+				return $document.off('keydown', keyHandler);
+			});
+		}
+	};
+}]);
+
 mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
    function($routeProvider,$httpProvider,cfpLoadingBarProvider) {
 
