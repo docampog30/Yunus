@@ -1,0 +1,36 @@
+<form name="userForm" novalidate>
+<div class="clientes" id="mainDiv" sac-scan on-scan="scan(data)" active="{{isDocumentoEscaneado}}">
+	<label for=""><i class="fa fa-money"></i> Aportes </label>
+	
+	<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="documento" required />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarCliente()">Buscar Cliente
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+	<ul class="add"  ng-show="cliente">
+		<li>
+			<p>{{cliente.nombres}}</p>
+		</li>
+		<li>
+			<p>{{cliente.apellidos}}</p>
+		</li>
+		<li>
+			<label>Tipo : </label>
+			<select ng-model="tipo"  ng-show="cliente" ng-options="v.key as v.value for (k, v) in condicionales" required></select>
+		</li>
+		<li>
+			<label>Valor : </label>
+			<input type="number" ng-model="valorAporte" ng-show="cliente" >
+		</li>
+		<li>
+			<button ng-click="pagarAporte()" ng-show="cliente">Liquidar Aporte</button>
+		</li>
+	</ul>
+	</div>
+	</form>

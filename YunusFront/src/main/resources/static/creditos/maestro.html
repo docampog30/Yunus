@@ -1,0 +1,20 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+<div class="actions" style="float: right;">
+
+</div>
+<h2>Intereses</h2>
+	<label for=""><i class="fa fa-check-circle"></i> Datos agregados</label>
+<!-- 	<div class="actions"> -->
+<!-- 		<span class="fa fa-search"></span> -->
+<!-- 		<input type="text" name="name" placeholder="Buscar" ng-model="search"> -->
+<!-- 	</div> -->
+	<ul class="title">
+		<li >Nombre</li>
+		<li >Valor</li>
+		<li>Editar</li>
+	</ul>
+	<ul class="flex tablas" data-ng-repeat="maestro in maestros |filter:search" ng-include="getTemplate(maestro)">
+	</ul>
+</div>
+</form>

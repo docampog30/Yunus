@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <title>Créditos</title>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+ <script type="text/javascript" src="scripts/loading-bar.min.js"></script>
+  <script type="text/javascript" src="scripts/angular-cookies.min.js"></script>
+ <script src="scripts/ui-bootstrap-tpls-0.13.3.min.js"></script>
+  <script src="scripts/jquery-1.11.3.min.js"></script>
+ <script src="scripts/bootstrap.min.js"></script>
+ <script src="http://momentjs.com/downloads/moment.min.js"></script>
+ <link rel="stylesheet" href="css/loading-bar.min.css" />
+ <link rel="stylesheet" href="css/bootstrap.css" />
+ <link rel="stylesheet" href="css/bootstrap-responsive.css" />
+ <link rel="stylesheet" href="css/ui-bootstrap-0.13.3-csp.css" />
+ <link rel="stylesheet" href="css/bootstrap.min.css" />
+ <link rel="stylesheet" href="css/font-awesome.css"/>
+ <link rel="stylesheet" href="css/app.css"/>
+  <script type="text/javascript" src="scripts/FileSaver.js"></script>
+ <script type="text/javascript" src="js/creditos/appCreditos.js"></script>
+ <script type="text/javascript" src="js/creditos/clientesCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/vinculacionCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/simuladorCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/formatosCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/generacionCredito.js"></script>
+ <script type="text/javascript" src="js/creditos/maestrosCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/abonosCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/aporteCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/reporteCreditos.js"></script>
+ <script type="text/javascript" src="js/creditos/loginCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/reporteAportesCtrl.js"></script>
+ <script type="text/javascript" src="js/creditos/reporteMorososCtrl.js"></script>
+</head>
+<body ng-app="mainApp" >
+   <header>
+     <div class="container-fluid">
+       <div class="menu">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+         </div>
+         <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+             <li><a href="#/clientes" class="active"  >Clientes</a></li>
+             <li><a href="#/vinculacion" class="active" >Vinculación de persona</a></li>
+             <li><a href="#/simulador" class="active" >Simulador</a></li>
+             <li><a href="#/formato" class="active" >Formato de vinculación</a></li>
+             <li><a href="#/credito" class="active" >Generar credito</a></li>
+             <li><a href="#/abonos" class="active" >Abonos</a></li>
+             <li><a href="#/maestros" class="active" >Intereses</a></li>
+             <li><a href="#/aporte" class="active" >Aportes y afiliación</a></li>
+             <li class="dropdown">
+		        <a class="dropdown-toggle" data-toggle="dropdown">Reportes
+		        <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		          <li><a href="#/reportecreditos" class="active" >Reporte creditos</a></li>
+	             <li><a href="#/reporteaportes"  class="active" >Reporte aportes</a></li>
+	             <li><a href="#/morosos" class="active" >Reporte morosos</a></li>
+		        </ul>
+      		</li>
+		     <li class="navbar-right"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesión</a></li>
+		    </ul>
+         </div>
+       </div>
+     </div>
+   <div class="clear"></div>
+   </header>
+   <div class="container-fluid">
+     <div ng-view></div>
+   </div>
+</body>
+</html>

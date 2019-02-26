@@ -1,0 +1,85 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-money"></i> Reporte total de ingresos de aportes </label>
+	
+	<ul class = "add">
+			<li>
+				<label># Documento</label>
+				<input type="text" ng-model="documento" />
+			</li>
+			<li>
+				<button type="submit" ng-click="buscarCliente()">Buscar x cliente
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+		<ul class = "add">
+		<li>
+				<label>Fecha Inicio</label>
+				<input type="date" ng-model="fechaini" />
+			</li>
+			<li>
+				<label>Fecha Fin</label>
+				<input type="date" ng-model="fechafin" />
+			</li>
+		<li>
+				<button type="submit" ng-click="buscarTotales()">Buscar totales entre fechas
+					<span class="fa fa-search"></span>
+				</button>
+			</li>
+		</ul>
+		<ul class="add" ng-show="cliente">
+		<li>
+			<h2>{{cliente.nombres}}</h2>
+		</li>
+		<li>
+			<h2>{{cliente.apellidos}}</h2>
+		</li>
+		<li>
+			<h2>Total pagos aportes</h2>
+		</li>
+		<li>
+			<h2>{{totalPagos|currency}}</h2>
+		</li>
+		<li>
+			<button type="submit" ng-click="generarReporte()">Generar reporte
+					<span class="fa fa-search"></span>
+				</button>
+		</li>
+		</ul>
+		<div ng-show = "aportes">
+		<label>APORTES PAGADOS POR CLIENTES</label>
+		<div id="creditos" ng-show="aportes">
+			<ul class="titleA partida">
+				<li class="colSmall">Fecha</li>
+				<li>Valor aporte</li>
+				<li>Tipo</li>
+				<li></li>
+			</ul>
+			<ul ng-repeat="de in aportes" class="tablasA partida">
+			<li class="colSmall">
+				<label>{{de.fecha | date:'dd/MM/yyyy'}}</label>
+			</li>
+			<li >
+				<label>{{de.valor|currency}}</label>
+			</li>
+			<li >
+				<label>{{de.tipo == 'O' ? 'Ordinario':de.tipo == 'E' ? 'Extraordinario': de.tipo == 'A' ? 'Afiliación':'Honorarios'}}</label>
+			</li>
+			<li >
+				<label><button ng-click="deshacerAporte(de)">Deshacer</button></label>
+			</li>
+			</ul>
+		</div>
+		</div>
+		<div ng-show = "valor">
+			<label>TOTAL DE INGRESOS POR APORTES</label>
+			<h3 style="color: red">{{valor|currency}}</h3>
+		</div>
+		<div ng-show = "valor">
+		<button type="submit" ng-click="generarReporteAportesFechas()">Generar reporte total
+					<span class="fa fa-search"></span>
+		</button>
+		</div>
+	</div>		
+	</form>

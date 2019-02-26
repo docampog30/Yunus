@@ -1,0 +1,41 @@
+<form name="userForm" novalidate>
+<div class="clientes" >
+	<label for=""><i class="fa fa-search-plus"></i> Busqueda </label>
+	<div class="actions">
+		<label>Identificación</label>
+		<input type="number" required ng-model="filter.documento" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+		<button ng-click="buscar()" ng-disabled= "userForm.$invalid">
+			Buscar
+			<span class="fa fa-search"></span>
+		</button>
+	</div>
+	<div>
+		<ul class="titleA">
+			<li>Numero</li>
+			<li>Fecha</li>
+			<li>Identificación</li>
+			<li>Nombre</li>
+			<li>Generar</li>
+		</ul>
+		<ul ng-repeat="vinculacion in vinculaciones" class="tablasA">
+		<li >
+			<label>{{vinculacion.id}}</label>
+		</li>
+		<li >
+			<label>{{vinculacion.feingreso|date:'dd/MM/yyyy'}}</label>
+		</li>
+		<li >
+			<label>{{vinculacion.cliente.documento}}</label>
+		</li>
+		<li>
+			<label>{{vinculacion.cliente.nombres}} - {{vinculacion.cliente.apellidos}}</label>
+		</li>
+		<li >
+			<button class="descargar" ng-click="descargar(vinculacion)">Generar<i class="fa fa-download"></i></button>
+			<button class="descargar" ng-click="editar(vinculacion)" >Editar<i class="fa fa-pencil"></i></button>
+		</li>
+		</ul>
+		
+	</div>
+</div>
+</form>

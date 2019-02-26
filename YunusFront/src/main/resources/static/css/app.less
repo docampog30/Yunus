@@ -1,0 +1,488 @@
+body,html
+{
+	padding:0;
+	margin:0;
+	width:100%;
+  height: 100%;
+	line-height:18px;
+	font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+	color:#666;
+	font-size:14px
+}
+ul {
+  list-style: none;
+}
+.clear {
+	clear: both;
+}
+header {
+  background: #333;
+  margin-bottom: 20px;
+  position: relative;
+  min-height: 50px;
+  @media (max-width: 990px) {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+    background:fade(#333, 90%);
+  }
+  .logo {
+    float: left;
+    color: #fff;
+    margin-top: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 26px;
+    span {
+      float: left;
+    }
+    .first {
+      background: #44A4BA;
+      padding: 0 7px;
+      color: #333;
+      margin-right: 2px;
+      border-radius: 50px;
+    }
+  }
+	.logoTech {
+    float: right;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+		width: 80px;
+		margin-top: 4px;
+		@media (max-width: 990px) {
+			display: none;
+		}
+		img{
+				width: 100%;
+		}
+  }
+  .menu {
+    float: left;
+    @media (max-width: 990px) {
+      float:none;
+    }
+    .navbar-header {
+      border:none;
+      button {
+        position: absolute;
+        right: 0;
+        .icon-bar {
+          background: #fff;
+        }
+      }
+    }
+    .navbar-collapse {
+      @media (max-width: 990px) {
+        box-shadow:none;
+      }
+    }
+    .nav {
+      li {
+        a {
+          color: #fff;
+          @media (max-width: 990px) {
+            padding:10px 0;
+          }
+          &:hover, &:active, &:focus {
+            color: #666;
+            @media (max-width: 990px) {
+              background:none;
+              color:#44A4BA;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// .migaPan {
+//   float: left;
+//   .logo {
+//     font-size: 14px;
+//     margin-right: 10px;
+//     border-right: 1px solid #ccc;
+//     padding-right: 20px;
+//     .tres {
+//       font-size: 16px;
+//       font-weight: bold;
+//       color: #00aecf;
+//     }
+//   }
+//   li {
+//     float: left;
+//   }
+//   .miga {
+//     a {
+//       color: #B6B6B6;
+//       margin: 0 5px;
+//     }
+//     .active {
+//       color: #666;
+//       font-weight: bold;
+//     }
+//   }
+// }
+.content {
+  padding: 15px 20px;
+  position: relative;
+  .home {
+    button {
+      border: none;
+      background: #008cdb;
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+      padding: 0 11px;
+      font-size: 13px;
+    }
+  }
+}
+.add {
+  display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+  				flex-flow: row wrap;
+  align-items:center;
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+  @media (max-width: 990px) {
+    border:none;
+  }
+  label {
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 11px;
+  }
+  li {
+    width: 18%;
+    margin-bottom:10px;
+    @media (max-width: 990px) {
+      width: 100%;
+      margin-bottom:10px;
+    }
+    input, select{
+      width: 93%;
+      height: 30px;
+      margin: 0;
+      @media (max-width: 990px) {
+        width: 100%;
+        height:35px;
+      }
+    }
+    button {
+      background: #44A4BA;
+      border: none;
+      padding: 0 15px;
+      height: 30px;
+      color: #fff;
+      border-radius: 4px;
+      margin-top: 19px;
+      cursor: pointer;
+      @media (max-width: 990px) {
+        width: 100%;
+        height:35px;
+        margin-top:5px;
+      }
+      &:hover {
+        background: #733AAA;
+      }
+    }
+  }
+}
+.actions {
+  margin: 9px 0 20px 0;
+  .fa {
+    font-size: 21px;
+    color: #9A9898;
+    position: relative;
+    top: 3px;
+  }
+  input {
+    height: 28px;
+    margin: 0 0 0 5px;
+  }
+  button {
+    color: #fff;
+    background: #F7BE38;
+    border: none;
+    margin-left: 10px;
+    height: 28px;
+    border-radius: 4px;
+    padding: 0 10px;
+    @media (max-width: 445px) {
+      width:100%;
+      margin:8px 0;
+    }
+    .fa {
+      color: #fff;
+      font-size: 14px;
+      top: 0;
+    }
+  }
+}
+.title, .tablas, .titleP, .tablasP, .titleA, .tablasA  {
+  display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+  				flex-flow: row wrap;
+  align-items:center;
+  margin: 0;
+  @media (max-width: 990px) {
+    display:none;
+  }
+  li {
+    width: 29%;
+    background: #666;
+    height: 30px;
+    line-height: 30px;
+    border-right: 1px solid #B9B7B7;
+    padding: 0 8px;
+    color: #fff;
+    &:last-child {
+      border: none;
+    }
+  }
+  .numId {
+    width: 12%;
+    border-left: 1px solid #B9B7B7;
+  }
+}
+.titleP, .tablasP, .titleA, .tablasA {
+  li {
+    width: 15%;
+    &:last-child {
+      border-right: 1px solid #B9B7B7;
+      border-bottom: 1px solid #B9B7B7;
+    }
+  }
+  .numId {
+    width: 10%;
+    border-left: none;
+  }
+  .numId2 {
+    border-left: 1px solid #B9B7B7;
+  }
+}
+.titleA, .tablasA {
+  li {
+    width: 20%;
+  }
+}
+.titleOnec {
+  margin: 0;
+  @media (max-width: 990px) {
+    display:none;
+  }
+  li {
+    background:#666;
+    color:#fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+  }
+}
+.tablas, .tablasA {
+  li {
+    background: none;
+    border-bottom: 1px solid #B9B7B7;
+    color: #666;
+    &:last-child {
+      border-bottom: 1px solid #B9B7B7;
+      border-right: 1px solid #B9B7B7;
+    }
+  }
+}
+.tablasP {
+  li {
+    background: none;
+    color: #666;
+    border-bottom: 1px solid #B9B7B7;
+    min-height: 40px;
+    line-height: 40px;
+  }
+  button {
+    background: #86BA44;
+    color: #fff;
+    border: none;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 4px;
+    font-size: 17px;
+  }
+	select {
+		width: 100%;
+	}
+	input {
+		width: 100%;
+    height: 28px;
+    line-height: 28px;
+    background: #FFF3D6;
+    padding-left: 8px;
+    border: 1px solid #FFD389;
+	}
+}
+.tablasOnec {
+  margin: 0;
+  @media (max-width: 990px) {
+    display:none;
+  }
+  li {
+    background: none;
+    border-bottom: 1px solid #B9B7B7;
+    border-right: 1px solid #B9B7B7;
+    border-left: 1px solid #B9B7B7;
+    color: #666;
+    min-height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+  }
+}
+.tablasR {
+  margin:0 0 20px 0;
+  background:#ccc;
+  padding:8px;
+  background: #F9F8F8;
+  border: 1px solid #ccc;
+  @media (min-width: 990px) {
+    display:none;
+  }
+  li {
+    border-bottom:1px solid #ccc;
+    padding:5px 0;
+    &:last-child {
+      border:none;
+    }
+  }
+  label {
+    width:140px;
+  }
+  .la {
+    width: 160px;
+  }
+  button {
+    background: #86BA44;
+    color: #fff;
+    border: none;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 4px;
+    font-size: 17px;
+  }
+}
+.empleados, .clientes, .proyecto, .asig, .factura,.home {
+  @media (max-width: 990px) {
+    padding-top: 60px;
+  }
+  h2 {
+    font-size: 22px;
+    margin: 0 0 15px 0;
+  }
+  label {
+    cursor: default;
+    .fa {
+      font-size: 16px;
+    }
+  }
+}
+.asig, .factura {
+  h2 {
+    font-size: 22px;
+    margin: 0 0 15px 0;
+  }
+  ul {
+    margin-left: 0;
+  }
+}
+.addEm, .idP {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 15px;
+  h3 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+  }
+}
+#obligatorio{
+	font-size: 11px;
+	display: block;
+	color: #FF7D7D;
+}
+.idP {
+  ul {
+    li {
+      label {
+        width: 210px;
+      }
+    }
+  }
+}
+.asignarT {
+	ul {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row wrap;
+	  				flex-flow: row wrap;
+	  align-items:center;
+		margin: 0 0 15px 0;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 15px;
+		li {
+			width: 31%;
+			margin-right: 10px;
+			select, input {
+				width: 100%;
+				height: 30px;
+				line-height: 30px;
+				margin-bottom: 0;
+			}
+			button {
+				width: 100%;
+				margin-top: 23px;
+				height: 30px;
+				background:#44A4BA;
+				color: #fff;
+				border-radius: 4px;
+				border: none;
+			}
+		}
+	}
+	padding: 15px;
+	label {
+		display: block;
+	}
+	h2 {
+		font-size: 22px;
+    margin: 0 0 15px 0;
+	}
+	.tablaTarifas {
+		li {
+			width: 100%;
+			span {
+				margin-right: 10px;
+			}
+			select, input, button {
+				width: inherit;
+			}
+		}
+	}
+}
+input.ng-valid  { border:1px solid #ccc; }
+input.ng-dirty.ng-valid  { border:1px solid green; }
+input.ng-dirty.ng-invalid  { border:1px solid #FF7D7D; }
+input.ng-invalid-required, select.ng-invalid-required  {border:1px solid #FF7D7D;}
