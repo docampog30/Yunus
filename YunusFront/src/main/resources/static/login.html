@@ -1,0 +1,15 @@
+<div class="container-fluid fondo">
+	<section id="login">
+		<div class="logo">
+			<img src="assets/portada.jpg" alt="" />
+		</div>
+		<form name="form" role="form">
+			<div class="contLogin">
+				<input required data-ng-model="user.user" data-ng-keyup="changeFocus($event, '#password')" type="text" id="username" name="username" placeholder="Usuario">
+				<input required data-ng-model="user.password" data-ng-keyup="$event.keyCode == 13 && form.$valid && login()" type="password" id="password" name="password" placeholder="Contraseña">
+				<button data-ng-click="login()" data-ng-disabled="form.$invalid" id="btnLogin" name="btnLogin" type="button">Iniciar sesión</button>
+			</div>
+		</form>
+	</section>
+</div>
+

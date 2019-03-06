@@ -1,10 +1,11 @@
 /build
 /bin
-Yunus/build
-Yunus/.settings/
+YunusFront/build
+YunusFront/.settings/
 YunusCore/bin/
-Yunus/bin
+YunusFront/bin
 YunusCore/build
 YunusCreditos/.settings/
 YunusCore/.settings/
 YunusCore/build/
+*.gradle

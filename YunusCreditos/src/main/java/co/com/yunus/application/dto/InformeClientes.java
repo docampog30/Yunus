@@ -5,7 +5,9 @@ import co.com.yunus.infrastructure.excel.IExcelColumnDescriptor;
 public enum InformeClientes  implements IExcelColumnDescriptor{
 	CLIENTE("CLIENTE", "getClienteName"),
 	DOCUMENTO("DOCUMENTO", "getDocumento"),
-	CORREO("CORREO","getEmail");
+	CORREO("CORREO","getEmail"),
+	DIRECCION("DIRECCION","getDirresidencia"),
+	TELEFONO("TELEFONO","getCelular");
 
 	private String header;
 	private String attribute;

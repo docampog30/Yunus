@@ -16,8 +16,8 @@
 	<properties>
 		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
         <property name="hibernate.connection.password" value="rootyunus123" ></property>
-        <property name="hibernate.connection.url" value="jdbc:mysql://coopeceja.com:3306/coopec_yunus"></property>
-        <property name="hibernate.connection.username" value="coopec_root"></property>
+        <property name="hibernate.connection.url" value="jdbc:mysql://creditos.cgi8kloqwrre.eu-west-1.rds.amazonaws.com:3306/creditos"></property>
+        <property name="hibernate.connection.username" value="root"></property>
 		<property name="hibernate.show_sql" value="false" />
 	</properties>	
 	
