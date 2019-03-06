@@ -9,5 +9,4 @@ public class YunusFrontApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(YunusFrontApplication.class, args);
 	}
-
 }

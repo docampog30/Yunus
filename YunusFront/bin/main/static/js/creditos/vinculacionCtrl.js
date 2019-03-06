@@ -147,7 +147,7 @@ controllers
 				  $scope.documento = $scope.cliente.documento;
 				  $scope.confirmacion = $scope.vinculacion.confirmaciones[0];
 			  }, function(response) {
-			    alert("Error consultando la partida");
+			    alert("Error consultando la la vinculación");
 			  });
 		  }
 	  }
