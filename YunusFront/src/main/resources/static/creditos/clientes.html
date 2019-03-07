@@ -90,6 +90,10 @@
 			<input type="text" ng-model="cliente.direccion" required maxlength="50"/>
 		</li>
 		<li>
+			<label>Estrato</label>
+			<select ng-model="cliente.estrato" ng-options="m.id as m.descripcion for m in estratos" required></select>
+		</li>
+		<li>
 			<label>Municipio/ciudad permanencia</label>
 			<input type="text" ng-model="cliente.dirresidencia" required maxlength="50"/>
 		</li>

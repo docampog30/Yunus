@@ -24,14 +24,20 @@ public class ClienteMockImpl implements IClientesRepository {
 
 	@Override
 	public List<Cliente> getClientByID(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		PodamFactory factory = new PodamFactoryImpl();
+		List<Cliente> list = new ArrayList<>();
+		Cliente myPojo = factory.manufacturePojo(Cliente.class);
+		list.add(myPojo);
+		return list;
 	}
 
 	@Override
 	public List<Cliente> getClients() {
-		// TODO Auto-generated method stub
-		return null;
+		PodamFactory factory = new PodamFactoryImpl();
+		List<Cliente> list = new ArrayList<>();
+		Cliente myPojo = factory.manufacturePojo(Cliente.class);
+		list.add(myPojo);
+		return list;
 	}
 
 }

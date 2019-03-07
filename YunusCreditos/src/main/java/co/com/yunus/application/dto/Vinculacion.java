@@ -86,6 +86,7 @@ public class Vinculacion {
 	private Long pasivos;
 	private Long vigencia;
 	private String entidadcaja;
+	private String tipo;
 	
 	@ManyToOne
 	@JoinColumn(name="IDCLIENTE",insertable=false,updatable=false)
@@ -471,5 +472,11 @@ public class Vinculacion {
 	}
 	public void setConfirmaciones(List<Confirmacion> confirmaciones) {
 		this.confirmaciones = confirmaciones;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }

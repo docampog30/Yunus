@@ -14,13 +14,17 @@ controllers
 	  }
 	  
 	  $scope.editar = function(vinculacion){
-		  $location.url('/vinculacion/'+vinculacion.id);
+		  if(vinculacion.tipo === 'vinculacion'){
+				  $location.url('/vinculacion/'+vinculacion.id+'/vinculacion');
+		  }else{
+			  $location.url('/preinscripcion/'+vinculacion.id+'/preinscripcion');
+		  }
 	  }
 
 	  $scope.descargar = function(partida){
 		  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
-		  var filename = "Vinculación_"+partida.cliente.nombres+partida.cliente.apellidos;
-		  ServicesFactory.descargarVinculacion(partida.id,filename);
+		  var filename = partida.tipo+"_"+partida.cliente.nombres+partida.cliente.apellidos;
+		  ServicesFactory.descargarVinculacion(partida.id,user,filename);
 	  }
 	  
 }]);

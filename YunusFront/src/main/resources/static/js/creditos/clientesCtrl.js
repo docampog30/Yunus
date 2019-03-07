@@ -18,6 +18,7 @@ controllers
 		  $scope.recuperarTiposVivienda(3);
 		  $scope.recuperarZonasVivienda(4);
 		  $scope.recuperarSexos();
+		  $scope.recuperarEstratos();
 		  $scope.recuperarOcupaciones(5);
 		  $scope.recuperarTiposDocumento();
 		  $scope.ismenoredad = false;
@@ -66,6 +67,9 @@ controllers
 	  }
 	  $scope.recuperarSexos = function(){
 		  $scope.sexos = [{id:'M',descripcion:'MASCULINO'},{id:'F',descripcion:'FEMENINO'}];
+	  }
+	  $scope.recuperarEstratos = function(){
+		  $scope.estratos = [{id:1,descripcion:'Estrato 1'},{id:2,descripcion:'Estrato 2'},{id:3,descripcion:'Estrato 3'},{id:4,descripcion:'Estrato 4'},{id:5,descripcion:'Estrato 5'},{id:6,descripcion:'Estrato 6'},];
 	  }
 	  $scope.recuperarOcupaciones = function(idmaestro){
 		  ServicesFactory.listarMaestro(idmaestro)

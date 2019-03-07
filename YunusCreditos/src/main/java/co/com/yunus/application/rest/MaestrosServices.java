@@ -20,10 +20,12 @@ import co.com.yunus.domain.repositories.ITransactionalRepository;
 public class MaestrosServices {
 
 	@Inject
+	//@Named("maestrosMock")
 	@Named("MaestroRepositoryImpl")
 	private IMaestroRepository maestroRepository;
 	
 	@Inject
+	//@Named("mock")
 	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
 	

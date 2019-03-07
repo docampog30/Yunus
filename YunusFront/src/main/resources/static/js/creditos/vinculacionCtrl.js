@@ -11,13 +11,14 @@ controllers
 		  if($scope.verificarPorcentajes()){
 			  $scope.vinculacion.confirmaciones = [];
 			  $scope.vinculacion.confirmaciones.push($scope.confirmacion);
+			  $scope.vinculacion.tipo = $scope.tipo;
 			  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
 			  ServicesFactory.actualizarVinculacion($scope.vinculacion,user)
 			  .then(function(data) {
 				  alert('Vinculación guardada correctamente');
 				  print = window.confirm('Desea imprimir el reporte de afiliación ?');
 				  if(print){
-					  var filename = "Vinculación_"+$scope.cliente.nombres+$scope.cliente.apellidos;
+					  var filename = $scope.vinculacion.tipo+"_"+$scope.vinculacion.cliente.nombres+$scope.vinculacion.cliente.apellidos; 	
 					  ServicesFactory.imprimirReporteAfiliacion(data.data,filename);
 				  }
 				  $scope.init();
@@ -60,13 +61,15 @@ controllers
 		  if($scope.verificarPorcentajes()){
 			  $scope.vinculacion.confirmaciones = [];
 			  $scope.vinculacion.confirmaciones.push($scope.confirmacion);
+			  $scope.vinculacion.tipo = $scope.tipo;
 			  var user = JSON.parse(window.localStorage.getItem("yunus")).user;
 			  ServicesFactory.guardarVinculacion($scope.vinculacion,user)
 			  .then(function(data) {
 				  alert('Vinculación guardada correctamente');
 				  print = window.confirm('Desea imprimir el reporte de afiliación ?');
 				  if(print){
-					  var filename = "Vinculación_"+$scope.cliente.nombres+$scope.cliente.apellidos;
+					  var filename = $scope.vinculacion.tipo+"_"+$scope.vinculacion.cliente.nombres+$scope.vinculacion.cliente.apellidos;
+
 					  ServicesFactory.imprimirReporteAfiliacion(data.data,filename);
 				  }
 				  $scope.init();
@@ -172,6 +175,8 @@ controllers
 	  }
 	  
 	  $scope.verificarPorcentajes = function(){
+		  
+		  if(!$scope.tipo){ 
 		  var porcentajeTotal = 0;
 		  angular.forEach($scope.vinculacion.beneficiarios, function(value, key) {
 			 porcentajeTotal += value.designacion;
@@ -183,8 +188,12 @@ controllers
 		  }else{
 			  return true;
 		  }
+		 }else{
+			 return true;
+		 }
 	  }
 	  
 	  $scope.id = $routeParams.id;
+	  $scope.tipo = $routeParams.tipo == 'preinscripcion' ?  $routeParams.tipo : 'vinculacion';
 	  $scope.init();
    }]);

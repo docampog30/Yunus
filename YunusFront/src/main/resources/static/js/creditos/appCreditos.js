@@ -172,6 +172,10 @@ mainApp.config(['$routeProvider', '$httpProvider', 'cfpLoadingBarProvider',
                templateUrl: 'creditos/reporteMorosos.html',
                controller: 'ReporteMorososController'
            }).
+           when('/preinscripcion/:id?/:tipo?', {
+        	   templateUrl: 'creditos/preinscripcion.html',
+               controller: 'VinculacionController'
+           }).
            otherwise({
             redirectTo: '/home'
          });
@@ -468,3 +472,8 @@ mainApp.controller('HomeController', ['$route', '$routeParams', '$location','$sc
         function($route, $routeParams, $location,$scope,FacturaFactory) {
 	
    }]);
+mainApp.filter('titleCase', function() {
+    return function(input) {
+        input = input || '';
+        return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      }});

@@ -27,10 +27,12 @@ import co.com.yunus.infrastructure.excel.ExcelGenerator;
 public class ClientesServices {
 
 	@Inject
+	//@Named("clienteMock")
 	@Named("ClienteRepositoryImpl")
 	private IClientesRepository clientesRepository;
 	
 	@Inject
+	//@Named("mock")
 	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
 	

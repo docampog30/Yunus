@@ -42,6 +42,9 @@ import co.com.yunus.infrastructure.util.MailSender;
 @Path("creditos")
 public class CreditosServices {
 
+	private static final String MSG_APORTE = "Señor(a) \n%s %s\n\nUsted acaba de generar un aporte por valor de: %s.\n\nPara COOPECEJA es un gusto poderle prestar nuestros mejores servicios y proporcionales esta información como evidencia de su pago.\n\nAgradecemos su atención.\n\nCOOPECEJA";
+	private static final String MSG_ABONO  = "Señor(a) \n%s %s\n\nUsted acaba de generar abono al credito # %s de %s cuota(s) para el(los) periodo(s) %s , por valor de: %s.\nPara COOPECEJA es un gusto poderle prestar nuestros mejores servicios y proporcionales esta información como evidencia de su pago.\n\nAgradecemos su atención.\n\nCOOPECEJA";
+
 	@Inject
 	private ICreditosRepository creditosRepository;
 	
@@ -218,7 +221,7 @@ public class CreditosServices {
 	}
 	
 	private String getMailContentAporte(Map<String, Object> parametersAporte) {
-		String content = "Señor(a) \n%s %s\n\nUsted acaba de generar un aporte por valor de: %s.\n\nPara COOPECEJA es un gusto poderle prestar nuestros mejores servicios y proporcionales esta información como evidencia de su pago.\n\nAgradecemos su atención.\n\nCOOPECEJA";
+		String content = MSG_APORTE;
 		
 		Aporte aporte =  (Aporte) parametersAporte.get("aporte");
 		return String.format(content,aporte.getCliente().getNombres(),aporte.getCliente().getApellidos(),aporte.getValor());
@@ -295,10 +298,9 @@ public class CreditosServices {
 	}
 	
 	private String getMailContent(Map<String, Object> parametrosAbonos,String periodos) {
-		String content = "Señor(a) \n%s %s\n\nUsted acaba de generar abono al credito # %s de %s cuota(s) para el(los) periodo(s) %s , por valor de: %s.\nPara COOPECEJA es un gusto poderle prestar nuestros mejores servicios y proporcionales esta información como evidencia de su pago.\n\nAgradecemos su atención.\n\nCOOPECEJA";
 		
 		Cliente cliente =  (Cliente) parametrosAbonos.get("cliente");
-		return String.format(content,cliente.getNombres(),cliente.getApellidos(),parametrosAbonos.get("credito"),parametrosAbonos.get("cuotas"),periodos,parametrosAbonos.get("valor"));
+		return String.format(MSG_ABONO,cliente.getNombres(),cliente.getApellidos(),parametrosAbonos.get("credito"),parametrosAbonos.get("cuotas"),periodos,parametrosAbonos.get("valor"));
 	}
 
 	private Map<String, Object> getParametrosAbonos(Cliente cliente, RequestLiquidarCuota request,BigDecimal cons) {

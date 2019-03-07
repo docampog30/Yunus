@@ -271,15 +271,7 @@ header .menu .nav li a:focus {
 .tablasP,
 .titleA,
 .tablasA {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
-  align-items: center;
-  margin: 0;
 }
 @media (max-width: 990px) {
   .title,
@@ -706,4 +698,10 @@ select.ng-invalid-required {
 #olvido .modal-content button {
   height: 30px;
   width: 100%;
+}
+
+div#logoPreinscripcion {
+    height: 150px;
+    width: 700px;
+    margin-bottom: 0px;
 }

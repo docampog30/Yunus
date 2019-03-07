@@ -15,6 +15,7 @@
 			<li>Fecha</li>
 			<li>Identificación</li>
 			<li>Nombre</li>
+			<li>Tipo</li>
 			<li>Generar</li>
 		</ul>
 		<ul ng-repeat="vinculacion in vinculaciones" class="tablasA">
@@ -22,13 +23,16 @@
 			<label>{{vinculacion.id}}</label>
 		</li>
 		<li >
-			<label>{{vinculacion.feingreso|date:'dd/MM/yyyy'}}</label>
+			<label>{{vinculacion.feingreso | date:'dd/MM/yyyy'}}</label>
 		</li>
 		<li >
 			<label>{{vinculacion.cliente.documento}}</label>
 		</li>
 		<li>
-			<label>{{vinculacion.cliente.nombres}} - {{vinculacion.cliente.apellidos}}</label>
+			<label>{{vinculacion.cliente.nombres}} {{vinculacion.cliente.apellidos}}</label>
+		</li>
+		<li>
+			<label>{{vinculacion.tipo | titleCase}}</label>
 		</li>
 		<li >
 			<button class="descargar" ng-click="descargar(vinculacion)">Generar<i class="fa fa-download"></i></button>

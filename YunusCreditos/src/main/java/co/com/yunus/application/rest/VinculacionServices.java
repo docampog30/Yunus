@@ -31,10 +31,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class VinculacionServices {
 	
 	@Inject
+	//@Named("mock")
 	@Named("TransactionalRepositoryImpl")
 	private ITransactionalRepository transactionalRepository;
 	
 	@Inject
+	//@Named("VinculacionMockImpl")
 	@Named("VinculacionRepositoryImpl")
 	private IVinculacionRepository vinculacionRepository;
 	
@@ -60,7 +62,10 @@ public class VinculacionServices {
 
 	private void asignarVinculacion(Vinculacion vinculacion) {
 		vinculacion.getBeneficiarios().stream().forEach(b->b.setVinculacion(vinculacion));
-		vinculacion.getConfirmaciones().stream().forEach(c-> c.setVinculacion(vinculacion));
+		System.out.println(vinculacion.getConfirmaciones());
+		if(vinculacion.getConfirmaciones() != null && !vinculacion.getConfirmaciones().isEmpty() && vinculacion.getConfirmaciones().get(0) != null) {
+			vinculacion.getConfirmaciones().stream().forEach(c-> c.setVinculacion(vinculacion));
+		}
 	}
 	
 	@GET
@@ -96,16 +101,22 @@ public class VinculacionServices {
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public byte[] reportById(@PathParam("id") Long id,@PathParam("user") String user){
 		Vinculacion vinculacion = vinculacionRepository.findById(id).stream().findAny().get();
-		return getBytes(vinculacion,user);
+		
+		System.err.println(vinculacion.getTipo());
+		if("vinculacion".equals(vinculacion.getTipo())) {
+			return getBytes(vinculacion,user, "vinculacion.jasper"); 
+		}else {
+			return getBytes(vinculacion,user, "preinscripcion.jasper"); 
+		}
 	}
 
-	private byte[] getBytes(Vinculacion vinculacion,String user) {
+	private byte[] getBytes(Vinculacion vinculacion,String user, String jasperName) {
 		byte[] exportReportToPdf = null;
 		try {
 			Map<String,Object> parametros = new HashMap<String,Object>();
 			parametros.put("vinculacion", vinculacion);
 			parametros.put("user", user);
-			InputStream jasperSin = this.getClass().getClassLoader().getResourceAsStream("vinculacion.jasper");
+			InputStream jasperSin = this.getClass().getClassLoader().getResourceAsStream(jasperName);
 		    JasperReport jasperCompilado = (JasperReport) JRLoader.loadObject(jasperSin);
 			JasperPrint jasperPrint 	 = JasperFillManager.fillReport(jasperCompilado, parametros, new JREmptyDataSource());
 			exportReportToPdf = JasperExportManager.exportReportToPdf(jasperPrint);
